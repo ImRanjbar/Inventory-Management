@@ -22,6 +22,7 @@ public:
     void setDescription(const std::string_view description);
     void setManufacture(const std::string_view manufacture);
     void setAvailability(const bool availability);
+    void setUnit(std::string_view symbol);
 
     const std::string& getName() const;
     const std::string& getCategory() const;
@@ -42,7 +43,9 @@ private:
     std::string m_price;
     std::string m_description;
     std::string m_manufacturedDate;
+    std::string m_unit;
     bool m_availability;
+
 };
 
 #endif // PRODUCT_H

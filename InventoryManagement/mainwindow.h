@@ -3,7 +3,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QMouseEvent>
+#include <QPoint>
 
 
 QT_BEGIN_NAMESPACE
@@ -18,8 +19,17 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void hideMainWindowLabels();
+
+private slots:
+
+
+    void on_PB_login_clicked();
+
+    void on_PB_signin_clicked();
 
 private:
+
     Ui::MainWindow *ui;
 };
 

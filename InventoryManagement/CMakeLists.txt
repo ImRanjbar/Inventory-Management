@@ -19,6 +19,11 @@ set(PROJECT_SOURCES
         mainwindow.ui
         product.h product.cpp
         user.h user.cpp
+        customer.h customer.cpp
+        seller.h seller.cpp
+        products.h products.cpp
+        purchase.h purchase.cpp
+        sold.h sold.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

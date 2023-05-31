@@ -13,11 +13,12 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        resource.qrc
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    resource.qrc
+    customer_signup_page.h customer_signup_page.cpp customer_signup_page.ui
 
 )
 
@@ -35,13 +36,13 @@ else()
         add_library(InventoryManagement SHARED
             ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(InventoryManagement
-            ${PROJECT_SOURCES}
-        )
-    endif()
+    # Define properties for Android with Qt 5 after find_package() calls as:
+    #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+else()
+    add_executable(InventoryManagement
+        ${PROJECT_SOURCES}
+    )
+endif()
 endif()
 
 target_link_libraries(InventoryManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

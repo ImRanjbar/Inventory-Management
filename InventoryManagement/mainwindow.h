@@ -3,8 +3,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMouseEvent>
-#include <QPoint>
+#include <QDebug>
 
 
 QT_BEGIN_NAMESPACE
@@ -29,7 +28,6 @@ private slots:
     void on_PB_signin_clicked();
 
 private:
-
     Ui::MainWindow *ui;
 };
 

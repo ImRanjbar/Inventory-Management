@@ -1,9 +1,10 @@
 
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "customer_signup_page.h"
 
-#include <QDebug>
 #include <QString>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,13 +45,17 @@ void MainWindow::on_PB_login_clicked()
     }
 }
 
-
 void MainWindow::on_PB_signin_clicked()
 {
     hideMainWindowLabels();
-    if(ui->RDB_seller->isChecked() || ui->RDB_customer->isChecked()){
-        qDebug() << "one of them is checked\n";
+    if(ui->RDB_seller->isChecked()){
+        qDebug() << "RDB_seller have checked\n";
         return;
+    }
+    else if (ui->RDB_customer->isChecked()){
+        customer_signup_page* customerSignUpPage = new customer_signup_page(this);
+        close();
+        customerSignUpPage->show();
     }
     else if (true){
         ui->LB_errorSelection->setText("Select at least one of them");
@@ -58,4 +63,3 @@ void MainWindow::on_PB_signin_clicked()
         return;
     }
 }
-

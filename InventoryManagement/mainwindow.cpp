@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "customer_signup_page.h"
+#include "seller_signup_window.h"
 
 #include <QString>
 
@@ -49,8 +50,9 @@ void MainWindow::on_PB_signin_clicked()
 {
     hideMainWindowLabels();
     if(ui->RDB_seller->isChecked()){
-        qDebug() << "RDB_seller have checked\n";
-        return;
+        seller_signup_window* sellerSignUpWindow = new seller_signup_window(this);
+        close();
+        sellerSignUpWindow->show();
     }
     else if (ui->RDB_customer->isChecked()){
         customer_signup_page* customerSignUpPage = new customer_signup_page(this);

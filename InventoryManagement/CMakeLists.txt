@@ -19,6 +19,7 @@ set(PROJECT_SOURCES
     mainwindow.ui
     resource.qrc
     customer_signup_page.h customer_signup_page.cpp customer_signup_page.ui
+    seller_signup_window.h seller_signup_window.cpp seller_signup_window.ui
 
 )
 

@@ -6,14 +6,10 @@ Products::Products()
 
 }
 
-void Products::addProduct(std::string_view name, std::string_view category, std::string_view sku
-                      , std::string_view brand, std::string_view amount
-                      , std::string_view price, std::string_view description
-                      , std::string_view manufacturedDate, bool availability) {
+void Products::addProduct(const Product& newItem) {
 
-    if (!existence(sku)){
-        Product newProduct(name, category, sku, brand, amount, price, description, manufacturedDate, availability);
-        m_products.push_back(newProduct);
+    if (!existence(newItem.getSku())){
+        m_products.emplace_back(newItem);
     }
     else{
         return;
@@ -66,9 +62,9 @@ void Products::sortByBrand() {
 }
 
 void Products::sortByAmount() {
-    std::ranges::sort(m_products, {}, &Product::getAmount);
+    std::ranges::sort(m_products, {}, &Product::getStock);
 }
 
 void Products::sortByDate() {
-    std::ranges::sort(m_products, {}, &Product::getManufactureDate);
+    std::ranges::sort(m_products, {}, &Product::getAddedDate);
 }

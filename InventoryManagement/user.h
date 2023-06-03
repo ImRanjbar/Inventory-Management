@@ -9,6 +9,7 @@
 class User {
 
 public:
+    ~User();
     void setUsername(const std::string_view username);
     void setPassword(const std::string_view password);
     void setName(const std::string_view name);
@@ -16,10 +17,12 @@ public:
     void setNIN(const std::string_view NIN);
     void setPhoneNumber(const std::string_view phoneNumber);
 
-
     const std::string& getUsername() const;
     const std::string& getPassword() const;
-
+    const std::string& getName() const;
+    const std::string& getLastName() const;
+    const std::string& getNIN() const;
+    const std::string& getPhoneNumber() const;
 
 protected:
     std::string m_username;
@@ -28,8 +31,6 @@ protected:
     std::string m_lastName;
     std::string m_NIN;
     std::string m_phoneNumber;
-
-
 };
 
 #endif // USER_H

@@ -11,10 +11,7 @@ class Products
 public:
     Products();
 
-    void addProduct(std::string_view name, std::string_view category, std::string_view sku
-                    , std::string_view brand, std::string_view amount
-                    , std::string_view price, std::string_view description
-                    , std::string_view manufacturedDate, bool availability);
+    void addProduct(const Product& newItem);
     void removeProduct(std::string_view sku);
     const Product& getProduct(const std::string_view sku);
     Product& editProduct(const std::string_view sku);

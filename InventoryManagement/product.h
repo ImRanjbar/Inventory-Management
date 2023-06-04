@@ -9,18 +9,18 @@ class Product
 public:
     Product();
     Product(std::string_view name, std::string_view category, std::string_view sku
-            , std::string_view brand, std::string_view stock
-            , std::string_view avaialable
-            , std::string_view price, std::string_view unit, std::string_view description
+            , std::string_view brand, double stockQuantity
+            , double avaialableQuantity, double price
+            , std::string_view unit, std::string_view description
             , std::string_view addedDate, std::string_view exDate, bool availability);
 
     void setName(const std::string_view name);
     void setCategory(const std::string_view category);
     void setSku(const std::string_view sku);
     void setBrand(const std::string_view brand);
-    void setStock(const std::string_view stock);
-    void setAvailable(const std::string_view available);
-    void setPrice(const std::string_view price);
+    void setStock(const double stock);
+    void setAvailable(const double available);
+    void setPrice(const double price);
     void setUnit(std::string_view symbol);
     void setDescription(const std::string_view description);
     void setAddedDate(const std::string_view addedDate);
@@ -31,9 +31,9 @@ public:
     const std::string& getCategory() const;
     const std::string& getSku() const;
     const std::string& getBrand() const;
-    const std::string& getStock() const;
-    const std::string& getAvailable() const;
-    const std::string& getPrice() const;
+    const double& getStock() const;
+    const double& getAvailable() const;
+    const double& getPrice() const;
     const std::string& getUnit() const;
     const std::string& getDescription() const;
     const std::string& getAddedDate() const;
@@ -45,9 +45,9 @@ private:
     std::string m_category;
     std::string m_sku;
     std::string m_brand;
-    std::string m_stock;
-    std::string m_available;
-    std::string m_price;
+    double m_stockQuantity;
+    double m_availableQuantity;
+    double m_price;
     std::string m_unit;
     std::string m_description;
     std::string m_addedDate;

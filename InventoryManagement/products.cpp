@@ -1,30 +1,27 @@
 
 #include "products.h"
 
-Products::Products()
-{
-
-}
+Products::Products() = default;
 
 void Products::addProduct(const Product& newItem) {
 
-    if (!existence(newItem.getSku())){
+    if (!existence(newItem.getSku())) {
         m_products.emplace_back(newItem);
     }
-    else{
+    else {
         return;
     }
 }
 
-const Product& Products::getProduct(const std::string_view desiredSku) {
-    std::vector<Product>::iterator productIterator = std::ranges::find_if(m_products, [&desiredSku](const Product& product) {
+const Product& Products::getProduct(const std::string_view desiredSku) const{
+    std::vector<Product>::const_iterator productIterator = std::ranges::find_if(m_products, [&desiredSku](const Product& product) {
         return product.getSku() == desiredSku;
     });
 
     return *productIterator;
 }
 
-Product& Products::editProduct(const std::string_view desiredSku){
+Product& Products::editProduct(const std::string_view desiredSku) {
     std::vector<Product>::iterator productIterator = std::ranges::find_if(m_products, [&desiredSku](const Product& product) {
         return product.getSku() == desiredSku;
     });
@@ -44,8 +41,7 @@ void Products::removeProduct(std::string_view desiredSku) {
     std::erase_if(m_products, [&desiredSku](const Product& product) {return (product.getSku() == desiredSku); });
 }
 
-const std::vector<Product>& Products::getProducts() const
-{
+const std::vector<Product>& Products::getProducts() const {
     return m_products;
 }
 

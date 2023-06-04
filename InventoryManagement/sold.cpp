@@ -1,10 +1,7 @@
 
 #include "sold.h"
 
-Sold::Sold()
-{
-
-}
+Sold::Sold() = default;
 
 Sold::Sold(std::string_view date, std::string_view customerID, std::string_view invoiceID):
     m_date(date), m_customerID(customerID), m_invoiceID(invoiceID) {}
@@ -21,7 +18,7 @@ void Sold::setCustomerID(const std::string_view customerID){
     m_customerID = customerID;
 }
 
-const invoiceItems& Sold::getItems(){
+const invoiceItems& Sold::getItems() const{
     return m_items;
 }
 

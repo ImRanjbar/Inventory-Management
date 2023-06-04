@@ -25,6 +25,7 @@ set(PROJECT_SOURCES
         sold.h sold.cpp
         invoiceItem.h invoiceItem.cpp
         invoiceItems.h invoiceItems.cpp
+        Invoice.h Invoice.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

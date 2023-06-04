@@ -24,7 +24,7 @@ public:
     const std::string& getNIN() const;
     const std::string& getPhoneNumber() const;
 
-protected:
+private:
     std::string m_username;
     std::string m_password;
     std::string m_name;

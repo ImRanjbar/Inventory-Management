@@ -1,15 +1,15 @@
 
 #include "product.h"
 
-Product::Product(){}
+Product::Product() = default;
 
 Product::Product(std::string_view name, std::string_view category, std::string_view sku
-                 , std::string_view brand, std::string_view stock
-                 , std::string_view avaialable, std::string_view price
+                 , std::string_view brand, double stockQuantity
+                 , double avaialableQuantity, double price
                  , std::string_view unit, std::string_view description
                  , std::string_view addedDate, std::string_view exDate, bool availability)
     : m_name(name), m_category(category), m_sku(sku), m_brand(brand)
-    , m_stock(stock),m_available(avaialable), m_price(price),m_unit(unit), m_description(description)
+    , m_stockQuantity(stockQuantity),m_availableQuantity(avaialableQuantity), m_price(price),m_unit(unit), m_description(description)
     , m_addedDate(addedDate), m_exDate(exDate), m_availability(availability) {}
 
 void Product::setName(const std::string_view name) {
@@ -28,15 +28,15 @@ void Product::setBrand(const std::string_view brand) {
     m_brand = brand;
 }
 
-void Product::setStock(const std::string_view stock) {
-    m_stock = stock;
+void Product::setStock(const double stock) {
+    m_stockQuantity = stock;
 }
 
-void Product::setAvailable(const std::string_view available){
-    m_available = available;
+void Product::setAvailable(const double available){
+    m_availableQuantity = available;
 }
 
-void Product::setPrice(const std::string_view price) {
+void Product::setPrice(const double price) {
     m_price = price;
 }
 
@@ -76,15 +76,15 @@ const std::string& Product::getBrand() const {
     return m_brand;
 }
 
-const std::string& Product::getStock() const {
-    return m_stock;
+const double& Product::getStock() const {
+    return m_stockQuantity;
 }
 
-const std::string& Product::getAvailable() const {
-    return m_available;
+const double& Product::getAvailable() const {
+    return m_availableQuantity;
 }
 
-const std::string& Product::getPrice() const {
+const double& Product::getPrice() const {
     return m_price;
 }
 

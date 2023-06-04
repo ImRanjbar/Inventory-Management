@@ -14,7 +14,7 @@ public:
     void setDate(const std::string_view invoiceDate);
     void setCustomerID(const std::string_view m_customerID);
 
-    const invoiceItems& getItems();
+    const invoiceItems& getItems() const;
     invoiceItems& editItems();
     const std::string& getInvoiceDate();
     const std::string& getCustomerID();

@@ -1,10 +1,8 @@
 
 #include "invoiceitems.h"
 
-invoiceItems::invoiceItems()
-{
+invoiceItems::invoiceItems() = default;
 
-}
 void invoiceItems::addItem(const invoiceItem& newItem) {
     if (!existence(newItem.getSku())) {
         m_items.emplace_back(newItem);
@@ -14,7 +12,7 @@ void invoiceItems::addItem(const invoiceItem& newItem) {
     }
 }
 
-const invoiceItem& invoiceItems::getItem(const std::string_view desiredSku) {
+const invoiceItem& invoiceItems::getItem(const std::string_view desiredSku) const{
     auto productIterator = std::ranges::find_if(m_items, [&desiredSku](const invoiceItem& product) {
         return product.getSku() == desiredSku;
     });
@@ -42,6 +40,10 @@ void invoiceItems::removeItem(std::string_view desiredSku) {
     std::erase_if(m_items, [&desiredSku](const invoiceItem& product) {
         return product.getSku() == desiredSku;
     });
+}
+
+void invoiceItems::clearItems(){
+    m_items.clear();
 }
 
 const std::vector<invoiceItem>& invoiceItems::getItems() const {

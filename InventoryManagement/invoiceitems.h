@@ -11,8 +11,9 @@ class invoiceItems
 public:
     invoiceItems();
     void addItem(const invoiceItem& newItem);
-    void removeItem(std::string_view sku);
-    const invoiceItem& getItem(const std::string_view sku);
+    void removeItem(const std::string_view sku);
+    void clearItems();
+    const invoiceItem& getItem(const std::string_view sku) const;
     invoiceItem& editItem(const std::string_view sku);
     const std::vector<invoiceItem>& getItems() const;
     std::vector<invoiceItem>& editItems();

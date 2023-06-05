@@ -51,7 +51,6 @@ else()
         add_library(InventoryManagement SHARED
             ${PROJECT_SOURCES}
         )
-<<<<<<< HEAD
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
@@ -59,15 +58,6 @@ else()
             ${PROJECT_SOURCES}
         )
     endif()
-=======
-    # Define properties for Android with Qt 5 after find_package() calls as:
-    #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-else()
-    add_executable(InventoryManagement
-        ${PROJECT_SOURCES}
-    )
-endif()
->>>>>>> GUI
 endif()
 
 target_link_libraries(InventoryManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

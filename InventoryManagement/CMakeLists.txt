@@ -20,6 +20,12 @@ set(PROJECT_SOURCES
     resource.qrc
     customer_signup_page.h customer_signup_page.cpp customer_signup_page.ui
     seller_signup_window.h seller_signup_window.cpp seller_signup_window.ui
+    home_window.h home_window.cpp home_window.ui
+    inventory_widget.h inventory_widget.cpp inventory_widget.ui
+    purchase_widget.h purchase_widget.cpp purchase_widget.ui
+    reports_widget.h reports_widget.cpp reports_widget.ui
+    currency_widget.h currency_widget.cpp currency_widget.ui
+    invoice_widget.h invoice_widget.cpp invoice_widget.ui
 
 )
 

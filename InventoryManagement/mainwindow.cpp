@@ -3,6 +3,7 @@
 #include "./ui_mainwindow.h"
 #include "customer_signup_page.h"
 #include "seller_signup_window.h"
+#include "home_window.h"
 
 #include <QString>
 
@@ -34,15 +35,20 @@ void MainWindow::on_PB_login_clicked()
     if (false){
         return;
     }
-    else if (true){
+    else if (false){
         ui->LB_errorUsername->setText("Username is incorrect");
         ui->LB_errorUsername->setVisible(true);
         return;
     }
-    else if (true){
+    else if (false){
         ui->LB_errorPassword->setText("Password is incorrect");
         ui->LB_errorPassword->setVisible(true);
         return;
+    }
+    else {
+        home_window* homeWindow = new home_window(this);
+        close();
+        homeWindow->show();
     }
 }
 

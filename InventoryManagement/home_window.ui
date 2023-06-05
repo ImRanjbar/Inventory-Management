@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>home_window</class>
+ <widget class="QDialog" name="home_window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="appHeaderWidget" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>1280</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>1280</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#appHeaderWidget {
+	background-image : url(:/Images/appHeaderWidgetBackground.png);
+}</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="LB_header">
+        <property name="styleSheet">
+         <string notr="true">
+font-family: 'Fjalla One', sans-serif;
+font-size: 20px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #2A2F4F;
+font-weight: bold;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+padding:50px 10px;</string>
+        </property>
+        <property name="text">
+         <string>Inventory Management</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="LB_username">
+        <property name="styleSheet">
+         <string notr="true">
+font-family: 'Fjalla One', sans-serif;
+text-align: right;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #2A2F4F;
+font-weight: bold;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>Ryan Ranjbar</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="PB_profile">
+        <property name="maximumSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget #PB_profile {
+	background-image : url(:/Images/icons/profileIcon.png);
+	background-position : center;
+	background-repeat : no repeat;
+	background-size: contain;
+	display:inline-block;
+	border-radius:0px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+
+	padding:50px 10px;
+}
+
+QPushButton:hover {
+	background-color:#transparent;
+}
+QPushButton:pressed {
+	background-color:#transparent;
+	color:#000000;
+}
+
+QPushButton:active {
+		position:relative;
+	top:1px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QWidget" name="leftMenuWidget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>700</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>700</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget #leftMenuWidget {
+	background-image : url(:/Images/leftMenuBackground.png);
+}</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="PB_inventory">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-image : url(:/Images/icons/inventoryIcon.png);
+	background-position : center;
+	background-repeat : none;
+	display:inline-block;
+	border-radius:0px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+
+	padding:50px 10px;
+}
+
+QPushButton:hover {
+	background-color : #ecebfb;
+	color:#000000;
+}
+QPushButton:pressed {
+	background-color:#DCD7C9;
+	color:#000000;
+}
+
+QPushButton:active {
+		position:relative;
+	top:1px;
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="PB_purchase">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-image : url(:/Images/icons/purchaseIcon.png);
+	background-position : center;
+	background-repeat : none;
+	display:inline-block;
+	border-radius:0px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+
+	padding:50px 10px;
+}
+
+QPushButton:hover {
+	background-color : #ecebfb;
+	color:#000000;
+}
+QPushButton:pressed {
+	background-color:#DCD7C9;
+	color:#000000;
+}
+
+QPushButton:active {
+		position:relative;
+	top:1px;
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="PB_reports">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-image : url(:/Images/icons/reportsIcon.png);
+	background-position : center;
+	background-repeat : none;
+	display:inline-block;
+	border-radius:0px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+
+	padding:50px 10px;
+}
+
+QPushButton:hover {
+	background-color : #ecebfb;
+	color:#000000;
+}
+QPushButton:pressed {
+	background-color:#DCD7C9;
+	color:#000000;
+}
+
+QPushButton:active {
+		position:relative;
+	top:1px;
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="PB_currency">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-image : url(:/Images/icons/currencyIcon.png);
+	background-position : center;
+	background-repeat : none;
+	display:inline-block;
+	border-radius:0px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+
+	padding:50px 10px;
+}
+
+QPushButton:hover {
+	background-color : #ecebfb;
+	color:#000000;
+}
+QPushButton:pressed {
+	background-color:#DCD7C9;
+	color:#000000;
+}
+
+QPushButton:active {
+		position:relative;
+	top:1px;
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="PB_invoice">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-image : url(:/Images/icons/invoiceIcon.png);
+	background-position : center;
+	background-repeat : none;
+	display:inline-block;
+	border-radius:0px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+
+	padding:50px 10px;
+}
+
+QPushButton:hover {
+	background-color : #ecebfb;
+	color:#000000;
+}
+QPushButton:pressed {
+	background-color:#DCD7C9;
+	color:#000000;
+}
+
+QPushButton:active {
+		position:relative;
+	top:1px;
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="mainWidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>1160</width>
+         <height>660</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>1160</width>
+         <height>660</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget #mainWidget {
+	background-color : #ecebfb;
+}</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

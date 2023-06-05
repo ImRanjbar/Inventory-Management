@@ -64,7 +64,7 @@ const std::string& Seller::getManufactureName() const{
     return m_manufactureName;
 }
 
-const Products& Seller::getProducts() const{
+const Products& Seller::getProductsModel() const{
     return m_products;
 }
 

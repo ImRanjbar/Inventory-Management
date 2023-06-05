@@ -1,11 +1,14 @@
 #include "home_window.h"
 #include "ui_home_window.h"
 
-home_window::home_window(QWidget *parent) :
+home_window::home_window(Manufacturers* manufacturers, Seller *user, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::home_window)
 {
     ui->setupUi(this);
+    m_manufacturers = manufacturers;
+    m_user = user;
+    setLabels();
 }
 
 home_window::~home_window()
@@ -95,7 +98,7 @@ void home_window::on_PB_inventory_clicked()
     closeWidgets();
 
     setPushButtonSelectedtStyle(ui->PB_inventory, ":/Images/icons/inventoryIcon.png");
-    inventory_widget* inventoryWidget = new inventory_widget(ui->mainWidget);
+    inventory_widget* inventoryWidget = new inventory_widget(m_manufacturers, m_user,ui->mainWidget);
     inventoryWidget->show();
 
 }
@@ -106,7 +109,7 @@ void home_window::on_PB_purchase_clicked()
     closeWidgets();
 
     setPushButtonSelectedtStyle(ui->PB_purchase, ":/Images/icons/purchaseIcon.png");
-    purchase_widget* purchaseWidget = new purchase_widget(ui->mainWidget);
+    purchase_widget* purchaseWidget = new purchase_widget(m_manufacturers, m_user,ui->mainWidget);
     purchaseWidget->show();
 }
 
@@ -138,4 +141,9 @@ void home_window::on_PB_invoice_clicked()
     setPushButtonSelectedtStyle(ui->PB_invoice, ":/Images/icons/invoiceIcon.png");
     invoice_widget* invoiceWidget = new invoice_widget(ui->mainWidget);
     invoiceWidget->show();
+}
+
+void home_window::setLabels(){
+    QString userHeader = QString::fromStdString(m_user->getName()) + " " + QString::fromStdString(m_user->getLastName());
+    ui->LB_userHeader->setText(userHeader);
 }

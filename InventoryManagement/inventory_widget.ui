@@ -323,6 +323,63 @@ QComboBox QAbstractItemView::item:hover {
           </widget>
          </item>
          <item>
+          <spacer name="horizontalSpacer_8">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>10</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #ddd9f8;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #eff4fc;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Search</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -525,13 +582,13 @@ QPushButton::hover {
           <item>
            <widget class="QListView" name="LV_brandList">
             <property name="styleSheet">
-             <string notr="true">QListWidget {
+             <string notr="true">QListView {
     background-color: #e0e0e0;
 	border-radius : 5px;
     border: none;
 }
 
-QListWidget::item {
+QListView::item {
     background-color: transparent;
     padding: 5px;
 }
@@ -632,13 +689,13 @@ QPushButton::hover {
           <item>
            <widget class="QListView" name="LV_categoryList">
             <property name="styleSheet">
-             <string notr="true">QListWidget {
+             <string notr="true">QListView {
     background-color: #e0e0e0;
 	border-radius : 5px;
     border: none;
 }
 
-QListWidget::item {
+QListView::item {
     background-color: transparent;
     padding: 5px;
 }

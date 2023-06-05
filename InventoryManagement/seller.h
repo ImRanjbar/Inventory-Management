@@ -29,7 +29,7 @@ public:
     const std::string& getMID() const;
     const std::string& getManufactureName()const;
 
-    const Products& getProducts() const;
+    const Products& getProductsModel() const;
     Products& editProducts();
 
     const std::vector<Sold>& getHistory() const;

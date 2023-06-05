@@ -1,5 +1,6 @@
 #include "inventory_widget.h"
 #include "ui_inventory_widget.h"
+#include <QStringListModel>
 
 class CustomItemDelegate_QListView : public QStyledItemDelegate {
 public:
@@ -31,7 +32,7 @@ public:
     }
 };
 
-inventory_widget::inventory_widget(QWidget *parent) :
+inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::inventory_widget)
 {
@@ -39,10 +40,102 @@ inventory_widget::inventory_widget(QWidget *parent) :
     CustomItemDelegate_QListView* delegateList = new CustomItemDelegate_QListView;
     ui->LV_brandList->setItemDelegate(delegateList);
     ui->LV_categoryList->setItemDelegate(delegateList);
+    m_manufacturers = manufacturers;
+    m_user = user;
+
+    setSearchComboBox();
+    setTableColumns();
+    updateTable();
+    updateFilterBrand();
+    updateFilterCategory();
 }
 
 inventory_widget::~inventory_widget()
 {
     delete ui;
+}
+
+void inventory_widget::setSearchComboBox(){
+    ui->CB_searchBy->addItem("Name");
+    ui->CB_searchBy->addItem("SKU");
+    ui->CB_searchBy->addItem("Category");
+    ui->CB_searchBy->addItem("Brand");
+    ui->CB_searchBy->addItem("Unit");
+}
+
+void inventory_widget::setTableColumns(){
+    m_tableViewModel.setHorizontalHeaderItem(0 ,new QStandardItem("SKU"));
+    m_tableViewModel.setHorizontalHeaderItem(1 ,new QStandardItem("Name"));
+    m_tableViewModel.setHorizontalHeaderItem(2 ,new QStandardItem("Brand"));
+    m_tableViewModel.setHorizontalHeaderItem(3 ,new QStandardItem("Category"));
+    m_tableViewModel.setHorizontalHeaderItem(4 ,new QStandardItem("Price"));
+    m_tableViewModel.setHorizontalHeaderItem(5 ,new QStandardItem("In Stock"));
+    m_tableViewModel.setHorizontalHeaderItem(6 ,new QStandardItem("Available"));
+    m_tableViewModel.setHorizontalHeaderItem(7 ,new QStandardItem("Added Date"));
+    m_tableViewModel.setHorizontalHeaderItem(8 ,new QStandardItem("Expration Date"));
+//    m_tableViewModel.setHorizontalHeaderItem(9 ,new QStandardItem("Availability"));
+    ui->TV_products->setModel(&m_tableViewModel);
+    ui->TV_products->setEditTriggers(QAbstractItemView::NoEditTriggers);
+//    ui->TV_products->setCursor(Qt::PointingHandCursor);
+    ui->TV_products->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+
+    // Set the size of each column
+    const int numColumns = 9;
+    const int columnWidth = 100;
+    for (int column = 0; column < numColumns; ++column) {
+        if (column == 4)
+            ui->TV_products->setColumnWidth(column, 70);
+        else if (column == 5 || column == 6)
+            ui->TV_products->setColumnWidth(column, 70);
+        else
+            ui->TV_products->setColumnWidth(column, columnWidth);
+    }
+
+
+}
+
+void inventory_widget::updateTable(){
+    std::vector<Product> products = m_user->getProductsModel().getProducts();
+//    int row = products.size();
+    int row = 0;
+    for (const Product& product : products){
+        m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+        m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
+        m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
+        m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
+        m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+        m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
+        m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
+        m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+        m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+        row++;
+    }
+}
+
+void inventory_widget::updateFilterBrand(){
+    QStringList brands;
+    for (const Product& product : m_user->getProductsModel().getProducts()){
+        qDebug() << product.getBrand() << "have added into filter brand listView\n";
+        brands << QString::fromStdString(product.getBrand());
+    }
+    qDebug() << brands;
+
+    m_brandFilterList.setStringList(brands);
+
+    ui->LV_brandList->setModel(&m_brandFilterList);
+
+}
+
+void inventory_widget::updateFilterCategory(){
+    QStringList categories;
+    for (const Product& product : m_user->getProductsModel().getProducts()){
+        qDebug() << product.getCategory() << "have added into filter category listView\n";
+        categories << QString::fromStdString(product.getCategory());
+    }
+    qDebug() << categories;
+
+    m_categoryFilterList.setStringList(categories);
+
+    ui->LV_categoryList->setModel(&m_categoryFilterList);
 }
 

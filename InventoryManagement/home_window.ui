@@ -98,7 +98,7 @@ padding:50px 10px;</string>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="LB_username">
+       <widget class="QLabel" name="LB_userHeader">
         <property name="styleSheet">
          <string notr="true">
 font-family: 'Fjalla One', sans-serif;

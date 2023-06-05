@@ -31,15 +31,17 @@ public:
     }
 };
 
-purchase_widget::purchase_widget(QWidget *parent) :
+purchase_widget::purchase_widget(Manufacturers* manufacturers, Seller* user ,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::purchase_widget)
 {
     ui->setupUi(this);
+    m_manufacturers = manufacturers;
+    m_user = user;
+
     QStyledItemDelegate* listDelegate = new QStyledItemDelegate;
     ui->LV_brandList->setItemDelegate(listDelegate);
     ui->LV_categoryList->setItemDelegate(listDelegate);
-
 
 }
 

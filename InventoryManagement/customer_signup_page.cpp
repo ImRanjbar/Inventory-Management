@@ -1,7 +1,7 @@
 #include "customer_signup_page.h"
 #include "ui_customer_signup_page.h"
 
-customer_signup_page::customer_signup_page(MainWindow* previousWindow, QWidget *parent) :
+customer_signup_page::customer_signup_page(QWidget* previousWindow, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::customer_signup_page)
 {

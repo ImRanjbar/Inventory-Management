@@ -12,6 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+# Copy the CSV file to the build directory
+configure_file(data.csv ${CMAKE_CURRENT_BINARY_DIR}/data.csv COPYONLY)
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
@@ -35,6 +38,10 @@ set(PROJECT_SOURCES
         reports_widget.h reports_widget.cpp reports_widget.ui
         currency_widget.h currency_widget.cpp currency_widget.ui
         invoice_widget.h invoice_widget.cpp invoice_widget.ui
+        data.csv
+        datahandler.h datahandler.cpp
+        manufacturers.h manufacturers.cpp
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

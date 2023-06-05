@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "manufacturers.h"
+#include "seller.h"
 #include "inventory_widget.h"
 #include "purchase_widget.h"
 #include "reports_widget.h"
@@ -18,7 +20,7 @@ class home_window : public QDialog
     Q_OBJECT
 
 public:
-    explicit home_window(QWidget *parent = nullptr);
+    explicit home_window(Manufacturers* manufacturers, Seller* user, QWidget *parent = nullptr);
     ~home_window();
 
 private slots:
@@ -43,8 +45,13 @@ private slots:
 
     void on_PB_invoice_clicked();
 
+    void setLabels();
+
+
 private:
     Ui::home_window *ui;
+    Manufacturers* m_manufacturers;
+    Seller* m_user;
 };
 
 #endif // HOME_WINDOW_H

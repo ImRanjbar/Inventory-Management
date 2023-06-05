@@ -1,18 +1,21 @@
 
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+
 #include "customer_signup_page.h"
 #include "seller_signup_window.h"
 #include "home_window.h"
 
 #include <QString>
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(Manufacturers* data, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    m_manufacturers = data;
     ui->setupUi(this);
     hideMainWindowLabels();
+
 }
 
 void MainWindow::hideMainWindowLabels(){
@@ -31,23 +34,45 @@ void MainWindow::on_PB_login_clicked()
     hideMainWindowLabels();
     QString username = ui->LE_username->text();
     QString password = ui->LE_password->text();
-    if (false){
-        return;
-    }
-    else if (false){
-        ui->LB_errorUsername->setText("Username is incorrect");
-        ui->LB_errorUsername->setVisible(true);
-        return;
-    }
-    else if (false){
-        ui->LB_errorPassword->setText("Password is incorrect");
-        ui->LB_errorPassword->setVisible(true);
-        return;
+
+    if (m_manufacturers->usernameExistence(username.toStdString()) && !password.isEmpty()){
+        qDebug() << "_PBLogin_username is " << username << '\n';
+        if (m_manufacturers->checkPassword(username.toStdString(),password.toStdString())){
+            qDebug() << "_PBLogin__password is " << password << '\n';
+            Seller* user = m_manufacturers->editSeller(username.toStdString());
+            qDebug() << "user name is " << user->getName() << '\n';
+            home_window* homeWindow = new home_window(m_manufacturers, user, this);
+            close();
+            homeWindow->show();
+        }
+        else {
+            qDebug() << "_PBLogin__password is " << password << '\n';
+            ui->LB_errorPassword->setText("Password is incorrect");
+            ui->LB_errorPassword->setVisible(true);
+        }
     }
     else {
-        home_window* homeWindow = new home_window(this);
-        close();
-        homeWindow->show();
+        if (username.isEmpty()){
+            qDebug() << "_PBLogin_username is " << username << '\n';
+            ui->LB_errorUsername->setText("This field is required");
+            ui->LB_errorUsername->setVisible(true);
+        }
+//        else if (!username.isEmpty()){
+////            if (!m_manufacturers->usernameExistence(username.toStdString())){
+////                qDebug() << "_PBLogin_username is " << username << '\n';
+////                ui->LB_errorUsername->setText("Incorrect username");
+////                ui->LB_errorUsername->setVisible(true);
+//            }
+        if (password.isEmpty()){
+            qDebug() << "_PBLogin__password is " << password << '\n';
+            ui->LB_errorPassword->setText("This field is required");
+            ui->LB_errorPassword->setVisible(true);
+        }
+        else {
+            qDebug() << "_PBLogin__password is " << password << '\n';
+            ui->LB_errorPassword->setText("Incorrect password");
+            ui->LB_errorPassword->setVisible(true);
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 #include "seller_signup_window.h"
 #include "ui_seller_signup_window.h"
 
-seller_signup_window::seller_signup_window(MainWindow* previouseWindow, QWidget *parent) :
+seller_signup_window::seller_signup_window(QWidget* previouseWindow, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::seller_signup_window)
 {

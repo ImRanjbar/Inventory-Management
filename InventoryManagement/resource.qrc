@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/mainWindowBackground.png</file>
+        <file>Images/CustomerSignUpWindowBackground.png</file>
+        <file>Images/SellerSignUpWindowBackground.png</file>
+        <file>Images/appHeaderWidgetBackground.png</file>
+        <file>Images/leftMenuBackground.png</file>
+        <file>Images/icons/currencyIcon.png</file>
+        <file>Images/icons/inventoryIcon.png</file>
+        <file>Images/icons/invoiceIcon.png</file>
+        <file>Images/icons/profileIcon.png</file>
+        <file>Images/icons/purchaseIcon.png</file>
+        <file>Images/icons/reportsIcon.png</file>
+        <file>Images/icons/downChevronComboBox.png</file>
+    </qresource>
+</RCC>

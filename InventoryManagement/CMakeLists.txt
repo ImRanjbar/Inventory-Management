@@ -26,6 +26,15 @@ set(PROJECT_SOURCES
         invoiceItem.h invoiceItem.cpp
         invoiceItems.h invoiceItems.cpp
         Invoice.h Invoice.cpp
+        resource.qrc
+        customer_signup_page.h customer_signup_page.cpp customer_signup_page.ui
+        seller_signup_window.h seller_signup_window.cpp seller_signup_window.ui
+        home_window.h home_window.cpp home_window.ui
+        inventory_widget.h inventory_widget.cpp inventory_widget.ui
+        purchase_widget.h purchase_widget.cpp purchase_widget.ui
+        reports_widget.h reports_widget.cpp reports_widget.ui
+        currency_widget.h currency_widget.cpp currency_widget.ui
+        invoice_widget.h invoice_widget.cpp invoice_widget.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -42,6 +51,7 @@ else()
         add_library(InventoryManagement SHARED
             ${PROJECT_SOURCES}
         )
+<<<<<<< HEAD
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
@@ -49,6 +59,15 @@ else()
             ${PROJECT_SOURCES}
         )
     endif()
+=======
+    # Define properties for Android with Qt 5 after find_package() calls as:
+    #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+else()
+    add_executable(InventoryManagement
+        ${PROJECT_SOURCES}
+    )
+endif()
+>>>>>>> GUI
 endif()
 
 target_link_libraries(InventoryManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

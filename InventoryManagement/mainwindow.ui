@@ -1,22 +1,468 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>800</width>
-    <height>600</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QStatusBar" name="statusbar"/>
- </widget>
- <resources/>
- <connections/>
-</ui>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">MainWindow {
+                    background-image: url(:/Images/mainWindowBackground.png);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-color: transparent;
+                    }</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Minimum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">
+font-family: 'Fjalla One', sans-serif;
+font-size: 40px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #2A2F4F;
+font-weight: bold;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>Inventory Management</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>100</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="styleSheet">
+           <string notr="true">font-family: Arial;
+font-size: 20px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #2A2F4F;
+font-weight: bold;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+</string>
+          </property>
+          <property name="text">
+           <string>Username</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LE_username">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color:#F3E8FF;
+	border-radius:9px;
+	border:1px solid #c584f3;
+	display:inline-block;
+	cursor:text;
+	color:#6671d4;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 54px;
+	text-decoration:none;
+	text-shadow:10px 0px 0px #9752cc;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="LB_errorUsername">
+          <property name="styleSheet">
+           <string notr="true">
+font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #9d2020;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+          </property>
+          <property name="text">
+           <string>Invalid username</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="styleSheet">
+           <string notr="true">font-family: Arial;
+font-size: 20px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #2A2F4F;;
+font-weight: bold;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+</string>
+          </property>
+          <property name="text">
+           <string>Password</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="LE_password">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+	background-color:#F3E8FF;
+	border-radius:9px;
+	border:1px solid #c584f3;
+	display:inline-block;
+	cursor:text;
+	color:#6671d4;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 54px;
+	text-decoration:none;
+	text-shadow:10px 0px 0px #9752cc;
+}
+</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="LB_errorPassword">
+          <property name="styleSheet">
+           <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #9d2020;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+          </property>
+          <property name="text">
+           <string>Error</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QRadioButton" name="RDB_seller">
+            <property name="styleSheet">
+             <string notr="true">QRadioButton {
+    color: #333333;
+    font-size: 16px;
+	font-family : Calibri;
+	font-weight : bold;
+}
+
+QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+	border: 2px solid #cccccc;
+}
+
+QRadioButton::indicator:checked {
+    background-color:#724cd7;
+    border-color: #724cd7;
+}
+
+QRadioButton::indicator:hover {
+    border-color: #999999;
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Seller</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="RDB_customer">
+            <property name="styleSheet">
+             <string notr="true">QRadioButton {
+    color: #333333;
+    font-size: 16px;
+	font-family : Calibri;
+	font-weight : bold;
+}
+
+QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+	border: 2px solid #cccccc;
+}
+
+QRadioButton::indicator:checked {
+    background-color:#724cd7;
+    border-color: #724cd7;
+}
+
+QRadioButton::indicator:hover {
+    border-color: #999999;
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Customer</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="LB_errorSelection">
+          <property name="styleSheet">
+           <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #9d2020;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+          </property>
+          <property name="text">
+           <string>Error</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="PB_login">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background-color:#724cd7;
+	border-radius:29px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:21px 45px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+
+QPushButton:hover {
+	background-color:#9376E0;
+}
+
+QPushButton:active {
+		position:relative;
+	top:1px;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Login</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="styleSheet">
+             <string notr="true">font-family: 'Fjalla One', sans-serif;
+font-size: 11px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #2A2F4F;
+font-weight: none;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;</string>
+            </property>
+            <property name="text">
+             <string>Don't have an account? </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="PB_signin">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    border: none;
+	font-weight : bold;
+
+}
+QPushButton:hover{
+	change-cursor: cursor('PointingHand');
+
+}</string>
+            </property>
+            <property name="text">
+             <string>Sign up</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Maximum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>750</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>17</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -18,11 +18,24 @@ public:
     const std::vector<Product>& getProducts() const;
     bool existence(const std::string_view sku) const;
 
+    void sortBySKU();
+    void sortBySKUdes();
     void sortByName();
+    void sortByNameDes();
     void sortByCategory();
+    void sortByCategoryDes();
     void sortByBrand();
-    void sortByAmount();
-    void sortByDate();
+    void sortByBrandDes();
+    void sortByPrice();
+    void sortByPriceDes();
+    void sortByStock();
+    void sortByStockDes();
+    void sortByAvailable();
+    void sortByAvailableDes();
+    void sortByAddDate();
+    void sortByAddDateDes();
+    void sortByExDate();
+    void sortByExDateDes();
 
 private:
     std::vector<Product> m_products;

@@ -20,6 +20,7 @@ purchase_widget::purchase_widget(Manufacturers* manufacturers, Seller* user ,QWi
 
 purchase_widget::~purchase_widget()
 {
+    qDebug() << "purchase widget destructure\n";
     delete ui;
 }
 
@@ -113,7 +114,7 @@ void purchase_widget::updateTable(){
     m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
 
     if (m_provider){
-        const std::vector<invoiceItem>& items = m_provider->getInvoiceItemsModel().getItems();
+        const std::vector<invoiceItem> items = m_provider->getInvoiceItemsModel().getItems();
         int row = 0;
         for (const invoiceItem& item : items){
             m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(item.getSku())));
@@ -126,7 +127,7 @@ void purchase_widget::updateTable(){
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
             m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getExDate())));
             row++;
-            qDebug() << item.getName() << " have add to table model\n";
+            qDebug() << item.getSku() << " from " << m_provider->getManufactureName() << " have added to list\n";
         }
     }
     else{
@@ -141,7 +142,9 @@ void purchase_widget::updateFilterBrand(){
     if (m_provider){
         QStringList brands;
         for (const invoiceItem& item : m_provider->getInvoiceItemsModel().getItems()){
-            brands << QString::fromStdString(item.getBrand());
+            QString brand = QString::fromStdString(item.getBrand());
+            if (!brands.contains(brand))
+                brands << brand;
         }
 
         m_brandFilterList.setStringList(brands);
@@ -156,7 +159,9 @@ void purchase_widget::updateFilterCategory(){
     if (m_provider){
         QStringList categories;
         for (const invoiceItem& item : m_provider->getInvoiceItemsModel().getItems()){
-            categories << QString::fromStdString(item.getCategory());
+            QString category = QString::fromStdString(item.getCategory());
+            if (!categories.contains(category))
+                categories << category;
         }
 
         m_categoryFilterList.setStringList(categories);

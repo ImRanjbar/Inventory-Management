@@ -17,6 +17,8 @@ public:
     void readData(Manufacturers* manufacturers);
 
     void removeQuotes(std::string& value);
+
+    void saveData(Manufacturers* manufacturers);
 };
 
 #endif // DATAHANDLER_H

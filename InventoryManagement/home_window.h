@@ -23,6 +23,9 @@ public:
     explicit home_window(Manufacturers* manufacturers, Seller* user, QWidget *parent = nullptr);
     ~home_window();
 
+signals :
+    void dialogClosed();
+
 private slots:
 
     void setPushButtonDefaultStyle(QPushButton* button, const QString& iconPath);

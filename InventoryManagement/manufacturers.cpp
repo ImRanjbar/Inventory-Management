@@ -3,6 +3,12 @@
 
 Manufacturers::Manufacturers() = default;
 
+Manufacturers::~Manufacturers(){
+    for (Seller* seller : m_manufacturers){
+        delete seller;
+    }
+}
+
 void Manufacturers::addManufact(Seller* seller){
     m_manufacturers.push_back(seller);
 }

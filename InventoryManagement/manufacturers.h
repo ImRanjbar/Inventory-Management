@@ -10,6 +10,7 @@ class Manufacturers : public Seller
 {
 public:
     Manufacturers();
+    ~Manufacturers();
 
     void addManufact(Seller* seller);
 

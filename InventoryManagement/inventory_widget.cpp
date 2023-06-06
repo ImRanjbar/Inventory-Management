@@ -2,11 +2,14 @@
 #include "ui_inventory_widget.h"
 #include "add_product_window.h"
 #include <QStringListModel>
+#include <QMessageBox>
+#include <QHeaderView>
 
 inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::inventory_widget)
 {
+    qDebug() << "inventory_widget constructure\n";
     ui->setupUi(this);
 
     customizeListItems();
@@ -16,13 +19,26 @@ inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QW
 
     setSearchComboBox();
     setTableColumns();
+
     updateTable();
+
     updateFilterBrand();
     updateFilterCategory();
+    connect(ui->LV_brandList->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &inventory_widget::onSelectionChangedBrands);
+    connect(ui->LV_categoryList->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &inventory_widget::onSelectionChangedCategories);
+
+    connect(ui->LE_search, &QLineEdit::textChanged, this, &inventory_widget::onTextChanged);
+
+
+
+    qDebug() << "inventory_widget constructure done\n";
 }
 
 inventory_widget::~inventory_widget()
 {
+    qDebug() << "inventory_widget destructure\n";
     delete ui;
 }
 
@@ -99,13 +115,24 @@ void inventory_widget::setTableColumns(){
         else
             ui->TV_products->setColumnWidth(column, columnWidth);
     }
+
+    ui->TV_products->horizontalHeader()->setSectionsClickable(true);
+    connect(ui->TV_products->horizontalHeader(), &QHeaderView::sectionDoubleClicked, this, &inventory_widget::handleHeaderDoubleClicked);
+    connect(ui->TV_products->horizontalHeader(), &QHeaderView::sectionClicked, this, &inventory_widget::handleHeaderClicked);
+
 }
 
 void inventory_widget::updateTable() {
     const std::vector<Product>& products = m_user->getProductsModel().getProducts();
+
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
     int row = 0;
     for (const Product& product : products){
-        m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+        QStandardItem* SKU = new QStandardItem(QString::fromStdString(product.getSku()));
+        SKU->setData(Qt::AlignCenter, Qt::TextAlignmentRole);
+        m_tableViewModel.setItem(row,0 ,SKU);
         m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
         m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
         m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
@@ -116,32 +143,251 @@ void inventory_widget::updateTable() {
         m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
         row++;
     }
+
+    ui->LE_search->setText("");
+    qDebug() << "updateTable func done\n ";
 }
 
 void inventory_widget::updateFilterBrand(){
     QStringList brands;
     for (const Product& product : m_user->getProductsModel().getProducts()){
         qDebug() << product.getBrand() << "have added into filter brand listView\n";
-        brands << QString::fromStdString(product.getBrand());
+        QString brand = QString::fromStdString(product.getBrand());
+        if (!brands.contains(brand))
+            brands << brand;
     }
     qDebug() << brands;
 
     m_brandFilterList.setStringList(brands);
 
     ui->LV_brandList->setModel(&m_brandFilterList);
+
 }
 
 void inventory_widget::updateFilterCategory(){
     QStringList categories;
     for (const Product& product : m_user->getProductsModel().getProducts()){
         qDebug() << product.getCategory() << "have added into filter category listView\n";
-        categories << QString::fromStdString(product.getCategory());
+        QString category = QString::fromStdString(product.getCategory());
+        if (!categories.contains(category))
+            categories << category;
     }
-    qDebug() << categories;
 
     m_categoryFilterList.setStringList(categories);
 
     ui->LV_categoryList->setModel(&m_categoryFilterList);
+
+
+    qDebug() << "updateFilterCategory func done suc\n";
+}
+
+void inventory_widget::removeProduct(int row){
+    QModelIndex index = ui->TV_products->model()->index(row, 0);
+    QString productSKU = ui->TV_products->model()->data(index, Qt::DisplayRole).toString();
+
+    QMessageBox* messageBox = new QMessageBox(this);
+
+    messageBox->setText("Are you sure you want to remove the product with SKU code " + productSKU +" from your inventory?");
+    messageBox->setWindowTitle("Remove Product");
+
+    messageBox->addButton(QMessageBox::Yes);
+    messageBox->addButton(QMessageBox::No);
+
+    int buttonClicked = messageBox->exec();
+
+    if (buttonClicked == QMessageBox::Yes)
+        m_user->removerProduct(productSKU.toStdString());
+    else
+        return;
+}
+
+void inventory_widget::updateTableBrand(const std::string_view brand){
+    const std::vector<Product>& products = m_user->getProductsModel().getProducts();
+
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const Product& product : products){
+        if (product.getBrand() == brand){
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            row++;
+        }
+    }
+    qDebug() << "updateTable func done\n ";
+}
+
+void inventory_widget::updateTableCategory(const std::string_view category){
+    const std::vector<Product>& products = m_user->getProductsModel().getProducts();
+
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const Product& product : products){
+        if (product.getCategory() == category){
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            row++;
+        }
+    }
+    qDebug() << "updateTable func done\n ";
+
+}
+
+void inventory_widget::search(const QString &text){
+    QString by = ui->CB_searchBy->currentText();
+    if (by == "Name")
+        searchByName(text);
+    else if (by == "SKU")
+        searchBySKU(text);
+    else if (by == "Category")
+        searchByCategory(text);
+    else if (by =="Brand")
+        searchByBrand(text);
+    else if (by == "Unit")
+        searchByUnit(text);
+
+
+}
+
+void inventory_widget::searchByName(const QString &text){
+    const std::vector<Product>& products = m_user->getProductsModel().getProducts();
+
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const Product& product : products){
+        if (QString::fromStdString(product.getName()).startsWith(text)){
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            row++;
+        }
+    }
+    qDebug() << "updateTable func done\n ";
+}
+
+void inventory_widget::searchBySKU(const QString &text)
+{
+    const std::vector<Product>& products = m_user->getProductsModel().getProducts();
+
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const Product& product : products){
+        if (QString::fromStdString(product.getSku()).startsWith(text)){
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            row++;
+        }
+    }
+    qDebug() << "updateTable func done\n ";
+}
+
+void inventory_widget::searchByCategory(const QString &text)
+{
+    const std::vector<Product>& products = m_user->getProductsModel().getProducts();
+
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const Product& product : products){
+        if (QString::fromStdString(product.getCategory()).startsWith(text)){
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            row++;
+        }
+    }
+    qDebug() << "updateTable func done\n ";
+}
+
+void inventory_widget::searchByBrand(const QString &text)
+{
+    const std::vector<Product>& products = m_user->getProductsModel().getProducts();
+
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const Product& product : products){
+        if (QString::fromStdString(product.getBrand()).startsWith(text)){
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            row++;
+        }
+    }
+    qDebug() << "updateTable func done\n ";
+}
+
+void inventory_widget::searchByUnit(const QString &text)
+{
+    const std::vector<Product>& products = m_user->getProductsModel().getProducts();
+
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const Product& product : products){
+        if (QString::fromStdString(product.getUnit()).startsWith(text)){
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            row++;
+        }
+    }
+    qDebug() << "updateTable func done\n ";
 }
 
 
@@ -168,5 +414,156 @@ void inventory_widget::onDialogClosed(){
     updateFilterBrand();
     updateFilterCategory();
     updateTable();
+}
+
+
+void inventory_widget::on_PB_remove_clicked()
+{
+    QItemSelectionModel* selectionModel = ui->TV_products->selectionModel();
+    QModelIndexList selectedIndexes = selectionModel->selectedIndexes();
+
+    if (!selectedIndexes.empty()) {
+        QModelIndex selectedIndex = selectedIndexes.first();
+        int row = selectedIndex.row();
+        removeProduct(row);
+        qDebug() << "after removeProduct\n";
+        updateFilterBrand();
+        updateFilterCategory();
+        updateTable();
+    }
+    qDebug() << "on_PB_remove_clicked func done\n";
+}
+
+
+void inventory_widget::on_PB_brandFilter_clicked(){
+    qDebug() << "PB_BrandFilter\n";
+
+    // Get the currently selected index
+    QModelIndex selectedIndex = ui->LV_brandList->currentIndex();
+
+    if (selectedIndex.isValid()) {
+        // Get the selected text directly from the model
+        QString selectedItemText = selectedIndex.data(Qt::DisplayRole).toString();
+        qDebug() << "Selected item: " << selectedItemText;
+        updateTableBrand(selectedItemText.toStdString());
+        ui->LE_search->setText("");
+    }
+
+}
+
+void inventory_widget::onSelectionChangedBrands(const QItemSelection& selected, const QItemSelection& deselected){
+    qDebug() << "on inventory_widget::onSelectionChangedBrands \n";
+    // Check if there is at least one selected item
+    if (!selected.isEmpty()) {
+        // Enable the QPushButton
+        ui->PB_brandFilter->setEnabled(true);
+    } else {
+        // No selected items, disable the QPushButton
+        ui->PB_brandFilter->setEnabled(false);
+    }
+}
+
+void inventory_widget::onSelectionChangedCategories(const QItemSelection &selected, const QItemSelection &deselected){
+    qDebug() << "on inventory_widget::onSelectionChangedCategories \n";
+    // Check if there is at least one selected item
+    if (!selected.isEmpty()) {
+        // Enable the QPushButton
+        ui->PB_categoryFilter->setEnabled(true);
+    } else {
+        // No selected items, disable the QPushButton
+        ui->PB_categoryFilter->setEnabled(false);
+    }
+}
+
+
+void inventory_widget::on_PB_categoryFilter_clicked(){
+    qDebug() << "PB_BrandFilter\n";
+
+    // Get the currently selected index
+    QModelIndex selectedIndex = ui->LV_categoryList->currentIndex();
+
+    if (selectedIndex.isValid()) {
+        // Get the selected text directly from the model
+        QString selectedItemText = selectedIndex.data(Qt::DisplayRole).toString();
+        qDebug() << "Selected item: " << selectedItemText;
+        updateTableCategory(selectedItemText.toStdString());
+        ui->LE_search->setText("");
+    }
+}
+
+void inventory_widget::handleHeaderDoubleClicked(int logicalIndex){
+    qDebug() << "handleHeaderDoubleClicked\n";
+
+    switch (logicalIndex){
+    case 0:
+        m_user->editProducts().sortBySKU();
+        break;
+    case 1:
+        m_user->editProducts().sortByName();
+        break;
+    case 2:
+        m_user->editProducts().sortByBrand();
+        break;
+    case 3:
+        m_user->editProducts().sortByCategory();
+        break;
+    case 4:
+        m_user->editProducts().sortByPrice();
+        break;
+    case 5:
+        m_user->editProducts().sortByStock();
+        break;
+    case 6:
+        m_user->editProducts().sortByAvailable();
+        break;
+    case 7:
+        m_user->editProducts().sortByAddDate();
+        break;
+    case 8:
+        m_user->editProducts().sortByExDate();
+        break;
+    }
+    updateTable();
+}
+
+void inventory_widget::handleHeaderClicked(int logicalIndex){
+    qDebug() << "handleHeaderClicked\n";
+
+    switch (logicalIndex){
+    case 0:
+        m_user->editProducts().sortBySKUdes();
+        break;
+    case 1:
+        m_user->editProducts().sortByNameDes();
+        break;
+    case 2:
+        m_user->editProducts().sortByBrandDes();
+        break;
+    case 3:
+        m_user->editProducts().sortByCategoryDes();
+        break;
+    case 4:
+        m_user->editProducts().sortByPriceDes();
+        break;
+    case 5:
+        m_user->editProducts().sortByStockDes();
+        break;
+    case 6:
+        m_user->editProducts().sortByAvailableDes();
+        break;
+    case 7:
+        m_user->editProducts().sortByAddDateDes();
+        break;
+    case 8:
+        m_user->editProducts().sortByExDateDes();
+        break;
+    }
+    updateTable();
+}
+
+void inventory_widget::onTextChanged(const QString &text){
+    qDebug() << "LE_search text : " << text << "\n";
+    search(text);
+
 }
 

@@ -5,7 +5,12 @@ home_window::home_window(Manufacturers* manufacturers, Seller *user, QWidget *pa
     QDialog(parent),
     ui(new Ui::home_window)
 {
+    qDebug() << "home_window constructure\n";
     ui->setupUi(this);
+
+//     Connect the finished() signal of the dialog to the dialogClosed() signal
+    connect(this, &QDialog::finished, this, &home_window::dialogClosed);
+
     m_manufacturers = manufacturers;
     m_user = user;
     setLabels();
@@ -13,6 +18,7 @@ home_window::home_window(Manufacturers* manufacturers, Seller *user, QWidget *pa
 
 home_window::~home_window()
 {
+    qDebug() << "home_window destructure\n";
     delete ui;
 }
 
@@ -88,7 +94,9 @@ void home_window::closeChildWidget(QWidget* parent, const QString& widgetName){
     QWidget* childWidget = parent->findChild<QWidget*>(widgetName);
     if (childWidget)
     {
-        delete childWidget;
+        qDebug() << childWidget->objectName();
+        qDebug() << "child widget have deleted\n";
+        childWidget->deleteLater();
     }
 }
 
@@ -100,7 +108,6 @@ void home_window::on_PB_inventory_clicked()
     setPushButtonSelectedtStyle(ui->PB_inventory, ":/Images/icons/inventoryIcon.png");
     inventory_widget* inventoryWidget = new inventory_widget(m_manufacturers, m_user,ui->mainWidget);
     inventoryWidget->show();
-
 }
 
 void home_window::on_PB_purchase_clicked()

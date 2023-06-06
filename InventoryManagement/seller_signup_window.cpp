@@ -39,12 +39,13 @@ void seller_signup_window::hideLBs(){
 
 seller_signup_window::~seller_signup_window()
 {
+    qDebug() << "seller_signup_window destructure\n";
     delete ui;
 }
 
 void seller_signup_window::on_PB_login_clicked()
 {
-    close();
+    this->deleteLater();
     m_previouseWindow->show();
 
 }

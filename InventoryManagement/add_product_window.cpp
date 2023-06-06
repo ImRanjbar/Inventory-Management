@@ -62,7 +62,7 @@ bool add_product_window::checkIfEmpty(){
         ui->LB_brandError->setText("This field is required");
         empty = true;
     }
-    if (ui->LB_categoryError->text().trimmed().isEmpty()){
+    if (ui->LE_category->text().trimmed().isEmpty()){
         ui->LB_categoryError->setText("This field is required");
         empty = true;
     }

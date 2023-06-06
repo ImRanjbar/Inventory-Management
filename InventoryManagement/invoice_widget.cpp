@@ -10,5 +10,6 @@ invoice_widget::invoice_widget(QWidget *parent) :
 
 invoice_widget::~invoice_widget()
 {
+    qDebug() << "invoice_widget destructure\n";
     delete ui;
 }

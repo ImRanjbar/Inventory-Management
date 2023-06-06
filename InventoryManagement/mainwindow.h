@@ -2,7 +2,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "seller.h"
 #include "manufacturers.h"
 
 #include <QMainWindow>
@@ -19,13 +18,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(Manufacturers* data, QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
     void hideMainWindowLabels();
 
 private slots:
-
 
     void on_PB_login_clicked();
 

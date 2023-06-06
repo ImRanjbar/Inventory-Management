@@ -2,17 +2,24 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include "datahandler.h"
 #include "customer_signup_page.h"
 #include "seller_signup_window.h"
 #include "home_window.h"
 
 #include <QString>
 
-MainWindow::MainWindow(Manufacturers* data, QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    m_manufacturers = data;
+    DataHandler data;
+
+    Manufacturers* manufacturersData = new Manufacturers;
+    data.readData(manufacturersData);
+
+
+    m_manufacturers = manufacturersData;
     ui->setupUi(this);
     hideMainWindowLabels();
 
@@ -26,7 +33,11 @@ void MainWindow::hideMainWindowLabels(){
 
 MainWindow::~MainWindow()
 {
-    // save data *******************
+    qDebug() << "mainWindow distructure running!\n";
+    DataHandler data;
+    data.saveData(m_manufacturers);
+
+    delete m_manufacturers;
     delete ui;
 }
 
@@ -42,7 +53,8 @@ void MainWindow::on_PB_login_clicked()
             qDebug() << "_PBLogin__password is " << password << '\n';
             Seller* user = m_manufacturers->editSeller(username.toStdString());
             qDebug() << "user name is " << user->getName() << '\n';
-            home_window* homeWindow = new home_window(m_manufacturers, user, this);
+            home_window* homeWindow = new home_window(m_manufacturers, user,this);
+            connect(homeWindow, &home_window::dialogClosed, this, &QCoreApplication::quit);
             close();
             homeWindow->show();
         }
@@ -58,12 +70,12 @@ void MainWindow::on_PB_login_clicked()
             ui->LB_errorUsername->setText("This field is required");
             ui->LB_errorUsername->setVisible(true);
         }
-//        else if (!username.isEmpty()){
-////            if (!m_manufacturers->usernameExistence(username.toStdString())){
-////                qDebug() << "_PBLogin_username is " << username << '\n';
-////                ui->LB_errorUsername->setText("Incorrect username");
-////                ui->LB_errorUsername->setVisible(true);
-//            }
+        //        else if (!username.isEmpty()){
+        ////            if (!m_manufacturers->usernameExistence(username.toStdString())){
+        ////                qDebug() << "_PBLogin_username is " << username << '\n';
+        ////                ui->LB_errorUsername->setText("Incorrect username");
+        ////                ui->LB_errorUsername->setVisible(true);
+        //            }
         if (password.isEmpty()){
             qDebug() << "_PBLogin__password is " << password << '\n';
             ui->LB_errorPassword->setText("This field is required");

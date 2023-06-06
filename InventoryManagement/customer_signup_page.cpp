@@ -14,6 +14,7 @@ customer_signup_page::customer_signup_page(QWidget* previousWindow, QWidget *par
 
 customer_signup_page::~customer_signup_page()
 {
+    qDebug() << "customer_signup_page destructure\n";
     delete ui;
 }
 
@@ -90,7 +91,7 @@ void customer_signup_page::on_PB_signUp_clicked(){
 
 void customer_signup_page::on_PB_login_clicked()
 {
-    this->close();
+    this->deleteLater();
     this->m_previouseWindow->show();
 }
 

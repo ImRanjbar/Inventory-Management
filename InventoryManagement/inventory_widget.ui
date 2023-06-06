@@ -339,47 +339,6 @@ QComboBox QAbstractItemView::item:hover {
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
-    background-color: #ddd9f8;
-    border: 1px solid #CCCCCC;
-    border-radius: 8px;
-    padding: 8px 8px;
-	color: #1c1d06;
-	font-family : Cabin;
-	font-weight : bold;
-	font-size : 12px;
-
-	
-}
-
-QPushButton::hover {
-	background-color : #eff4fc;
-
-}</string>
-           </property>
-           <property name="text">
-            <string>Search</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -543,6 +502,20 @@ QPushButton::hover {
            <height>5700</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QTableView {
+	background-color : #f9fcf2;
+}
+
+QScrollBar:vertical {
+  background-color: #d3d3d3; /* Change to the desired color */
+}
+
+QScrollBar::handle:vertical {
+  background-color: #c5b4ee; /* Change to the desired color */
+}
+</string>
+         </property>
         </widget>
        </item>
       </layout>
@@ -608,6 +581,9 @@ QScrollBar::handle:vertical {
           </item>
           <item>
            <widget class="QPushButton" name="PB_brandFilter">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
               <horstretch>0</horstretch>

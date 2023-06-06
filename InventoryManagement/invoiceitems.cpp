@@ -29,8 +29,8 @@ invoiceItem& invoiceItems::editItem(const std::string_view desiredSku) {
 }
 
 bool invoiceItems::existence(const std::string_view desiredSku) {
-    bool doesExist = std::ranges::any_of(m_items, [desiredSku](const invoiceItem& product) {
-        return product.getSku() == desiredSku;
+    bool doesExist = std::ranges::any_of(m_items, [desiredSku](const invoiceItem& item) {
+        return item.getSku() == desiredSku;
     });
 
     return doesExist;

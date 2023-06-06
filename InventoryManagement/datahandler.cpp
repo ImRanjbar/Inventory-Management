@@ -119,26 +119,53 @@ void DataHandler::readData(Manufacturers* manufacturers){
             std::getline(ss, exDate, ',');
             removeQuotes(exDate);
 
-            std::string availability;
-            std::getline(ss, availability, ',');
-            removeQuotes(availability);
+            double temp = std::stod(available);
+            bool availability = ([temp](){ return temp > 0; })();
 
-            if (availability == "true") {
-                Product newItem(name, category, SKU, brand, std::stod(stock), std::stod(available), std::stod(price), unit, description, addDate, exDate, true);
-                manufacturers->editManufacturers()[index]->addProduct(newItem);
-            }
-            else {
-                Product newItem(name, category, SKU, brand, std::stod(stock), std::stod(available), std::stod(price), unit, description, addDate, exDate, false);
-                manufacturers->editManufacturers()[index]->addProduct(newItem);
-            }
+            Product newItem(name, category, SKU, brand, std::stod(stock), std::stod(available), std::stod(price), unit
+                            , description, addDate, exDate, availability);
+            manufacturers->editManufacturers()[index]->addProduct(newItem);
 
             continue;
         }
     }
+    file.close();
 }
 
 void DataHandler::removeQuotes(std::string& value) {
     if (value.size() >= 2 && value.front() == '"' && value.back() == '"') {
         value = value.substr(1, value.size() - 2);
     }
+}
+
+void DataHandler::saveData(Manufacturers *manufacturers){
+    std::ofstream file("data.csv");
+    for (Seller* manufacturer : manufacturers->getManufacturers()) {
+        qDebug() << "save username\n";
+        file << '"' <<"appUsername" <<'"'<< ","
+             << '"' << manufacturer->getUsername() << '"' << ","
+             << '"' << manufacturer->getPassword() << '"' << ","
+             << '"' << manufacturer->getName() << '"' << ","
+             << '"' << manufacturer->getLastName() << '"' << ","
+             << '"' << manufacturer->getNIN() << '"' << ","
+             << '"' << manufacturer->getPhoneNumber() << '"' << ","
+             << '"' << manufacturer->getManufactureName() << '"' << ","
+             << '"' << manufacturer->getMID() << '"' << "\n";
+        for (const Product& product : manufacturer->getProductsModel().getProducts()) {
+            file << '"' << "appProduct" << '"' << ","
+                 << '"' << product.getName() << '"' << ","
+                 << '"' << product.getCategory() << '"' << ","
+                 << '"' << product.getSku() << '"' << ","
+                 << '"' << product.getBrand() << '"' << ","
+                 << product.getStock() << ","
+                 << product.getAvailable() << ","
+                 << product.getPrice() << ","
+                 << '"' << product.getUnit() << '"' << ","
+                 << '"' << product.getDescription() << '"' << ","
+                 << '"' << product.getAddedDate() << '"' << ","
+                 << '"' << product.getExDate() << '"' << ","
+                 << '"' << product.getAvailability() << '"' << "\n";
+        }
+    }
+    file.close();
 }

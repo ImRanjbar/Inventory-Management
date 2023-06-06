@@ -18,7 +18,7 @@ public:
     void setCategory(const std::string_view category);
     void setSku(const std::string_view sku);
     void setBrand(const std::string_view brand);
-    void setAmount(const double amount);
+    void setInventory(const double amount);
     void setPrice(const double price);
     void setUnit(std::string_view symbol);
     void setDescription(const std::string_view description);
@@ -32,7 +32,7 @@ public:
     const std::string& getCategory() const;
     const std::string& getSku() const;
     const std::string& getBrand() const;
-    const double& getAmount() const;
+    const double& getInventory() const;
     const double& getPrice() const;
     const std::string& getUnit() const;
     const std::string& getDescription() const;
@@ -48,7 +48,7 @@ private:
     std::string m_category;
     std::string m_sku;
     std::string m_brand;
-    double m_amount;
+    double m_inventory;
     double m_price;
     std::string m_unit;
     std::string m_description;

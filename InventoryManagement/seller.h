@@ -38,7 +38,7 @@ public:
     const std::vector<Purchase>& getPurchaseHistory() const;
     std::vector<Purchase>& editPurchaseHistory();
 
-    const invoiceItems& getInvoiceItems() const;
+    const invoiceItems& getInvoiceItemsModel() const;
     invoiceItems& editInvoiceItems();
 
     const invoiceItem& getInvoiceItem(const std::string_view desiredSKU) const;

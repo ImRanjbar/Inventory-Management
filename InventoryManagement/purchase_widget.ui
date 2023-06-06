@@ -510,7 +510,7 @@ QPushButton::hover {
         </spacer>
        </item>
        <item>
-        <widget class="QTableView" name="tableView">
+        <widget class="QTableView" name="TV_items">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -568,13 +568,13 @@ QPushButton::hover {
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">QListWidget {
+             <string notr="true">QListView {
     background-color: #e0e0e0;
 	border-radius : 5px;
     border: none;
 }
 
-QListWidget::item {
+QListView::item {
     background-color: transparent;
     padding: 5px;
 }
@@ -672,13 +672,13 @@ QPushButton::hover {
           <item>
            <widget class="QListView" name="LV_categoryList">
             <property name="styleSheet">
-             <string notr="true">QListWidget {
+             <string notr="true">QListView {
     background-color: #e0e0e0;
 	border-radius : 5px;
     border: none;
 }
 
-QListWidget::item {
+QListView::item {
     background-color: transparent;
     padding: 5px;
 }

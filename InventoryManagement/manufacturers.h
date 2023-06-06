@@ -25,9 +25,11 @@ public:
 
     const Seller& getSeller(const std::string_view NIN) const;
 
-    const Seller& getSellerByUsername(const std::string_view username) const;
+    const Seller* getManufacturerByUsername(const std::string_view username) const;
 
     Seller* editSeller(const std::string_view username);
+
+    Seller* editSellerByManuName(const std::string_view manufacturerName);
 
     const std::vector<Seller*> getManufacturers() const;
 

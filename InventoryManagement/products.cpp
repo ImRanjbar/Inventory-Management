@@ -29,7 +29,7 @@ Product& Products::editProduct(const std::string_view desiredSku) {
     return *productIterator;
 }
 
-bool Products::existence(const std::string_view desiredSku) {
+bool Products::existence(const std::string_view desiredSku) const {
     bool doesExist = std::ranges::any_of(m_products, [desiredSku](const Product& product) {
         return product.getSku() == desiredSku;
     });

@@ -1,45 +1,16 @@
 #include "inventory_widget.h"
 #include "ui_inventory_widget.h"
+#include "add_product_window.h"
 #include <QStringListModel>
-
-class CustomItemDelegate_QListView : public QStyledItemDelegate {
-public:
-    void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override {
-        if (option.state & QStyle::State_Selected) {
-            // Customize the selected item's appearance
-            painter->save();
-
-            // Draw a rounded border around the selected item
-            QColor bgColor("#b3b7ff");        // Background color of the selected item
-            int borderRadius = 8;             // Radius of the rounded corners
-            int borderWidth = 4;              // Width of the border
-
-            painter->setRenderHint(QPainter::Antialiasing, true); // Enable antialiasing for smooth edges
-            painter->setPen(Qt::NoPen);       // No outline pen for the background
-            painter->setBrush(bgColor);       // Set the background color
-            painter->drawRoundedRect(option.rect.adjusted(borderWidth, borderWidth, -borderWidth, -borderWidth), borderRadius, borderRadius);
-
-            painter->restore();
-        } else {
-            // Customize the non-selected item's appearance
-            painter->fillRect(option.rect, Qt::transparent);
-        }
-
-        // Draw the text centered within the item's rectangle
-        painter->setPen(Qt::black);            // Set the text color to black
-        painter->setFont(QFont("Calibri", 9, QFont::Weight::Medium)); // Set the font and size
-        painter->drawText(option.rect, Qt::AlignCenter, index.data().toString());
-    }
-};
 
 inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::inventory_widget)
 {
     ui->setupUi(this);
-    CustomItemDelegate_QListView* delegateList = new CustomItemDelegate_QListView;
-    ui->LV_brandList->setItemDelegate(delegateList);
-    ui->LV_categoryList->setItemDelegate(delegateList);
+
+    customizeListItems();
+
     m_manufacturers = manufacturers;
     m_user = user;
 
@@ -53,6 +24,44 @@ inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QW
 inventory_widget::~inventory_widget()
 {
     delete ui;
+}
+
+void inventory_widget::customizeListItems(){
+    class CustomItemDelegate_QListView : public QStyledItemDelegate {
+    public:
+        void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override {
+            if (option.state & QStyle::State_Selected) {
+                // Customize the selected item's appearance
+                painter->save();
+
+                // Draw a rounded border around the selected item
+                QColor bgColor("#b3b7ff");        // Background color of the selected item
+                int borderRadius = 8;             // Radius of the rounded corners
+                int borderWidth = 4;              // Width of the border
+
+                painter->setRenderHint(QPainter::Antialiasing, true); // Enable antialiasing for smooth edges
+                painter->setPen(Qt::NoPen);       // No outline pen for the background
+                painter->setBrush(bgColor);       // Set the background color
+                painter->drawRoundedRect(option.rect.adjusted(borderWidth, borderWidth, -borderWidth, -borderWidth), borderRadius, borderRadius);
+
+                painter->restore();
+            } else {
+                // Customize the non-selected item's appearance
+                painter->fillRect(option.rect, Qt::transparent);
+            }
+
+            // Draw the text centered within the item's rectangle
+            painter->setPen(Qt::black);            // Set the text color to black
+            painter->setFont(QFont("Calibri", 9, QFont::Weight::Medium)); // Set the font and size
+            painter->drawText(option.rect, Qt::AlignCenter, index.data().toString());
+        }
+    };
+
+    CustomItemDelegate_QListView* listDelegate = new CustomItemDelegate_QListView ;
+    ui->LV_brandList->setItemDelegate(listDelegate);
+    ui->LV_categoryList->setItemDelegate(listDelegate);
+    ui->LV_brandList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->LV_categoryList->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 void inventory_widget::setSearchComboBox(){
@@ -73,10 +82,10 @@ void inventory_widget::setTableColumns(){
     m_tableViewModel.setHorizontalHeaderItem(6 ,new QStandardItem("Available"));
     m_tableViewModel.setHorizontalHeaderItem(7 ,new QStandardItem("Added Date"));
     m_tableViewModel.setHorizontalHeaderItem(8 ,new QStandardItem("Expration Date"));
-//    m_tableViewModel.setHorizontalHeaderItem(9 ,new QStandardItem("Availability"));
+
     ui->TV_products->setModel(&m_tableViewModel);
     ui->TV_products->setEditTriggers(QAbstractItemView::NoEditTriggers);
-//    ui->TV_products->setCursor(Qt::PointingHandCursor);
+    //    ui->TV_products->setCursor(Qt::PointingHandCursor);
     ui->TV_products->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
     // Set the size of each column
@@ -90,13 +99,10 @@ void inventory_widget::setTableColumns(){
         else
             ui->TV_products->setColumnWidth(column, columnWidth);
     }
-
-
 }
 
-void inventory_widget::updateTable(){
-    std::vector<Product> products = m_user->getProductsModel().getProducts();
-//    int row = products.size();
+void inventory_widget::updateTable() {
+    const std::vector<Product>& products = m_user->getProductsModel().getProducts();
     int row = 0;
     for (const Product& product : products){
         m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(product.getSku())));
@@ -123,7 +129,6 @@ void inventory_widget::updateFilterBrand(){
     m_brandFilterList.setStringList(brands);
 
     ui->LV_brandList->setModel(&m_brandFilterList);
-
 }
 
 void inventory_widget::updateFilterCategory(){
@@ -137,5 +142,31 @@ void inventory_widget::updateFilterCategory(){
     m_categoryFilterList.setStringList(categories);
 
     ui->LV_categoryList->setModel(&m_categoryFilterList);
+}
+
+
+void inventory_widget::on_TV_products_doubleClicked(const QModelIndex &index)
+{
+    qDebug() << index << '\n';
+}
+
+
+void inventory_widget::on_TV_products_activated(const QModelIndex &index)
+{
+    qDebug() << index << '\n';
+}
+
+
+void inventory_widget::on_PB_add_clicked(){
+    add_product_window* addProductWindow = new add_product_window(m_user, this);
+    connect(addProductWindow, &add_product_window::dialogClosed, this, &inventory_widget::onDialogClosed);
+    addProductWindow->setModal(true);
+    addProductWindow->show();
+}
+
+void inventory_widget::onDialogClosed(){
+    updateFilterBrand();
+    updateFilterCategory();
+    updateTable();
 }
 

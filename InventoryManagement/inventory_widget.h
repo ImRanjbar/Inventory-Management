@@ -21,7 +21,10 @@ public:
     explicit inventory_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent = nullptr);
     ~inventory_widget();
 
+    void customizeListItems();
+
     void setSearchComboBox();
+
     void setTableColumns();
 
     void updateTable();
@@ -30,6 +33,15 @@ public:
 
     void updateFilterCategory();
 
+
+private slots:
+    void on_TV_products_doubleClicked(const QModelIndex &index);
+
+    void on_TV_products_activated(const QModelIndex &index);
+
+    void on_PB_add_clicked();
+
+    void onDialogClosed(); // ->
 
 private:
     Ui::inventory_widget *ui;

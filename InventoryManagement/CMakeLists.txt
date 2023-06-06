@@ -41,6 +41,7 @@ set(PROJECT_SOURCES
         data.csv
         datahandler.h datahandler.cpp
         manufacturers.h manufacturers.cpp
+        add_product_window.h add_product_window.cpp add_product_window.ui
 
 )
 

@@ -20,7 +20,7 @@ void Invoice::clearInvoice(){
 void Invoice::updateAmount(){
     m_totalAmount = 0;
     for (const invoiceItem& item : m_items.getItems())
-        m_totalAmount += item.getPrice()*item.getAmount();
+        m_totalAmount += item.getPrice()*item.getInventory();
 }
 
 void Invoice::setProviderID(std::string_view providerID){

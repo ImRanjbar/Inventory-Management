@@ -88,7 +88,7 @@ std::vector<Purchase>& Seller::editPurchaseHistory(){
     return m_purchaseHistory;
 }
 
-const invoiceItems &Seller::getInvoiceItems() const {
+const invoiceItems &Seller::getInvoiceItemsModel() const {
     return m_items;
 }
 

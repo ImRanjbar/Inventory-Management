@@ -26,14 +26,15 @@ void MainWindow::hideMainWindowLabels(){
 
 MainWindow::~MainWindow()
 {
+    // save data *******************
     delete ui;
 }
 
 void MainWindow::on_PB_login_clicked()
 {
     hideMainWindowLabels();
-    QString username = ui->LE_username->text();
-    QString password = ui->LE_password->text();
+    QString username = ui->LE_username->text().trimmed();
+    QString password = ui->LE_password->text().trimmed();
 
     if (m_manufacturers->usernameExistence(username.toStdString()) && !password.isEmpty()){
         qDebug() << "_PBLogin_username is " << username << '\n';

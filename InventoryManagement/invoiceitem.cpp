@@ -7,7 +7,7 @@ invoiceItem::invoiceItem(std::string_view name, std::string_view category, std::
                          std::string_view brand, double amount, double price,
                          std::string_view unit, std::string_view description, std::string_view addedDate,
                          std::string_view exDate)
-    : m_name(name), m_category(category), m_sku(sku), m_brand(brand), m_amount(amount),
+    : m_name(name), m_category(category), m_sku(sku), m_brand(brand), m_inventory(amount),
     m_price(price), m_unit(unit), m_description(description), m_addedDate(addedDate),
     m_exDate(exDate) {}
 
@@ -31,9 +31,9 @@ void invoiceItem::setBrand(const std::string_view brand)
     m_brand = brand;
 }
 
-void invoiceItem::setAmount(const double amount)
+void invoiceItem::setInventory(const double amount)
 {
-    m_amount = amount;
+    m_inventory = amount;
 }
 
 void invoiceItem::setPrice(const double price)
@@ -95,9 +95,9 @@ const std::string& invoiceItem::getBrand() const
     return m_brand;
 }
 
-const double& invoiceItem::getAmount() const
+const double& invoiceItem::getInventory() const
 {
-    return m_amount;
+    return m_inventory;
 }
 
 const double& invoiceItem::getPrice() const

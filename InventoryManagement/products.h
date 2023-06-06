@@ -16,7 +16,7 @@ public:
     const Product& getProduct(const std::string_view sku) const;
     Product& editProduct(const std::string_view sku);
     const std::vector<Product>& getProducts() const;
-    bool existence(const std::string_view sku);
+    bool existence(const std::string_view sku) const;
 
     void sortByName();
     void sortByCategory();

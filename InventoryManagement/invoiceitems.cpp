@@ -67,7 +67,7 @@ void invoiceItems::sortByBrand() {
 }
 
 void invoiceItems::sortByAmount() {
-    std::ranges::sort(m_items, {}, &invoiceItem::getAmount);
+    std::ranges::sort(m_items, {}, &invoiceItem::getInventory);
 }
 
 void invoiceItems::sortByDate() {

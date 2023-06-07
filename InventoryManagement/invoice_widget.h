@@ -2,6 +2,7 @@
 #define INVOICE_WIDGET_H
 
 #include <QWidget>
+#include <QStandardItem>
 
 namespace Ui {
 class invoice_widget;
@@ -15,8 +16,11 @@ public:
     explicit invoice_widget(QWidget *parent = nullptr);
     ~invoice_widget();
 
+    void setTableColumns();
+
 private:
     Ui::invoice_widget *ui;
+    QStandardItemModel m_tableViewModel;
 };
 
 #endif // INVOICE_WIDGET_H

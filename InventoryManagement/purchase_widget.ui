@@ -523,6 +523,21 @@ QPushButton::hover {
            <height>5700</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QTableView {
+	background-color : #f9fcf2;
+	border-radius : 10px;
+}
+
+QScrollBar:vertical {
+  background-color: #d3d3d3; /* Change to the desired color */
+}
+
+QScrollBar::handle:vertical {
+  background-color: #c5b4ee; /* Change to the desired color */
+}
+</string>
+         </property>
         </widget>
        </item>
       </layout>

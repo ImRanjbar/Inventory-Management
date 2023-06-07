@@ -505,6 +505,7 @@ QPushButton::hover {
          <property name="styleSheet">
           <string notr="true">QTableView {
 	background-color : #f9fcf2;
+	border-radius : 10 px;
 }
 
 QScrollBar:vertical {

@@ -13,5 +13,7 @@
         <file>Images/icons/reportsIcon.png</file>
         <file>Images/icons/downChevronComboBox.png</file>
         <file>Images/addProductWindowBackground.png</file>
+        <file>Images/invoiceDetailRightWidget.png</file>
+        <file>Images/invoiceDetailsWidget.png</file>
     </qresource>
 </RCC>

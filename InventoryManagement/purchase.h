@@ -10,7 +10,7 @@ class Purchase
 public:
     Purchase();
     Purchase(std::string_view date, std::string_view customerID, std::string_view invoiceID);
-    void addItem(const invoiceItem& newItem);
+    void addItem(const InvoiceItem& newItem);
     void setDate(const std::string_view invoiceDate);
     void setProviderID(const std::string_view providerID);
     void setInvoiceNumber(const std::string_view invoiceNumber);

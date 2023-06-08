@@ -10,14 +10,14 @@ class invoiceItems
 {
 public:
     invoiceItems();
-    void addItem(const invoiceItem& newItem);
+    void addItem(const InvoiceItem& newItem);
     void removeItem(const std::string_view sku);
     void clearItems();
-    const invoiceItem& getItem(const std::string_view sku) const;
-    invoiceItem& editItem(const std::string_view sku);
-    const std::vector<invoiceItem>& getItems() const;
-    std::vector<invoiceItem>& editItems();
-    bool existence(const std::string_view sku);
+    const InvoiceItem& getItem(const std::string_view sku) const;
+    InvoiceItem& editItem(const std::string_view sku);
+    const std::vector<InvoiceItem>& getItems() const;
+    std::vector<InvoiceItem>& editItems();
+    bool existence(const std::string_view sku) const;
 
     void sortByName();
     void sortByCategory();
@@ -26,7 +26,7 @@ public:
     void sortByDate();
 
 private:
-    std::vector<invoiceItem> m_items;
+    std::vector<InvoiceItem> m_items;
 };
 
 #endif // INVOICEITEMS_H

@@ -35,8 +35,14 @@ public:
 
     void updateFilterCategory();
 
+    void addItemToInvoice(int row);
+
 private slots:
     void on_CB_providers_currentTextChanged(const QString &arg1);
+
+    void on_PB_addToInvoice_clicked();
+
+    void onAddToInvoiceDialogClosed();
 
 private:
     Ui::purchase_widget *ui;

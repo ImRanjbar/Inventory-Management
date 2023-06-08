@@ -13,7 +13,7 @@ void Seller::setManufactureName(const std::string_view manufactureName) {
 
 void Seller::addProduct(const Product& newProduct){
     if (newProduct.getAvailability() == true){
-        invoiceItem newItem(newProduct.getName(), newProduct.getCategory(),
+        InvoiceItem newItem(newProduct.getName(), newProduct.getCategory(),
                             newProduct.getSku(), newProduct.getBrand(), newProduct.getAvailable()
                             , newProduct.getPrice(), newProduct.getUnit(), newProduct.getDescription()
                             , newProduct.getAddedDate(), newProduct.getExDate()
@@ -94,10 +94,6 @@ const invoiceItems &Seller::getInvoiceItemsModel() const {
 
 invoiceItems &Seller::editInvoiceItems(){
     return m_items;
-}
-
-const invoiceItem &Seller::getInvoiceItem(const std::string_view desiredSKU) const{
-    return m_items.getItem(desiredSKU);
 }
 
 const std::vector<std::string>& Seller::getCutomerIDs() const{

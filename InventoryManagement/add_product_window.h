@@ -24,7 +24,7 @@ public:
     void addProductToInventory();
 
 signals :
-    void dialogClosed(); // ->
+    void dialogClosed();
 
 private slots:
     void on_PB_addProduct_clicked();

@@ -57,7 +57,7 @@ private slots:
 
     void on_PB_add_clicked();
 
-    void onDialogClosed(); // ->
+    void onDialogClosed();
 
     void on_PB_remove_clicked();
 

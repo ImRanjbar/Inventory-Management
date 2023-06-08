@@ -15,5 +15,6 @@
         <file>Images/addProductWindowBackground.png</file>
         <file>Images/invoiceDetailRightWidget.png</file>
         <file>Images/invoiceDetailsWidget.png</file>
+        <file>Images/addToInvoiceBackground.png</file>
     </qresource>
 </RCC>

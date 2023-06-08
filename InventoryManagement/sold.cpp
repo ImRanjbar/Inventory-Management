@@ -6,7 +6,7 @@ Sold::Sold() = default;
 Sold::Sold(std::string_view date, std::string_view customerID, std::string_view invoiceID):
     m_date(date), m_customerID(customerID), m_invoiceID(invoiceID) {}
 
-void Sold::addItem(const invoiceItem& newItem){
+void Sold::addItem(const InvoiceItem& newItem){
     m_items.addItem(newItem);
 }
 

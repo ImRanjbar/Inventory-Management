@@ -6,7 +6,7 @@ Purchase::Purchase() = default;
 Purchase::Purchase(std::string_view date, std::string_view providerID, std::string_view invoiceID) :
     m_date(date), m_providerID(providerID), m_invoiceNumber(invoiceID) {}
 
-void Purchase::addItem(const invoiceItem& newItem) {
+void Purchase::addItem(const InvoiceItem& newItem) {
     m_items.addItem(newItem);
 }
 

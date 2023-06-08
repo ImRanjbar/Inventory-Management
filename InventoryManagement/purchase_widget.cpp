@@ -1,6 +1,7 @@
 #include "purchase_widget.h"
 #include "ui_purchase_widget.h"
 
+#include "add_to_invoice.h"
 
 
 purchase_widget::purchase_widget(Manufacturers* manufacturers, Seller* user ,QWidget *parent) :
@@ -114,16 +115,24 @@ void purchase_widget::updateTable(){
     m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
 
     if (m_provider){
-        const std::vector<invoiceItem> items = m_provider->getInvoiceItemsModel().getItems();
+        const std::vector<InvoiceItem> items = m_provider->getInvoiceItemsModel().getItems();
         int row = 0;
-        for (const invoiceItem& item : items){
+        for (const InvoiceItem& item : items){
+
+            double selected = 0;
+            if (m_user->getInvoice().getProviderID() == m_provider->getMID()){
+                if (m_user->getInvoice().getInvoiceItemModel().existence(item.getSku())){
+                    selected = m_user->getInvoice().getInvoiceItemModel().getItem(item.getSku()).getInventory();
+                }
+            }
+
             m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(item.getSku())));
             m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(item.getName())));
             m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(item.getBrand())));
             m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(item.getCategory())));
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
-            m_tableViewModel.setItem(row,6 ,new QStandardItem("0"));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
             m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getExDate())));
             row++;
@@ -133,7 +142,6 @@ void purchase_widget::updateTable(){
     else{
         qDebug() << "m_provider is null, clear table\n";
     }
-
 }
 
 void purchase_widget::updateFilterBrand(){
@@ -141,7 +149,7 @@ void purchase_widget::updateFilterBrand(){
 
     if (m_provider){
         QStringList brands;
-        for (const invoiceItem& item : m_provider->getInvoiceItemsModel().getItems()){
+        for (const InvoiceItem& item : m_provider->getInvoiceItemsModel().getItems()){
             QString brand = QString::fromStdString(item.getBrand());
             if (!brands.contains(brand))
                 brands << brand;
@@ -158,7 +166,7 @@ void purchase_widget::updateFilterCategory(){
 
     if (m_provider){
         QStringList categories;
-        for (const invoiceItem& item : m_provider->getInvoiceItemsModel().getItems()){
+        for (const InvoiceItem& item : m_provider->getInvoiceItemsModel().getItems()){
             QString category = QString::fromStdString(item.getCategory());
             if (!categories.contains(category))
                 categories << category;
@@ -168,6 +176,18 @@ void purchase_widget::updateFilterCategory(){
 
         ui->LV_categoryList->setModel(&m_categoryFilterList);
     }
+}
+
+void purchase_widget::addItemToInvoice(int row){
+    QModelIndex index = ui->TV_items->model()->index(row, 0);
+    QString itemSKU = ui->TV_items->model()->data(index, Qt::DisplayRole).toString();
+
+    InvoiceItem& item = m_provider->editInvoiceItems().editItem(itemSKU.toStdString());
+
+    add_to_invoice* addWindow = new add_to_invoice(m_user,m_provider, &item,this);
+    connect(addWindow, &add_to_invoice::dialogClosed, this,&purchase_widget::onAddToInvoiceDialogClosed);
+    addWindow->setModal(true);
+    addWindow->show();
 }
 
 
@@ -189,5 +209,22 @@ void purchase_widget::on_CB_providers_currentTextChanged(const QString &arg1){
     }
 
 
+}
+
+
+void purchase_widget::on_PB_addToInvoice_clicked(){
+    QItemSelectionModel* selectionModel = ui->TV_items->selectionModel();
+    QModelIndexList selectedIndexes = selectionModel->selectedIndexes();
+
+    if (!selectedIndexes.empty()) {
+        QModelIndex selectedIndex = selectedIndexes.first();
+        int row = selectedIndex.row();
+        addItemToInvoice(row);
+    }
+
+}
+
+void purchase_widget::onAddToInvoiceDialogClosed(){
+    updateTable();
 }
 

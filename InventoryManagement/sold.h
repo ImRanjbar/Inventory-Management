@@ -10,7 +10,7 @@ class Sold
 public:
     Sold();
     Sold(std::string_view date, std::string_view customerID, std::string_view invoiceID);
-    void addItem(const invoiceItem& newItem);
+    void addItem(const InvoiceItem& newItem);
     void setDate(const std::string_view invoiceDate);
     void setCustomerID(const std::string_view m_customerID);
 

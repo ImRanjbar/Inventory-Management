@@ -28,6 +28,14 @@ bool Manufacturers::checkPassword(std::string_view username, std::string_view pa
         return false;
 }
 
+const Seller &Manufacturers::getSellerByMID(const std::string_view MID) const{
+    for (const Seller* seller : m_manufacturers){
+        if (seller->getMID() == MID)
+            return *seller;
+    }
+    throw std::runtime_error("Seller not found.");
+}
+
 const Seller* Manufacturers::getManufacturerByUsername(const std::string_view username) const{
     for (Seller* seller: m_manufacturers){
         if (seller->getUsername() == username)

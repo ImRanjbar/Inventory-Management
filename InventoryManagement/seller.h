@@ -1,4 +1,3 @@
-
 #ifndef SELLER_H
 #define SELLER_H
 
@@ -41,18 +40,15 @@ public:
     const invoiceItems& getInvoiceItemsModel() const;
     invoiceItems& editInvoiceItems();
 
-    const invoiceItem& getInvoiceItem(const std::string_view desiredSKU) const;
-    invoiceItem& editInvoiceItem(const std::string_view desiredSKU);
-
     const std::vector<std::string>& getCutomerIDs() const;
     const std::vector<std::string>& getProviderIDs() const;
 
     void buy(const Product& product, const Seller& provider);
     void sell(const Product& product, const Seller& buyer);
-
-    void addToInvoice(const Seller& provider, const invoiceItem& item) {
+    
+    void addToInvoice(const Seller& provider, const InvoiceItem& item) {
         if (m_invoice.getProviderID() != provider.getMID()) {
-            m_invoice.clearInvoice();
+            m_invoice.clearInvoiceItems();
             m_invoice.setProviderID(provider.getMID());
             m_invoice.addItem(item);
         }

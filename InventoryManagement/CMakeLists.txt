@@ -42,6 +42,7 @@ set(PROJECT_SOURCES
         datahandler.h datahandler.cpp
         manufacturers.h manufacturers.cpp
         add_product_window.h add_product_window.cpp add_product_window.ui
+        add_to_invoice.h add_to_invoice.cpp add_to_invoice.ui
 
 )
 

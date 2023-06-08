@@ -146,7 +146,7 @@ void home_window::on_PB_invoice_clicked()
     closeWidgets();
 
     setPushButtonSelectedtStyle(ui->PB_invoice, ":/Images/icons/invoiceIcon.png");
-    invoice_widget* invoiceWidget = new invoice_widget(ui->mainWidget);
+    invoice_widget* invoiceWidget = new invoice_widget(m_manufacturers, m_user,ui->mainWidget);
     invoiceWidget->show();
 }
 

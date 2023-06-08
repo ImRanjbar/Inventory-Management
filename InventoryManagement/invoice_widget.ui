@@ -68,6 +68,9 @@
          <property name="styleSheet">
           <string notr="true">QWidget#invoiceDetailWidget {
 	background-image : url(:/Images/invoiceDetailsWidget.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: transparent;
 	border-radius: 20px;
 }</string>
          </property>
@@ -98,7 +101,7 @@ font-weight: normal;
 text-transform: none;</string>
               </property>
               <property name="text">
-               <string>INV-9892</string>
+               <string>INV-0</string>
               </property>
              </widget>
             </item>
@@ -321,6 +324,12 @@ QComboBox QAbstractItemView::item:hover {
          </item>
          <item>
           <widget class="QPushButton" name="PB_remove">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
     background-color: #f4c3d6;
@@ -347,6 +356,12 @@ QPushButton::hover {
          </item>
          <item>
           <widget class="QPushButton" name="PB_clear">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
     background-color: #76c3e0;
@@ -377,13 +392,13 @@ QPushButton::hover {
         <widget class="QTableView" name="TV_items">
          <property name="minimumSize">
           <size>
-           <width>650</width>
+           <width>750</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>650</width>
+           <width>750</width>
            <height>16777215</height>
           </size>
          </property>
@@ -410,7 +425,7 @@ QScrollBar::handle:vertical {
       <widget class="QWidget" name="rightInvoiceWidget" native="true">
        <property name="minimumSize">
         <size>
-         <width>380</width>
+         <width>320</width>
          <height>0</height>
         </size>
        </property>
@@ -454,7 +469,7 @@ font-weight: bold;
 text-transform: none;</string>
               </property>
               <property name="text">
-               <string>827</string>
+               <string>0</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -488,7 +503,7 @@ font-weight: bold;
 text-transform: none;</string>
               </property>
               <property name="text">
-               <string>9,928,32 $</string>
+               <string>0</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>

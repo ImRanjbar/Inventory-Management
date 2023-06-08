@@ -5,11 +5,11 @@
 #include <iostream>
 
 
-class invoiceItem
+class InvoiceItem
 {
 public:
-    invoiceItem();
-    invoiceItem(std::string_view name, std::string_view category, std::string_view sku
+    InvoiceItem();
+    InvoiceItem(std::string_view name, std::string_view category, std::string_view sku
                 , std::string_view brand, double amount, double price
                 , std::string_view unit, std::string_view description, std::string_view addedDate
                 , std::string_view exDate);

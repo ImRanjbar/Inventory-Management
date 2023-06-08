@@ -26,6 +26,8 @@ public:
 
     const Seller& getSeller(const std::string_view NIN) const;
 
+    const Seller& getSellerByMID(const std::string_view MID) const;
+
     const Seller* getManufacturerByUsername(const std::string_view username) const;
 
     Seller* editSeller(const std::string_view username);

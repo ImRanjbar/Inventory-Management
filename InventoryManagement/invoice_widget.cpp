@@ -10,7 +10,10 @@ invoice_widget::invoice_widget(Manufacturers *manufacturer, Seller *user, QWidge
 
     m_manufacturers = manufacturer;
     m_user = user;
-
+    if (m_user->getInvoice().getProviderID() != ""){
+        qDebug() << "provider is selected\n";
+        m_provider = m_manufacturers->editSellerByMID(m_user->getInvoice().getProviderID());
+    }
     setTableColumns();
     setLabels();
 }
@@ -53,6 +56,7 @@ void invoice_widget::setTableColumns(){
 void invoice_widget::setLabels(){
     QDate currentDate = QDate::currentDate();
     ui->LB_invoiceDate->setText(currentDate.toString("yyyy/MM/dd"));
+    m_user->editInvoice().setDate(currentDate.toString("yyyy/MM/dd").toStdString());
 
     std::string providerID = m_user->getInvoice().getProviderID();
 
@@ -104,4 +108,24 @@ void invoice_widget::updateTable(){
     qDebug() << "updateTable func done\n ";
 }
 
+void invoice_widget::clear(){
+    m_user->editInvoice().clearInvoice();
+    updateTable();
+
+    ui->LB_amountDue->setText("$0");
+    ui->LB_nSellected->setText("0");
+}
+
+
+
+void invoice_widget::on_PB_purchase_clicked(){
+    m_user->purchase();
+    m_provider->sold(m_user->getInvoice());
+    m_user->editInvoice().clearInvoice();
+}
+
+
+void invoice_widget::on_PB_clear_clicked(){
+    clear();
+}
 

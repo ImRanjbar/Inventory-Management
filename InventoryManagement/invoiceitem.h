@@ -5,8 +5,7 @@
 #include <iostream>
 
 
-class InvoiceItem
-{
+class InvoiceItem {
 public:
     InvoiceItem();
     InvoiceItem(std::string_view name, std::string_view category, std::string_view sku

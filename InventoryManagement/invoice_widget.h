@@ -24,10 +24,18 @@ public:
 
     void updateTable();
 
+    void clear();
+
+private slots:
+    void on_PB_purchase_clicked();
+
+    void on_PB_clear_clicked();
+
 private:
     Ui::invoice_widget *ui;
     Manufacturers* m_manufacturers;
     Seller* m_user;
+    Seller* m_provider;
     QStandardItemModel m_tableViewModel;
 };
 

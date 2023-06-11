@@ -11,6 +11,9 @@ add_to_invoice::add_to_invoice(Seller *user, Seller *provider, InvoiceItem* item
     m_item = item;
     ui->setupUi(this);
 
+    m_user->editInvoice().setCustomerName(m_user->getManufactureName());
+    m_user->editInvoice().setCustomerID(m_user->getMID());
+
     m_itemExistence = m_user->getInvoice().getInvoiceItemModel().existence(m_item->getSku());
 
     ui->LE_selected->setValidator(new QDoubleValidator(0,100, 5, this));
@@ -53,6 +56,7 @@ void add_to_invoice::addItem(){
     else if (m_user->getInvoice().getProviderID() == ""){
         qDebug() << "new Invoice for user\n";
         m_user->editInvoice().setProviderID(m_provider->getMID());
+        m_user->editInvoice().setProviderName(m_provider->getManufactureName());
         m_user->editInvoice().createInvoiceNumber();
         InvoiceItem item = *m_item;
         item.setInventory(ui->LE_selected->text().toDouble());
@@ -62,6 +66,7 @@ void add_to_invoice::addItem(){
         qDebug() << "clear Invoice\n";
         m_user->editInvoice().clearInvoice();
         qDebug() << "new Invoice for user with new provider\n";
+        m_user->editInvoice().setProviderName(m_provider->getManufactureName());
         m_user->editInvoice().setProviderID(m_provider->getMID());
         m_user->editInvoice().createInvoiceNumber();
         InvoiceItem item = *m_item;

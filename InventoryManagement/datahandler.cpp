@@ -8,9 +8,12 @@ void DataHandler::readData(Manufacturers* manufacturers){
     std::string line;
 
     qDebug() << "in readData function\n";
-    int index{ -1 };
+    int usersIndex{ -1 };
     int soldInvoice;
     int purchaseInvoice;
+    int invoiceIndex = -1;
+    int itemsNum;
+
     if (file.is_open())
         qDebug() << "file is open\n";
     else {
@@ -26,8 +29,6 @@ void DataHandler::readData(Manufacturers* manufacturers){
         removeQuotes(first);
         if (first == "appUsername") {
             Seller* newSeller = new Seller;
-            soldInvoice = -1;
-            purchaseInvoice = -1;
 
             std::string username;
             qDebug() << "username have read!\n";
@@ -71,12 +72,13 @@ void DataHandler::readData(Manufacturers* manufacturers){
             newSeller->setMID(MID);
 
             manufacturers->addManufact(newSeller);
-            index++;
+            usersIndex++;
 
             continue;
         }
 
         else if (first == "appProduct") {
+
 
             std::string name;
             std::getline(ss, name, ',');
@@ -124,11 +126,113 @@ void DataHandler::readData(Manufacturers* manufacturers){
 
             Product newItem(name, category, SKU, brand, std::stod(stock), std::stod(available), std::stod(price), unit
                             , description, addDate, exDate, availability);
-            manufacturers->editManufacturers()[index]->addProduct(newItem);
+            manufacturers->editManufacturers()[usersIndex]->addProduct(newItem);
 
             continue;
         }
+
+        else if (first == "appInvoice"){
+
+            std::string invoiceNumber;
+            std::getline(ss, invoiceNumber, ',');
+
+            std::string providerName;
+            std::getline(ss, providerName, ',');
+            removeQuotes(providerName);
+
+            std::string customerName;
+            std::getline(ss, customerName, ',');
+            removeQuotes(customerName);
+
+            std::string providerMID;
+            std::getline(ss, providerMID, ',');
+            removeQuotes(providerMID);
+
+            std::string customerMID;
+            std::getline(ss, customerMID, ',');
+            removeQuotes(customerMID);
+
+            std::string date;
+            std::getline(ss, date,',');
+            removeQuotes(date);
+
+            std::string numberOfSupplies;
+            std::getline(ss, numberOfSupplies, ',');
+            removeQuotes(numberOfSupplies);
+
+            itemsNum = std::stod(numberOfSupplies);
+
+
+            Invoice newInvoice(std::stoi(invoiceNumber), providerName, customerName, providerMID, customerMID, date);
+
+            manufacturers->editManufacturers()[usersIndex]->setInvoice(newInvoice);
+
+        }
+
+        else if (first == "appInvoiceItem"){
+
+            std::string name;
+            std::getline(ss, name, ',');
+            removeQuotes(name);
+
+            std::string category;
+            std::getline(ss, category, ',');
+            removeQuotes(category);
+
+            std::string SKU;
+            std::getline(ss, SKU, ',');
+            removeQuotes(SKU);
+
+            std::string brand;
+            std::getline(ss, brand, ',');
+            removeQuotes(brand);
+
+            std::string inventory;
+            std::getline(ss, inventory, ',');
+
+            std::string price;
+            std::getline(ss, price, ',');
+
+            std::string unit;
+            std::getline(ss, unit, ',');
+            removeQuotes(unit);
+
+            std::string description;
+            std::getline(ss, description, ',');
+            removeQuotes(description);
+
+            std::string addDate;
+            std::getline(ss ,addDate, ',');
+            removeQuotes(addDate);
+
+            std::string exDate;
+            std::getline(ss, exDate,',');
+            removeQuotes(exDate);
+
+            InvoiceItem newItem(name, category, SKU, brand, std::stod(inventory)
+                                , std::stod(price), unit, description, addDate,exDate );
+            manufacturers->editManufacturers()[usersIndex]->editInvoice().addItem(newItem);
+
+            itemsNum--;
+            if (itemsNum == 0){
+                if (manufacturers->editManufacturers()[usersIndex]->getInvoice().getProviderID()
+                    == manufacturers->getManufacturers()[usersIndex]->getMID()){
+
+                    manufacturers->editManufacturers()[usersIndex]->editSoldModel()
+                        .addInvoice(manufacturers->getManufacturers()[usersIndex]->getInvoice());
+
+                }
+                else {
+
+                    manufacturers->editManufacturers()[usersIndex]->editPurchaseModel()
+                        .addInvoice(manufacturers->getManufacturers()[usersIndex]->getInvoice());
+
+                }
+            }
+        }
+
     }
+
     file.close();
 }
 
@@ -139,7 +243,7 @@ void DataHandler::removeQuotes(std::string& value) {
 }
 
 void DataHandler::saveData(Manufacturers *manufacturers){
-    std::ofstream file("data.csv");
+    std::ofstream file("dataNew.csv");
     for (Seller* manufacturer : manufacturers->getManufacturers()) {
         qDebug() << "save username\n";
         file << '"' <<"appUsername" <<'"'<< ","
@@ -165,6 +269,56 @@ void DataHandler::saveData(Manufacturers *manufacturers){
                  << '"' << product.getAddedDate() << '"' << ","
                  << '"' << product.getExDate() << '"' << ","
                  << '"' << product.getAvailability() << '"' << "\n";
+        }
+        for (const Invoice& invoice : manufacturer->getPurchaseHistory().getInvoices()){
+            file << '"' << "appInvoice" << '"' << ","
+                 <<  invoice.getInvoiceNumber()  << ","
+                 << '"' << invoice.getProviderName() << '"' << ","
+                 << '"' << invoice.getCustomerName() << '"' << ","
+                 << '"' << invoice.getProviderID()<< '"' << ","
+                 << '"' << invoice.getCustomerID()<< '"' << ","
+                 << invoice.getTotalAmount() << ","
+                 << '"' << invoice.getDate() << '"' << ","
+                 << invoice.getInvoiceItemModel().getItems().size() << "\n";
+            qDebug() << "invoice provider name is " << invoice.getProviderName() << '\n';
+            for (const InvoiceItem& item : invoice.getInvoiceItemModel().getItems()){
+                file << '"' << "appInvoiceItem" << '"' << ","
+                     << '"' << item.getName() << '"' << ","
+                     << '"' << item.getCategory() << '"' << ","
+                     << '"' << item.getSku() << '"' << ","
+                     << '"' << item.getBrand() << '"' << ","
+                     << item.getInventory() << ","
+                     << item.getPrice() << ","
+                     << '"' << item.getUnit() << '"' << ","
+                     << '"' << item.getDescription() << '"' << ","
+                     << '"' << item.getAddedDate() << '"' << ","
+                     << '"' << item.getExDate() << '"' << "\n";
+            }
+        }
+
+        for (const Invoice& invoice : manufacturer->getSoldHistory().getInvoices()){
+            file << '"' << "appInvoice" << '"' << ","
+                 <<  invoice.getInvoiceNumber()  << ","
+                 << '"' << invoice.getProviderName() << '"' << ","
+                 << '"' << invoice.getCustomerName() << '"' << ","
+                 << '"' << invoice.getProviderID()<< '"' << ","
+                 << '"' << invoice.getCustomerID()<< '"' << ","
+                 << invoice.getTotalAmount() << ","
+                 << '"' << invoice.getDate() << '"' << ","
+                 << invoice.getInvoiceItemModel().getItems().size() << "\n";
+            for (const InvoiceItem& item : invoice.getInvoiceItemModel().getItems()){
+                file << '"' << "appInvoiceItem" << '"' << ","
+                     << '"' << item.getName() << '"' << ","
+                     << '"' << item.getCategory() << '"' << ","
+                     << '"' << item.getSku() << '"' << ","
+                     << '"' << item.getBrand() << '"' << ","
+                     << item.getInventory() << ","
+                     << item.getPrice() << ","
+                     << '"' << item.getUnit() << '"' << ","
+                     << '"' << item.getDescription() << '"' << ","
+                     << '"' << item.getAddedDate() << '"' << ","
+                     << '"' << item.getExDate() << '"' << "\n";
+            }
         }
     }
     file.close();

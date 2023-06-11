@@ -2,10 +2,16 @@
 
 Invoice::Invoice() = default;
 
-Invoice::Invoice(std::string_view providerID){
-    m_providerID = providerID;
-    createInvoiceNumber();
-}
+//Invoice::Invoice(std::string_view providerID){
+//    m_providerID = providerID;
+//    createInvoiceNumber();
+//}
+
+Invoice::Invoice(const int invoiceNumber, const std::string_view providerID, const std::string_view customerID
+                 , const std::string_view providerName, const std::string_view customerName, const std::string_view date) :
+    m_invoiceNumber(invoiceNumber), m_providerID(providerID), m_providerManuName(providerName), m_customerID(customerID)
+    , m_customerManuName(customerID), m_date(date) {}
+
 
 void Invoice::addItem(const InvoiceItem item){
     m_items.addItem(item);
@@ -48,6 +54,10 @@ const std::string& Invoice::getProviderID() const{
     return m_providerID;
 }
 
+const std::string &Invoice::getCustomerID() const{
+    return m_customerID;
+}
+
 double Invoice::getTotalAmount() const{
     return m_totalAmount;
 }
@@ -67,9 +77,14 @@ void Invoice::createInvoiceNumber(){
     m_invoiceNumber = randomNumber;
 }
 
+//bool Invoice::invoiceNumberExistence(){
+
+//}
+
 void Invoice::clearInvoice(){
     m_invoiceNumber = 0;
     clearInvoiceItems();
+    m_providerManuName = "";
     m_providerID = "";
     m_totalAmount = 0;
     m_numSelctedItems = 0;
@@ -77,4 +92,32 @@ void Invoice::clearInvoice(){
 
 const int Invoice::getInvoiceNumber() const{
     return m_invoiceNumber;
+}
+
+const std::string &Invoice::getProviderName() const{
+    return m_providerManuName;
+}
+
+const std::string &Invoice::getCustomerName() const{
+    return m_customerManuName;
+}
+
+const std::string &Invoice::getDate() const{
+    return m_date;
+}
+
+void Invoice::setProviderName(const std::string_view providerName){
+    m_providerManuName = providerName;
+}
+
+void Invoice::setCustomerName(const std::string_view customerName){
+    m_customerManuName = customerName;
+}
+
+void Invoice::setCustomerID(const std::string_view customerID){
+    m_customerID = customerID;
+}
+
+void Invoice::setDate(const std::string_view date){
+    m_date = date;
 }

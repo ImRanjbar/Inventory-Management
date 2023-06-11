@@ -72,19 +72,19 @@ Products& Seller::editProducts() {
     return m_products;
 }
 
-const std::vector<Sold>& Seller::getHistory() const{
-    return m_history;
+const Sold &Seller::getSoldHistory() const{
+    return m_soldHistory;
 }
 
-std::vector<Sold>& Seller::editHistory(){
-    return m_history;
+Sold &Seller::editSoldHistory(){
+    return m_soldHistory;
 }
 
-const std::vector<Purchase>& Seller::getPurchaseHistory() const{
+const Purchase &Seller::getPurchaseHistory() const{
     return m_purchaseHistory;
 }
 
-std::vector<Purchase>& Seller::editPurchaseHistory(){
+Purchase &Seller::editPurchaseHistory(){
     return m_purchaseHistory;
 }
 
@@ -111,3 +111,58 @@ const Invoice &Seller::getInvoice() const{
 Invoice &Seller::editInvoice(){
     return m_invoice;
 }
+
+void Seller::setInvoice(const Invoice &invoice){
+    m_invoice = invoice;
+}
+
+void Seller::purchase(){
+    m_purchaseHistory.purchase(m_invoice);
+
+    for (InvoiceItem selectedItem : m_invoice.getInvoiceItemModel().getItems()){
+        std::string itemSKU = selectedItem.getSku();
+        if (this->getProductsModel().existence(itemSKU)){
+            double newAvailable = this->getProductsModel().getProduct(itemSKU).getStock() + selectedItem.getInventory();
+            this->editProducts().editProduct(itemSKU).setStock(newAvailable);
+
+        }
+        else{
+            Product newProduct(selectedItem.getName(), selectedItem.getCategory(), selectedItem.getSku()
+                               , selectedItem.getBrand(), selectedItem.getInventory(), 0.0, selectedItem.getPrice()
+                               , selectedItem.getUnit(), selectedItem.getDescription(), selectedItem.getAddedDate()
+                               , selectedItem.getExDate(), false);
+            this->editProducts().addProduct(newProduct);
+
+        }
+    }
+}
+
+void Seller::sold(const Invoice &invoice){
+    Invoice newInvoice = invoice;
+    m_soldHistory.sold(newInvoice);
+
+    for (InvoiceItem selectedItem : invoice.getInvoiceItemModel().getItems()){
+        std::string itemSKU = selectedItem.getSku();
+        InvoiceItem& item = m_items.editItem(itemSKU);
+
+        double newAvailable = item.getInventory() - selectedItem.getInventory();
+        item.setInventory(newAvailable);
+        m_products.editProduct(itemSKU).setAvailable(newAvailable);
+
+        if (newAvailable == 0){
+            m_products.editProduct(itemSKU).setAvailability(false);
+            m_items.removeItem(itemSKU);
+        }
+    }
+}
+
+Purchase &Seller::editPurchaseModel(){
+    return m_purchaseHistory;
+}
+
+Sold &Seller::editSoldModel(){
+    return m_soldHistory;
+}
+
+
+

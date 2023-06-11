@@ -16,5 +16,9 @@
         <file>Images/invoiceDetailRightWidget.png</file>
         <file>Images/invoiceDetailsWidget.png</file>
         <file>Images/addToInvoiceBackground.png</file>
+        <file>Images/Favorite.png</file>
+        <file>Images/LeftPurchaseWidget.png</file>
+        <file>Images/TotalCost.png</file>
+        <file>Images/TotalOrders.png</file>
     </qresource>
 </RCC>

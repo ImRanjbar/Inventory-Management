@@ -32,6 +32,8 @@ public:
 
     Seller* editSeller(const std::string_view username);
 
+    Seller* editSellerByMID(const std::string_view MID);
+
     Seller* editSellerByManuName(const std::string_view manufacturerName);
 
     const std::vector<Seller*> getManufacturers() const;

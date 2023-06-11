@@ -2,30 +2,22 @@
 #ifndef PURCHASE_H
 #define PURCHASE_H
 
-#include "invoiceitems.h"
-
+#include "Invoice.h"
 
 class Purchase
 {
 public:
     Purchase();
-    Purchase(std::string_view date, std::string_view customerID, std::string_view invoiceID);
-    void addItem(const InvoiceItem& newItem);
-    void setDate(const std::string_view invoiceDate);
-    void setProviderID(const std::string_view providerID);
-    void setInvoiceNumber(const std::string_view invoiceNumber);
 
-    const invoiceItems& getItems();
-    invoiceItems& editItems();
-    const std::string& getInvoiceDate();
-    const std::string& getProviderID();
-    const std::string& getInvoiceNumber();
+    void purchase(const Invoice& invoice);
+
+    const std::vector<Invoice>& getInvoices() const;
+
+    void addInvoice(const Invoice& invoice);
+
 
 private:
-    invoiceItems m_items;
-    std::string m_date;
-    std::string m_providerID;
-    std::string m_invoiceNumber;
+    std::vector<Invoice> m_invoices;
 };
 
 #endif // PURCHASE_H

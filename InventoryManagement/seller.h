@@ -8,7 +8,7 @@
 #include "Invoice.h"
 #include "invoiceItems.h"
 
-class Seller : public User {
+class Seller : public User{
 public:
     Seller();
 
@@ -31,11 +31,11 @@ public:
     const Products& getProductsModel() const;
     Products& editProducts();
 
-    const std::vector<Sold>& getHistory() const;
-    std::vector<Sold>& editHistory();
+    const Sold& getSoldHistory() const;
+    Sold& editSoldHistory();
 
-    const std::vector<Purchase>& getPurchaseHistory() const;
-    std::vector<Purchase>& editPurchaseHistory();
+    const Purchase& getPurchaseHistory() const;
+    Purchase& editPurchaseHistory();
 
     const invoiceItems& getInvoiceItemsModel() const;
     invoiceItems& editInvoiceItems();
@@ -60,13 +60,24 @@ public:
     const Invoice& getInvoice() const;
     Invoice& editInvoice();
 
+    void setInvoice(const Invoice& invoice);
+
+    void purchase();
+
+    void sold(const Invoice& customer);
+
+    Purchase& editPurchaseModel();
+
+    Sold& editSoldModel();
+
+
 private:
     std::string m_MID;
     std::string m_manufactureName;
     Products m_products;
     invoiceItems m_items;
-    std::vector<Sold> m_history;
-    std::vector<Purchase> m_purchaseHistory;
+    Sold m_soldHistory;
+    Purchase m_purchaseHistory;
     std::vector<std::string> m_customerIDs;
     std::vector<std::string> m_providerIDs;
     Invoice m_invoice;

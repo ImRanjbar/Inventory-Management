@@ -1,4 +1,4 @@
-
+#include "QDebug"
 #include "manufacturers.h"
 
 Manufacturers::Manufacturers() = default;
@@ -51,6 +51,16 @@ Seller* Manufacturers::editSeller(const std::string_view username){
     }
     throw std::runtime_error("Seller not found.");
 
+}
+
+Seller* Manufacturers::editSellerByMID(const std::string_view MID){
+    for (Seller* seller : m_manufacturers){
+        if (seller->getMID() == MID){
+            qDebug() << "Seller found\n";
+            return seller;
+        }
+    }
+    throw std::runtime_error("Seller not found.");
 }
 
 Seller *Manufacturers::editSellerByManuName(const std::string_view manufacturerName){

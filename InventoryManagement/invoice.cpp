@@ -1,4 +1,5 @@
 #include "Invoice.h"
+#include "invoice_numbers.h"
 
 Invoice::Invoice() = default;
 
@@ -8,9 +9,9 @@ Invoice::Invoice() = default;
 //}
 
 Invoice::Invoice(const int invoiceNumber, const std::string_view providerID, const std::string_view customerID
-                 , const std::string_view providerName, const std::string_view customerName, const std::string_view date) :
+                 , const std::string_view providerName, const std::string_view customerName, const double amount, const std::string_view date) :
     m_invoiceNumber(invoiceNumber), m_providerID(providerID), m_providerManuName(providerName), m_customerID(customerID)
-    , m_customerManuName(customerID), m_date(date) {}
+    , m_customerManuName(customerName),m_date(date) , m_totalAmount(amount) {}
 
 
 void Invoice::addItem(const InvoiceItem item){
@@ -73,6 +74,9 @@ void Invoice::createInvoiceNumber(){
     // Generate a random number between 1000 and 10000
     int randomNumber = std::rand() % 9001 + 1000;
     std::cout << "Random number: " << randomNumber << std::endl;
+    if (invoiceNumbers.contains(randomNumber)){
+        createInvoiceNumber();
+    }
 
     m_invoiceNumber = randomNumber;
 }

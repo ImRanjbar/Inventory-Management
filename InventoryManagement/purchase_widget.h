@@ -37,12 +37,22 @@ public:
 
     void addItemToInvoice(int row);
 
+    void search(const QString& text);
+
+    void searchByName(const QString& text);
+    void searchBySKU(const QString& text);
+    void searchByCategory(const QString& text);
+    void searchByBrand(const QString& text);
+    void searchByUnit(const QString& text);
+
 private slots:
     void on_CB_providers_currentTextChanged(const QString &arg1);
 
     void on_PB_addToInvoice_clicked();
 
     void onAddToInvoiceDialogClosed();
+
+    void on_LE_searchBar_textChanged(const QString &arg1);
 
 private:
     Ui::purchase_widget *ui;

@@ -6,13 +6,13 @@
 #include <cstdlib>
 #include <ctime>
 
-class   Invoice
+class Invoice
 {
 public:
     Invoice();
 //    Invoice(std::string_view providerID);
     Invoice(const int invoiceNumber, const std::string_view providerID, const std::string_view customerID
-            , const std::string_view providerName, const std::string_view customerName, const std::string_view date);
+            , const std::string_view providerName, const std::string_view customerName, const double amount,const std::string_view date);
 
 
     void addItem(const InvoiceItem item);

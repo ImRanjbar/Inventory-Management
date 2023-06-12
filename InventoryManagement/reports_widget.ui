@@ -48,7 +48,7 @@ QTabBar::tab:selected {
 QTabBar::tab:hover { background-color: #F9F9F9; }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="purchaseTab">
       <attribute name="title">
@@ -193,7 +193,23 @@ QComboBox QAbstractItemView::item:hover {
           </layout>
          </item>
          <item>
-          <widget class="QTableView" name="tableView"/>
+          <widget class="QTableView" name="TV_purchase">
+           <property name="styleSheet">
+            <string notr="true">QTableView {
+	background-color : #FFFFFF;
+	border-radius : 10 px;
+}
+
+QScrollBar:vertical {
+  background-color: #d3d3d3; /* Change to the desired color */
+}
+
+QScrollBar::handle:vertical {
+  background-color: #c5b4ee; /* Change to the desired color */
+}
+</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -396,10 +412,367 @@ text-transform: none;</string>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="soldTab">
       <attribute name="title">
        <string>Sold</string>
       </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <property name="rightMargin">
+          <number>20</number>
+         </property>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>20</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_13">
+             <property name="styleSheet">
+              <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #4e001f;
+font-weight: bold;
+text-transform: none;</string>
+             </property>
+             <property name="text">
+              <string>Search</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_4">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #2c2c3b;
+	font-family:Impactl;
+	font-size:10px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_14">
+             <property name="styleSheet">
+              <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #4e001f;
+font-weight: bold;
+text-transform: none;</string>
+             </property>
+             <property name="text">
+              <string>by</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBox_4">
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+    /* Background and Border */
+    background-color: #d9e5f8;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    padding: 8px 10px;
+    min-width: 130px;
+}
+
+QComboBox::drop-down {
+    /* Dropdown Arrow */
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 30px;
+    border-left-width: 0px;
+    border-left-color: #CCCCCC;
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 4px;
+    background: transparent;
+}
+
+QComboBox::down-arrow {
+    /* Dropdown Arrow Icon */
+    image: url(:/Images/icons/downChevronComboBox.png);
+}
+
+QComboBox QAbstractItemView {
+    /* Dropdown List */
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    padding: 2px;
+    outline: none;
+}
+
+QComboBox QAbstractItemView::item {
+    /* List Item */
+    padding: 4px 8px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    /* Hovered Item */
+    background-color: #999fff;
+	border-radius: 8px;
+}
+
+</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Invoice Number</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Provider</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Date</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="dateEdit_4"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QTableView" name="TV_solds">
+           <property name="styleSheet">
+            <string notr="true">QTableView {
+	background-color : #FFFFFF;
+	border-radius : 10 px;
+}
+
+QScrollBar:vertical {
+  background-color: #d3d3d3; /* Change to the desired color */
+}
+
+QScrollBar::handle:vertical {
+  background-color: #c5b4ee; /* Change to the desired color */
+}
+</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QWidget" name="sold_leftWidget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#sold_leftWidget {
+	background-image: url(:/Images/LeftPurchaseWidget.png);
+	border-radius : 50px;
+}</string>
+         </property>
+         <widget class="QWidget" name="itemsSoldWidget" native="true">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>40</y>
+            <width>240</width>
+            <height>150</height>
+           </rect>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>240</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QWidget #itemsSoldWidget {
+border-image: url(:/Images/TotalOrders.png);
+	border-radius : 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}</string>
+          </property>
+          <widget class="QLabel" name="label_15">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>20</y>
+             <width>141</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-family: Calibri;
+font-size: 20px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>Items Sold</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="LB_ItemsSold">
+           <property name="geometry">
+            <rect>
+             <x>130</x>
+             <y>80</y>
+             <width>81</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-family: Calibri;
+font-size: 20px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>123</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="totalRevenueWidget" native="true">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>200</y>
+            <width>240</width>
+            <height>150</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QWidget #totalRevenueWidget {
+border-image: url(:/Images/TotalCost.png);
+	border-radius : 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}</string>
+          </property>
+          <widget class="QLabel" name="label_16">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>20</y>
+             <width>131</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-family: Calibri;
+font-size: 20px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>Total Revenue</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="LB_totalRevenue">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>80</y>
+             <width>141</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-family: Calibri;
+font-size: 30px;
+color: #2f6f34;
+text-align : center;
+font-weight: bold;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>$2.123.543</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="toptBuyerWidget" native="true">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>370</y>
+            <width>241</width>
+            <height>151</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QWidget #toptBuyerWidget {
+	border-image: url(:/Images/Favorite.png);
+	border-radius : 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}</string>
+          </property>
+          <widget class="QLabel" name="label_17">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-family: Calibri;
+font-size: 20px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>Top Buyer</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="LB_topBuyer">
+           <property name="geometry">
+            <rect>
+             <x>110</x>
+             <y>80</y>
+             <width>91</width>
+             <height>51</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-family: Calibri;
+font-size: 20px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>RyanTech</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

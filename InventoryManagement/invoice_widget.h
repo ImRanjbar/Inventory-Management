@@ -24,6 +24,8 @@ public:
 
     void updateTable();
 
+    void clearTable();
+
     void clear();
 
 private slots:

@@ -1,5 +1,6 @@
 
 #include "datahandler.h"
+#include "invoice_numbers.h"
 
 DataHandler::DataHandler() = default;
 
@@ -9,9 +10,7 @@ void DataHandler::readData(Manufacturers* manufacturers){
 
     qDebug() << "in readData function\n";
     int usersIndex{ -1 };
-    int soldInvoice;
-    int purchaseInvoice;
-    int invoiceIndex = -1;
+    int invoiceIndex;
     int itemsNum;
 
     if (file.is_open())
@@ -133,6 +132,8 @@ void DataHandler::readData(Manufacturers* manufacturers){
 
         else if (first == "appInvoice"){
 
+            qDebug() << "adding a invoice \n";
+
             std::string invoiceNumber;
             std::getline(ss, invoiceNumber, ',');
 
@@ -152,18 +153,21 @@ void DataHandler::readData(Manufacturers* manufacturers){
             std::getline(ss, customerMID, ',');
             removeQuotes(customerMID);
 
+            std::string amount;
+            std::getline(ss, amount, ',');
+
             std::string date;
             std::getline(ss, date,',');
             removeQuotes(date);
 
             std::string numberOfSupplies;
             std::getline(ss, numberOfSupplies, ',');
-            removeQuotes(numberOfSupplies);
 
             itemsNum = std::stod(numberOfSupplies);
 
 
-            Invoice newInvoice(std::stoi(invoiceNumber), providerName, customerName, providerMID, customerMID, date);
+            Invoice newInvoice(std::stoi(invoiceNumber), providerMID, customerMID, providerName, customerName, std::stod(amount), date);
+            invoiceNumbers.insert(std::stoi(invoiceNumber));
 
             manufacturers->editManufacturers()[usersIndex]->setInvoice(newInvoice);
 
@@ -221,11 +225,17 @@ void DataHandler::readData(Manufacturers* manufacturers){
                     manufacturers->editManufacturers()[usersIndex]->editSoldModel()
                         .addInvoice(manufacturers->getManufacturers()[usersIndex]->getInvoice());
 
+                    // Clear Invoice of user
+                    manufacturers->editManufacturers()[usersIndex]->editInvoice().clearInvoice();
+
                 }
                 else {
 
                     manufacturers->editManufacturers()[usersIndex]->editPurchaseModel()
                         .addInvoice(manufacturers->getManufacturers()[usersIndex]->getInvoice());
+
+                    // Clear Invoice of user
+                    manufacturers->editManufacturers()[usersIndex]->editInvoice().clearInvoice();
 
                 }
             }
@@ -243,7 +253,7 @@ void DataHandler::removeQuotes(std::string& value) {
 }
 
 void DataHandler::saveData(Manufacturers *manufacturers){
-    std::ofstream file("dataNew.csv");
+    std::ofstream file("data.csv");
     for (Seller* manufacturer : manufacturers->getManufacturers()) {
         qDebug() << "save username\n";
         file << '"' <<"appUsername" <<'"'<< ","

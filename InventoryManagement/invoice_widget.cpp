@@ -11,7 +11,7 @@ invoice_widget::invoice_widget(Manufacturers *manufacturer, Seller *user, QWidge
     m_manufacturers = manufacturer;
     m_user = user;
     if (m_user->getInvoice().getProviderID() != ""){
-        qDebug() << "provider is selected\n";
+        qDebug() << "the provide ID is " << m_user->getInvoice().getProviderID() << '\n';
         m_provider = m_manufacturers->editSellerByMID(m_user->getInvoice().getProviderID());
     }
     setTableColumns();
@@ -25,6 +25,7 @@ invoice_widget::~invoice_widget()
 }
 
 void invoice_widget::setTableColumns(){
+    qDebug() << "Set table columns func\n";
     m_tableViewModel.setHorizontalHeaderItem(0 ,new QStandardItem("SKU"));
     m_tableViewModel.setHorizontalHeaderItem(1 ,new QStandardItem("Name"));
     m_tableViewModel.setHorizontalHeaderItem(2 ,new QStandardItem("Brand"));
@@ -58,6 +59,8 @@ void invoice_widget::setLabels(){
     ui->LB_invoiceDate->setText(currentDate.toString("yyyy/MM/dd"));
     m_user->editInvoice().setDate(currentDate.toString("yyyy/MM/dd").toStdString());
 
+    ui->LB_error->setVisible(false);
+
     std::string providerID = m_user->getInvoice().getProviderID();
 
     if ( !providerID.empty()){
@@ -86,8 +89,7 @@ void invoice_widget::setLabels(){
 void invoice_widget::updateTable(){
     const std::vector<InvoiceItem>& items = m_user->getInvoice().getInvoiceItemModel().getItems();
 
-    // Clear the table
-    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+    clearTable();
 
     int row = 0;
     for (const InvoiceItem& item : items){
@@ -108,6 +110,11 @@ void invoice_widget::updateTable(){
     qDebug() << "updateTable func done\n ";
 }
 
+void invoice_widget::clearTable(){
+    // Clear the table
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+}
+
 void invoice_widget::clear(){
     m_user->editInvoice().clearInvoice();
     updateTable();
@@ -119,9 +126,19 @@ void invoice_widget::clear(){
 
 
 void invoice_widget::on_PB_purchase_clicked(){
-    m_user->purchase();
-    m_provider->sold(m_user->getInvoice());
-    m_user->editInvoice().clearInvoice();
+    if (m_user->getInvoice().getInvoiceItemModel().getItems().size() == 0){
+        ui->LB_error->setText("You Haven't select any item");
+        ui->LB_error->setVisible(true);
+    }
+    else {
+        m_user->purchase();
+        m_provider->sold(m_user->getInvoice());
+        m_user->editInvoice().clearInvoice();
+
+        setTableColumns();
+        setLabels();
+        updateTable();
+    }
 }
 
 

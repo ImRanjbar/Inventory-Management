@@ -126,7 +126,7 @@ void home_window::on_PB_reports_clicked()
     closeWidgets();
 
     setPushButtonSelectedtStyle(ui->PB_reports, ":/Images/icons/reportsIcon.png");
-    reports_widget* reportsWidget = new reports_widget(ui->mainWidget);
+    reports_widget* reportsWidget = new reports_widget(m_manufacturers, m_user, ui->mainWidget);
     reportsWidget->show();
 }
 

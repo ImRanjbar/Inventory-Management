@@ -105,7 +105,7 @@ text-transform: none;</string>
             <number>0</number>
            </property>
            <item>
-            <widget class="QLineEdit" name="LE_marketName">
+            <widget class="QLineEdit" name="LE_manufacturerName">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
 	background-color: #ced1e7;
@@ -113,7 +113,7 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;
@@ -124,7 +124,7 @@ text-transform: none;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="LB_errorMarketName">
+            <widget class="QLabel" name="LB_errorManufacturerName">
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
 font-size: 12px;
@@ -162,7 +162,7 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;
@@ -181,7 +181,7 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;
@@ -249,13 +249,16 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;
 	padding:10px 10px;
 }
 </string>
+         </property>
+         <property name="inputMask">
+          <string/>
          </property>
         </widget>
        </item>
@@ -298,7 +301,7 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;
@@ -309,7 +312,7 @@ text-transform: none;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="LE_sellerID">
+            <widget class="QLineEdit" name="LE_MID">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
 	background-color: #ced1e7;
@@ -317,7 +320,7 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;
@@ -355,7 +358,7 @@ text-transform: none;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="LB_errorSellerID">
+            <widget class="QLabel" name="LB_errorMID">
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
 font-size: 12px;
@@ -384,7 +387,7 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;
@@ -420,7 +423,7 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;
@@ -448,7 +451,7 @@ text-transform: none;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="LE_passwordAgain">
+        <widget class="QLineEdit" name="LE_confirmPass">
          <property name="styleSheet">
           <string notr="true">QLineEdit {
 	background-color: #ced1e7;
@@ -456,7 +459,7 @@ text-transform: none;</string>
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4d4d67;
 	font-family:Impactl;
 	font-size:17px;
 	font-weight:bold;

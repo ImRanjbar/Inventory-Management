@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 
 
     MainWindow w;
+    w.setWindowTitle("Inventory Mangement");
     w.show();
     return a.exec();
 }

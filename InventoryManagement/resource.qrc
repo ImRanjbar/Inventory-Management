@@ -20,5 +20,7 @@
         <file>Images/LeftPurchaseWidget.png</file>
         <file>Images/TotalCost.png</file>
         <file>Images/TotalOrders.png</file>
+        <file>Images/icons/signUp.png</file>
+        <file>Images/icons/InventoryManagement.png</file>
     </qresource>
 </RCC>

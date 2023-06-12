@@ -21,6 +21,30 @@ bool Manufacturers::usernameExistence(const std::string_view username) const{
     return doesExist;
 }
 
+bool Manufacturers::NINexistence(const std::string_view NIN) const{
+    bool doesExist = std::ranges::any_of(m_manufacturers, [NIN](const Seller* seller){
+        return seller->getNIN() == NIN;
+    });
+
+    return doesExist;
+}
+
+bool Manufacturers::MIDexistence(const std::string_view MID) const{
+    bool doesExist = std::ranges::any_of(m_manufacturers, [MID](const Seller* seller){
+        return seller->getMID() == MID;
+    });
+
+    return doesExist;
+}
+
+bool Manufacturers::phoneNumberExistence(const std::string_view phoneNumber) const{
+    bool doesExist = std::ranges::any_of(m_manufacturers, [phoneNumber](const Seller* seller){
+        return seller->getUsername() == phoneNumber;
+    });
+
+    return doesExist;
+}
+
 bool Manufacturers::checkPassword(std::string_view username, std::string_view password) const{
     if (getManufacturerByUsername(username)->getPassword() == password)
         return true;

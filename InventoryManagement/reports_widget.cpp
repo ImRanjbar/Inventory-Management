@@ -86,7 +86,7 @@ void reports_widget::setLabels(){
 
     for (const Invoice& invoice : m_user->getPurchaseHistory().getInvoices()){
         totalCost += invoice.getTotalAmount();
-        totalOrders += invoice.getInvoiceItemModel().getItems().size();
+        totalOrders += static_cast<int>(invoice.getInvoiceItemModel().getItems().size());
     }
 
     ui->LB_totalCost->setText("$" + QString::number(totalCost/1000) + "K");
@@ -98,7 +98,7 @@ void reports_widget::setLabels(){
 
     for (const Invoice& invoice : m_user->getSoldHistory().getInvoices()){
         totalRevenue += invoice.getTotalAmount();
-        totalSolds += invoice.getInvoiceItemModel().getItems().size();
+        totalSolds += static_cast<int>(invoice.getInvoiceItemModel().getItems().size());
     }
 
     ui->LB_totalRevenue->setText("$" + QString::number(totalRevenue/1000) + "K");

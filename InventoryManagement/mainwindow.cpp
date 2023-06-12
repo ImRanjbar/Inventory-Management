@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     Manufacturers* manufacturersData = new Manufacturers;
     data.readData(manufacturersData);
 
+    QIcon icon(":/Images/icons/InventoryManagement.png");
+    this->setWindowIcon(icon);
+
 
     m_manufacturers = manufacturersData;
     ui->setupUi(this);
@@ -93,7 +96,7 @@ void MainWindow::on_PB_signin_clicked()
 {
     hideMainWindowLabels();
     if(ui->RDB_seller->isChecked()){
-        seller_signup_window* sellerSignUpWindow = new seller_signup_window(this);
+        seller_signup_window* sellerSignUpWindow = new seller_signup_window(m_manufacturers, this);
         close();
         sellerSignUpWindow->show();
     }

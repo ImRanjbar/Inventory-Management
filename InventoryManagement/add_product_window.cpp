@@ -1,5 +1,7 @@
 #include "add_product_window.h"
 #include "ui_add_product_window.h"
+#include <QValidator>
+#include <QDate>
 
 add_product_window::add_product_window(Seller *user, QWidget *parent) :
     QDialog(parent),
@@ -14,6 +16,15 @@ add_product_window::add_product_window(Seller *user, QWidget *parent) :
     ui->setupUi(this);
     hideErrors();
     expDateEdit();
+
+    ui->LE_price->setValidator(new QDoubleValidator(0, 100, 5, this));
+    ui->LE_stock->setValidator(new QDoubleValidator(0, 100, 5, this));
+    ui->LE_available->setValidator(new QDoubleValidator(0, 100, 5, this));
+
+    ui->DE_addedDate->setDate(QDate::currentDate());
+    ui->DE_exDate->setDate(QDate::currentDate());
+    ui->DE_addedDate->setDisplayFormat("yyyy/MM/dd");
+    ui->DE_exDate->setDisplayFormat("yyyy/MM/dd");
 }
 
 add_product_window::~add_product_window()
@@ -135,3 +146,7 @@ void add_product_window::on_CB_expCheckBox_stateChanged(int arg1){
     expDateEdit();
 }
 
+
+void add_product_window::on_PB_cancel_clicked(){
+    this->deleteLater();
+}

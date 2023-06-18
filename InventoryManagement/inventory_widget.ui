@@ -504,7 +504,7 @@ QPushButton::hover {
          </property>
          <property name="styleSheet">
           <string notr="true">QTableView {
-	background-color : #f9fcf2;
+	background-color : #ebecf5;
 	border-radius : 10 px;
 }
 
@@ -557,7 +557,7 @@ QScrollBar::handle:vertical {
            <widget class="QListView" name="LV_brandList">
             <property name="styleSheet">
              <string notr="true">QListView {
-    background-color: #e0e0e0;
+    background-color: #eef1fa;
 	border-radius : 5px;
     border: none;
 }
@@ -667,7 +667,7 @@ QPushButton::hover {
            <widget class="QListView" name="LV_categoryList">
             <property name="styleSheet">
              <string notr="true">QListView {
-    background-color: #e0e0e0;
+    background-color: #eef1fa;
 	border-radius : 5px;
     border: none;
 }
@@ -692,6 +692,9 @@ QScrollBar::handle:vertical {
           </item>
           <item>
            <widget class="QPushButton" name="PB_categoryFilter">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
               <horstretch>0</horstretch>

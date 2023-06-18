@@ -4,6 +4,7 @@
 #include <QStringListModel>
 #include <QMessageBox>
 #include <QHeaderView>
+#include "edit_product_window.h"
 
 inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent) :
     QWidget(parent),
@@ -24,6 +25,7 @@ inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QW
 
     updateFilterBrand();
     updateFilterCategory();
+
     connect(ui->LV_brandList->selectionModel(), &QItemSelectionModel::selectionChanged,
             this, &inventory_widget::onSelectionChangedBrands);
     connect(ui->LV_categoryList->selectionModel(), &QItemSelectionModel::selectionChanged,
@@ -96,8 +98,9 @@ void inventory_widget::setTableColumns(){
     m_tableViewModel.setHorizontalHeaderItem(4 ,new QStandardItem("Price"));
     m_tableViewModel.setHorizontalHeaderItem(5 ,new QStandardItem("In Stock"));
     m_tableViewModel.setHorizontalHeaderItem(6 ,new QStandardItem("Available"));
-    m_tableViewModel.setHorizontalHeaderItem(7 ,new QStandardItem("Added Date"));
-    m_tableViewModel.setHorizontalHeaderItem(8 ,new QStandardItem("Expration Date"));
+    m_tableViewModel.setHorizontalHeaderItem(7 ,new QStandardItem("Unit"));
+    m_tableViewModel.setHorizontalHeaderItem(8 ,new QStandardItem("Added Date"));
+    m_tableViewModel.setHorizontalHeaderItem(9 ,new QStandardItem("Expration Date"));
 
     ui->TV_products->setModel(&m_tableViewModel);
     ui->TV_products->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -110,8 +113,10 @@ void inventory_widget::setTableColumns(){
     for (int column = 0; column < numColumns; ++column) {
         if (column == 4)
             ui->TV_products->setColumnWidth(column, 70);
-        else if (column == 5 || column == 6)
+        else if (column == 5 || column == 6 || column == 7)
             ui->TV_products->setColumnWidth(column, 70);
+        else if (column == 8 || column == 9)
+            ui->TV_products->setColumnWidth(column, 80);
         else
             ui->TV_products->setColumnWidth(column, columnWidth);
     }
@@ -139,8 +144,9 @@ void inventory_widget::updateTable() {
         m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
         m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
         m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
-        m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
-        m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+        m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
+        m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+        m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(product.getExDate())));
         row++;
     }
 
@@ -217,8 +223,9 @@ void inventory_widget::updateTableBrand(const std::string_view brand){
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(product.getExDate())));
             row++;
         }
     }
@@ -241,8 +248,9 @@ void inventory_widget::updateTableCategory(const std::string_view category){
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(product.getExDate())));
             row++;
         }
     }
@@ -282,8 +290,9 @@ void inventory_widget::searchByName(const QString &text){
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(product.getExDate())));
             row++;
         }
     }
@@ -307,8 +316,9 @@ void inventory_widget::searchBySKU(const QString &text)
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(product.getExDate())));
             row++;
         }
     }
@@ -332,8 +342,9 @@ void inventory_widget::searchByCategory(const QString &text)
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(product.getExDate())));
             row++;
         }
     }
@@ -357,8 +368,9 @@ void inventory_widget::searchByBrand(const QString &text)
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(product.getExDate())));
             row++;
         }
     }
@@ -382,8 +394,9 @@ void inventory_widget::searchByUnit(const QString &text)
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(product.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(product.getExDate())));
             row++;
         }
     }
@@ -394,6 +407,13 @@ void inventory_widget::searchByUnit(const QString &text)
 void inventory_widget::on_TV_products_doubleClicked(const QModelIndex &index)
 {
     qDebug() << index << '\n';
+    int row = index.row();
+    std::string sku = m_tableViewModel.item(row,0)->data(Qt::DisplayRole).toString().toStdString();
+    Product& product = m_user->editProducts().editProduct(sku);
+    edit_product_window* editProductWindow = new edit_product_window(m_user, &product, this);
+    editProductWindow->setModal(true);
+    editProductWindow->show();
+    connect(editProductWindow, &edit_product_window::windowClosed, this, &inventory_widget::onDialogClosed);
 }
 
 
@@ -477,7 +497,7 @@ void inventory_widget::onSelectionChangedCategories(const QItemSelection &select
 
 
 void inventory_widget::on_PB_categoryFilter_clicked(){
-    qDebug() << "PB_BrandFilter\n";
+    qDebug() << "PB_CategoryFilter\n";
 
     // Get the currently selected index
     QModelIndex selectedIndex = ui->LV_categoryList->currentIndex();

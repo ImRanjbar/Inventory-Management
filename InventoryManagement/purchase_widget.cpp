@@ -12,6 +12,11 @@ purchase_widget::purchase_widget(Manufacturers* manufacturers, Seller* user ,QWi
     m_manufacturers = manufacturers;
     m_user = user;
 
+    ui->PB_brand->setEnabled(false);
+    ui->PB_category->setEnabled(false);
+
+
+
     customizeListItems();
 
     setSearchComboBox();
@@ -88,8 +93,9 @@ void purchase_widget::setTableColumns(){
     m_tableViewModel.setHorizontalHeaderItem(4 ,new QStandardItem("Price"));
     m_tableViewModel.setHorizontalHeaderItem(5 ,new QStandardItem("Inventory"));
     m_tableViewModel.setHorizontalHeaderItem(6 ,new QStandardItem("Selected"));
-    m_tableViewModel.setHorizontalHeaderItem(7 ,new QStandardItem("Added Date"));
-    m_tableViewModel.setHorizontalHeaderItem(8 ,new QStandardItem("Expration Date"));
+    m_tableViewModel.setHorizontalHeaderItem(7 ,new QStandardItem("Unit"));
+    m_tableViewModel.setHorizontalHeaderItem(8 ,new QStandardItem("Added Date"));
+    m_tableViewModel.setHorizontalHeaderItem(9 ,new QStandardItem("Expration Date"));
 
     ui->TV_items->setModel(&m_tableViewModel);
     ui->TV_items->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -101,8 +107,10 @@ void purchase_widget::setTableColumns(){
     for (int column = 0; column < numColumns; ++column) {
         if (column == 4)
             ui->TV_items->setColumnWidth(column, 70);
-        else if (column == 5 || column == 6)
+        else if (column == 5 || column == 6 || column == 7)
             ui->TV_items->setColumnWidth(column, 70);
+        else if (column == 8 || column == 9)
+            ui->TV_items->setColumnWidth(column, 80);
         else
             ui->TV_items->setColumnWidth(column, columnWidth);
     }
@@ -133,8 +141,9 @@ void purchase_widget::updateTable(){
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(item.getExDate())));
             row++;
             qDebug() << item.getSku() << " from " << m_provider->getManufactureName() << " have added to list\n";
         }
@@ -159,6 +168,10 @@ void purchase_widget::updateFilterBrand(){
 
         ui->LV_brandList->setModel(&m_brandFilterList);
     }
+
+    connect(ui->LV_brandList->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &purchase_widget::onSelectionChangedBrands);
+
 }
 
 void purchase_widget::updateFilterCategory(){
@@ -176,6 +189,9 @@ void purchase_widget::updateFilterCategory(){
 
         ui->LV_categoryList->setModel(&m_categoryFilterList);
     }
+
+    connect(ui->LV_categoryList->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &purchase_widget::onSelectionChangedCategories);
 }
 
 void purchase_widget::addItemToInvoice(int row){
@@ -228,8 +244,9 @@ void purchase_widget::searchByName(const QString &text){
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(item.getExDate())));
             row++;
         }
     }
@@ -261,8 +278,9 @@ void purchase_widget::searchBySKU(const QString &text)
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(item.getExDate())));
             row++;
         }
     }
@@ -294,8 +312,9 @@ void purchase_widget::searchByCategory(const QString &text)
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(item.getExDate())));
             row++;
         }
     }
@@ -327,8 +346,9 @@ void purchase_widget::searchByBrand(const QString &text)
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(item.getExDate())));
             row++;
         }
     }
@@ -360,12 +380,77 @@ void purchase_widget::searchByUnit(const QString &text)
             m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
-            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
-            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getExDate())));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(item.getExDate())));
             row++;
         }
     }
     qDebug() << "updateTable func done\n ";
+}
+
+void purchase_widget::filterByBrand(const QString &brand){
+    const std::vector<InvoiceItem>& items = m_provider->getInvoiceItemsModel().getItems();
+
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const InvoiceItem& item : items){
+        if (item.getBrand() == brand.toStdString()){
+            double selected = 0;
+            if (m_user->getInvoice().getProviderID() == m_provider->getMID()){
+                if (m_user->getInvoice().getInvoiceItemModel().existence(item.getSku())){
+                    selected = m_user->getInvoice().getInvoiceItemModel().getItem(item.getSku()).getInventory();
+                }
+            }
+
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(item.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(item.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(item.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(item.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(item.getExDate())));
+            row++;
+        }
+    }
+
+    qDebug() << "filterByBrand func done\n ";
+}
+
+void purchase_widget::filterByCategory(const QString &category){
+    const std::vector<InvoiceItem>& items = m_provider->getInvoiceItemsModel().getItems();
+
+    m_tableViewModel.removeRows(0, m_tableViewModel.rowCount());
+
+    int row = 0;
+    for (const InvoiceItem& item : items){
+        if (item.getCategory() == category.toStdString()){
+            double selected = 0;
+            if (m_user->getInvoice().getProviderID() == m_provider->getMID()){
+                if (m_user->getInvoice().getInvoiceItemModel().existence(item.getSku())){
+                    selected = m_user->getInvoice().getInvoiceItemModel().getItem(item.getSku()).getInventory();
+                }
+            }
+
+            m_tableViewModel.setItem(row,0 ,new QStandardItem(QString::fromStdString(item.getSku())));
+            m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(item.getName())));
+            m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(item.getBrand())));
+            m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(item.getCategory())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
+            m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
+            m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(selected)));
+            m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getUnit())));
+            m_tableViewModel.setItem(row,8 ,new QStandardItem(QString::fromStdString(item.getAddedDate())));
+            m_tableViewModel.setItem(row,9 ,new QStandardItem(QString::fromStdString(item.getExDate())));
+            row++;
+        }
+    }
+
+    qDebug() << "filterByCategory func done\n ";
 }
 
 
@@ -409,5 +494,52 @@ void purchase_widget::onAddToInvoiceDialogClosed(){
 
 void purchase_widget::on_LE_searchBar_textChanged(const QString &arg1){
     search(arg1);
+}
+
+
+void purchase_widget::on_PB_brand_clicked(){
+    qDebug() << "PB_BrandFilter\n";
+
+    QModelIndex selectedIndex = ui->LV_brandList->currentIndex();
+
+    if (selectedIndex.isValid()) {
+        // Get the selected text directly from the model
+        QString selectedItemText = selectedIndex.data(Qt::DisplayRole).toString();
+        qDebug() << "Selected item: " << selectedItemText;
+        filterByBrand(selectedItemText);
+        ui->LE_searchBar->setText("");
+    }
+}
+
+
+void purchase_widget::on_PB_category_clicked(){
+    qDebug() << "PB_CategoryFilter\n";
+
+    QModelIndex selectedIndex = ui->LV_categoryList->currentIndex();
+
+    if (selectedIndex.isValid()) {
+        // Get the selected text directly from the model
+        QString selectedItemText = selectedIndex.data(Qt::DisplayRole).toString();
+        qDebug() << "Selected item: " << selectedItemText;
+        filterByCategory(selectedItemText);
+        ui->LE_searchBar->setText("");
+    }
+
+}
+
+void purchase_widget::onSelectionChangedBrands(const QItemSelection &selected, const QItemSelection &deselected){
+    qDebug() << "onSelectionChangedBrands\n";
+    if (!selected.isEmpty())
+        ui->PB_brand->setEnabled(true);
+    else
+        ui->PB_brand->setEnabled(false);
+}
+
+void purchase_widget::onSelectionChangedCategories(const QItemSelection &selected, const QItemSelection &deselected){
+    qDebug() << "onSelectionChangedCategories\n";
+    if (!selected.isEmpty())
+        ui->PB_category->setEnabled(true);
+    else
+        ui->PB_category->setEnabled(false);
 }
 

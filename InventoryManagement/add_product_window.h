@@ -31,6 +31,8 @@ private slots:
 
     void on_CB_expCheckBox_stateChanged(int arg1);
 
+    void on_PB_cancel_clicked();
+
 private:
     Ui::add_product_window *ui;
     QWidget* m_parent;

@@ -29,16 +29,20 @@ add_to_invoice::~add_to_invoice()
 }
 
 void add_to_invoice::setLabels(){
-    if (!m_itemExistence)
+    if (!m_itemExistence){
         ui->LB_error->setVisible(false);
+        ui->LB_itemAvailable->setText(QString::number(m_item->getInventory())
+                                      + " " + QString::fromStdString(m_item->getUnit()));
+    }
     else {
-        ui->LE_selected->setText(QString::number(m_user->getInvoice().getInvoiceItemModel().getItem(m_item->getSku()).getInventory()));
+        double selected = m_user->getInvoice().getInvoiceItemModel().getItem(m_item->getSku()).getInventory();
+        ui->LE_selected->setText(QString::number(selected));
+        ui->LB_itemAvailable->setText(QString::number(m_item->getInventory() - selected)
+                                      + " " + QString::fromStdString(m_item->getUnit()));
     }
     ui->LB_selectedError->setVisible(false);
     ui->LB_itemName->setText(QString::fromStdString(m_item->getName()));
     ui->LB_itemSKU->setText(QString::fromStdString(m_item->getSku()));
-    ui->LB_itemAvailable->setText(QString::number(m_item->getInventory())
-                                  + " " + QString::fromStdString(m_item->getUnit()));
 }
 
 void add_to_invoice::addItem(){
@@ -114,5 +118,11 @@ void add_to_invoice::on_PB_add_clicked(){
         addItem();
         this->close();
     }
+}
+
+
+void add_to_invoice::on_PB_cancel_clicked(){
+    qDebug() << "Cancel clicked\n";
+    this->close();
 }
 

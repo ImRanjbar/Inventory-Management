@@ -101,7 +101,7 @@ const std::string& Product::getAddedDate() const {
 }
 
 const std::string& Product::getExDate() const {
-    return m_addedDate;
+    return m_exDate;
 }
 
 bool Product::getAvailability() const {

@@ -525,8 +525,8 @@ QPushButton::hover {
          </property>
          <property name="styleSheet">
           <string notr="true">QTableView {
-	background-color : #f9fcf2;
-	border-radius : 10px;
+	background-color : #ebecf5;
+	border-radius : 10 px;
 }
 
 QScrollBar:vertical {
@@ -584,7 +584,7 @@ QScrollBar::handle:vertical {
             </property>
             <property name="styleSheet">
              <string notr="true">QListView {
-    background-color: #e0e0e0;
+    background-color: #eef1fa;
 	border-radius : 5px;
     border: none;
 }
@@ -688,7 +688,7 @@ QPushButton::hover {
            <widget class="QListView" name="LV_categoryList">
             <property name="styleSheet">
              <string notr="true">QListView {
-    background-color: #e0e0e0;
+    background-color: #eef1fa;
 	border-radius : 5px;
     border: none;
 }

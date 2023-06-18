@@ -34,18 +34,14 @@ void Seller::editProduct(const std::string_view targetSKU, std::string_view newN
                          , std::string_view newSKU, std::string_view newBrand, double newStock
                          , double newAvailable, double newPrice, std::string_view newUnit, std::string_view newDescription
                          , std::string_view newAddDate, std::string_view newExDate, bool newAvailability){
-    if (m_products.existence(newSKU))
-        return;
-    else{
-        if (m_products.getProduct(targetSKU).getAvailability())
-            m_items.removeItem(targetSKU);
+    if (m_products.getProduct(targetSKU).getAvailability())
+        m_items.removeItem(targetSKU);
 
-        m_products.removeProduct(targetSKU);
+    m_products.removeProduct(targetSKU);
 
-        Product product(newName, newCategory, newSKU, newBrand, newStock, newAvailable
-                        , newPrice, newUnit, newDescription, newAddDate,newExDate, newAvailability);
-        addProduct(product);
-    }
+    Product product(newName, newCategory, newSKU, newBrand, newStock, newAvailable
+                    , newPrice, newUnit, newDescription, newAddDate, newExDate, newAvailability);
+    addProduct(product);
 }
 
 void Seller::addCustomerID(const std::string_view customerID) {

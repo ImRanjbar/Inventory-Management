@@ -30,6 +30,8 @@ private slots:
 
     void on_PB_add_clicked();
 
+    void on_PB_cancel_clicked();
+
 private:
     Ui::add_to_invoice *ui;
     Seller* m_user;

@@ -44,6 +44,7 @@ set(PROJECT_SOURCES
         add_product_window.h add_product_window.cpp add_product_window.ui
         add_to_invoice.h add_to_invoice.cpp add_to_invoice.ui
         invoice_numbers.h
+        edit_product_window.h edit_product_window.cpp edit_product_window.ui
 
 )
 

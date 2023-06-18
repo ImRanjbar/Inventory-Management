@@ -69,7 +69,7 @@ QTabBar::tab:hover { background-color: #F9F9F9; }</string>
             <number>10</number>
            </property>
            <property name="topMargin">
-            <number>20</number>
+            <number>0</number>
            </property>
            <item>
             <widget class="QLabel" name="label_4">
@@ -188,7 +188,55 @@ QComboBox QAbstractItemView::item:hover {
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit"/>
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>Filter by Date</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QDateEdit" name="dateEdit">
+                <property name="styleSheet">
+                 <string notr="true">QDateEdit {
+    padding: 1px; /* Set the padding */
+	font-family: Calibri;
+	font-size: 14px;
+	color: #9f88e0;
+	font-weight: bold;
+}
+</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_2">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #9f88e0;
+    border: 1px solid #9f88e0;
+    border-radius: 4px;
+    padding: 2px 3px;
+	color: #e9e4f8;
+	font-family : Cabin;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #af9ce6;
+
+}</string>
+                </property>
+                <property name="text">
+                 <string>Filter</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
           </layout>
          </item>
@@ -431,7 +479,7 @@ text-transform: none;</string>
             <number>10</number>
            </property>
            <property name="topMargin">
-            <number>20</number>
+            <number>0</number>
            </property>
            <item>
             <widget class="QLabel" name="label_13">
@@ -550,7 +598,55 @@ QComboBox QAbstractItemView::item:hover {
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit_4"/>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>Filter By Date</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QDateEdit" name="dateEdit_4">
+                <property name="styleSheet">
+                 <string notr="true">QDateEdit {
+    padding: 1px; /* Set the padding */
+	font-family: Calibri;
+	font-size: 14px;
+	color: #9f88e0;
+	font-weight: bold;
+}
+</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #9f88e0;
+    border: 1px solid #9f88e0;
+    border-radius: 4px;
+    padding: 2px 3px;
+	color: #e9e4f8;
+	font-family : Cabin;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #af9ce6;
+
+}</string>
+                </property>
+                <property name="text">
+                 <string>Filter</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
           </layout>
          </item>

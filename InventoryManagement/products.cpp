@@ -1,11 +1,12 @@
 
 #include "products.h"
-
+#include <QDebug>
 Products::Products() = default;
 
 void Products::addProduct(const Product& newItem) {
-
+    qDebug() << "in Products::addProduct function\n";
     if (!existence(newItem.getSku())) {
+        qDebug() << "The product with " << newItem.getSku() << " sku " << "have added to products\n";
         m_products.emplace_back(newItem);
     }
     else {

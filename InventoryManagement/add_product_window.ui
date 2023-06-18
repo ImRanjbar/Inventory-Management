@@ -106,7 +106,7 @@ padding:10px 20px;</string>
               <widget class="QLabel" name="label_5">
                <property name="styleSheet">
                 <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -120,14 +120,14 @@ text-transform: none;</string>
               <widget class="QLineEdit" name="LE_name">
                <property name="styleSheet">
                 <string notr="true">QLineEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	padding:10px 10px;
 }
@@ -149,7 +149,7 @@ text-transform: none;</string>
               <widget class="QLabel" name="label_9">
                <property name="styleSheet">
                 <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -163,14 +163,14 @@ text-transform: none;</string>
               <widget class="QLineEdit" name="LE_price">
                <property name="styleSheet">
                 <string notr="true">QLineEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	padding:10px 10px;
 }
@@ -192,7 +192,7 @@ text-transform: none;</string>
               <widget class="QLabel" name="label_6">
                <property name="styleSheet">
                 <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -206,14 +206,14 @@ text-transform: none;</string>
               <widget class="QLineEdit" name="LE_SKU">
                <property name="styleSheet">
                 <string notr="true">QLineEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	padding:10px 10px;
 }
@@ -287,7 +287,7 @@ text-transform: none;</string>
             <widget class="QLabel" name="label_11">
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -301,14 +301,14 @@ text-transform: none;</string>
             <widget class="QLineEdit" name="LE_brand">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	padding:10px 10px;
 }
@@ -341,7 +341,7 @@ text-transform: none;</string>
             <widget class="QLabel" name="label_13">
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -355,14 +355,14 @@ text-transform: none;</string>
             <widget class="QLineEdit" name="LE_category">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	padding:10px 10px;
 }
@@ -402,7 +402,7 @@ text-transform: none;</string>
             <widget class="QLabel" name="label_16">
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -416,14 +416,14 @@ text-transform: none;</string>
             <widget class="QLineEdit" name="LE_stock">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	padding:10px 10px;
 }
@@ -456,7 +456,7 @@ text-transform: none;</string>
             <widget class="QLabel" name="label_15">
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -470,14 +470,14 @@ text-transform: none;</string>
             <widget class="QLineEdit" name="LE_available">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	padding:10px 10px;
 }
@@ -510,7 +510,7 @@ text-transform: none;</string>
             <widget class="QLabel" name="label_17">
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -524,14 +524,14 @@ text-transform: none;</string>
             <widget class="QLineEdit" name="LE_unit">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	padding:10px 10px;
 }
@@ -566,21 +566,9 @@ text-transform: none;</string>
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
             <widget class="QLabel" name="label_3">
-             <property name="minimumSize">
-              <size>
-               <width>250</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>250</width>
-               <height>16777215</height>
-              </size>
-             </property>
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -605,7 +593,17 @@ text-transform: none;</string>
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">QDateEdit {
+    background-color: #d9e0f5; 
+    border: 1px solid #CCCCCC; 
+	border-radius :5px;
+    padding: 1px; 
+	font-family: Calibri;
+	font-size: 16px;
+	color: #607fd6;
+	font-weight: normal;
+}
+</string>
              </property>
             </widget>
            </item>
@@ -659,7 +657,7 @@ text-transform: none;</string>
               <widget class="QLabel" name="LB_expDate">
                <property name="styleSheet">
                 <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -682,6 +680,19 @@ text-transform: none;</string>
                  <width>250</width>
                  <height>16777215</height>
                 </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QDateEdit {
+    background-color: #d9e0f5;
+    border: 1px solid #CCCCCC; 
+	border-radius :5px;
+    padding: 1px;
+	font-family: Calibri;
+	font-size: 16px;
+	color: #607fd6;
+	font-weight: normal;
+}
+</string>
                </property>
               </widget>
              </item>
@@ -718,7 +729,7 @@ text-transform: none;</string>
             <widget class="QLabel" name="label_2">
              <property name="styleSheet">
               <string notr="true">font-family: Calibri;
-font-size: 12px;
+font-size: 14px;
 color: #205c6f;
 font-weight: bold;
 text-transform: none;</string>
@@ -732,17 +743,19 @@ text-transform: none;</string>
             <widget class="QTextEdit" name="TE_description">
              <property name="styleSheet">
               <string notr="true">QTextEdit {
-	background-color: #F3E8FF;
+	background-color: #e9edfa;
 	border-radius:8px;
 	border:1px solid #ced1e7;
 	display:inline-block;
 	cursor:text;
-	color : #2c2c3b;
+	color : #4b6ed1;
 	font-family:Impactl;
 	font-size:10px;
 	font-weight:bold;
 	padding:10px 10px;
 }
+
+
 </string>
              </property>
             </widget>
@@ -761,33 +774,17 @@ text-transform: none;</string>
             <number>0</number>
            </property>
            <item>
-            <spacer name="verticalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Minimum</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>15</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
             <widget class="QPushButton" name="PB_addProduct">
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
-    background-color: #C7E9B0;
-    border: 1px solid #CCCCCC;
+    background-color: #748fdb;
+    border: 1px solid #a995e4;
     border-radius: 8px;
     padding: 20px 20px;
-	color: #1c1d06;
+	color: #ffffff;
 	font-family : Cabin;
 	font-weight : bold;
 	font-size : 12px;
@@ -796,30 +793,15 @@ text-transform: none;</string>
 }
 
 QPushButton::hover {
-	background-color : #eff4fc;
+	background-color : #9db0e5;
+	border: 1px solid  #9db0e5;
 
 }</string>
              </property>
              <property name="text">
-              <string>Add Product</string>
+              <string>Add to Product</string>
              </property>
             </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Minimum</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>10</height>
-              </size>
-             </property>
-            </spacer>
            </item>
            <item>
             <widget class="QPushButton" name="PB_cancel">
@@ -828,11 +810,11 @@ QPushButton::hover {
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
-    background-color: #f4c3d6;
-    border: 1px solid #CCCCCC;
+    background-color: #df8199;
+    border: 1px solid #db8c74;
     border-radius: 8px;
     padding: 20px 20px;
-	color: #1c1d06;
+	color: #672d1b;
 	font-family : Cabin;
 	font-weight : bold;
 	font-size : 12px;
@@ -841,7 +823,8 @@ QPushButton::hover {
 }
 
 QPushButton::hover {
-	background-color : #eff4fc;
+	background-color : #e9aaba;
+    border: 1px solid #e9aaba;
 
 }</string>
              </property>

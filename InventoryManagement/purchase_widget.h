@@ -8,6 +8,7 @@
 #include <QStyledItemDelegate>
 #include <QStandardItemModel>
 #include <QStringListModel>
+#include <QItemSelection>
 
 namespace Ui {
 class purchase_widget;
@@ -45,6 +46,9 @@ public:
     void searchByBrand(const QString& text);
     void searchByUnit(const QString& text);
 
+    void filterByBrand(const QString& brand);
+    void filterByCategory(const QString& category);
+
 private slots:
     void on_CB_providers_currentTextChanged(const QString &arg1);
 
@@ -53,6 +57,14 @@ private slots:
     void onAddToInvoiceDialogClosed();
 
     void on_LE_searchBar_textChanged(const QString &arg1);
+
+    void on_PB_brand_clicked();
+
+    void on_PB_category_clicked();
+
+    void onSelectionChangedBrands(const QItemSelection& selected, const QItemSelection& deselected);
+
+    void onSelectionChangedCategories(const QItemSelection& selected, const QItemSelection& deselected);
 
 private:
     Ui::purchase_widget *ui;

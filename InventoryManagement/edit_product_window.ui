@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>edit_product_window</class>
+ <widget class="QDialog" name="edit_product_window">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>720</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>1000</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#edit_product_window {
+	background-image: url(:/Images/editProductWindow.png);
+}</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>340</y>
+     <width>301</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_10">
+    <item>
+     <widget class="QLabel" name="label_11">
+      <property name="styleSheet">
+       <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+      </property>
+      <property name="text">
+       <string>Description</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="styleSheet">
+       <string notr="true">QTextEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:10px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>20</y>
+     <width>311</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <item>
+     <widget class="QPushButton" name="PB_cancel">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #ec98b9;
+    border: 1px solid #ec98b9;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #ffffff;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #f4c3d6;
+
+}</string>
+      </property>
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="PB_delete">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #be80ad;
+    border: 1px solid #be80ad;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #fbedf2;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #cfa2c3;
+
+}</string>
+      </property>
+      <property name="text">
+       <string>Delete</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="PB_reset">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #a2b56f;
+    border: 1px solid #a2b56f;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #b8c791;
+
+}</string>
+      </property>
+      <property name="text">
+       <string>Reset</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="PB_save">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #70ad5e;
+    border: 1px solid #70ad5e;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #fefeff;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #8ebe80;
+
+}
+
+QPushButton:disabled {
+	background-color : #7a9a71;
+	border: 1px solid #7a9a71;
+}</string>
+      </property>
+      <property name="text">
+       <string>Save</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>221</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+font-family: 'Fjalla One', sans-serif;
+font-size: 22px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #ffffff;
+font-weight: bold;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+padding:10px 20px;</string>
+   </property>
+   <property name="text">
+    <string>Edit Product</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_name">
+   <property name="geometry">
+    <rect>
+     <x>12</x>
+     <y>154</y>
+     <width>200</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>12</x>
+     <y>132</y>
+     <width>35</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Name</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_nameError">
+   <property name="geometry">
+    <rect>
+     <x>12</x>
+     <y>196</y>
+     <width>201</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #a05263;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_brand">
+   <property name="geometry">
+    <rect>
+     <x>243</x>
+     <y>154</y>
+     <width>200</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>243</x>
+     <y>132</y>
+     <width>35</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Brand</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_brandError">
+   <property name="geometry">
+    <rect>
+     <x>243</x>
+     <y>196</y>
+     <width>201</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #a05263;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_categoryError">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>196</y>
+     <width>211</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #a05263;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>132</y>
+     <width>52</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Category</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_category">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>154</y>
+     <width>200</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_price">
+   <property name="geometry">
+    <rect>
+     <x>22</x>
+     <y>264</y>
+     <width>150</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>22</x>
+     <y>242</y>
+     <width>29</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #414f7e;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Price</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_priceError">
+   <property name="geometry">
+    <rect>
+     <x>22</x>
+     <y>306</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #a05263;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_stock">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>264</y>
+     <width>150</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_stockError">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>306</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #a05263;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>242</y>
+     <width>46</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>In Stock</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>359</x>
+     <y>242</y>
+     <width>25</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Unit</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_unitError">
+   <property name="geometry">
+    <rect>
+     <x>359</x>
+     <y>306</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #a05263;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_unit">
+   <property name="geometry">
+    <rect>
+     <x>359</x>
+     <y>264</y>
+     <width>150</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_availableError">
+   <property name="geometry">
+    <rect>
+     <x>527</x>
+     <y>306</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #a05263;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>527</x>
+     <y>242</y>
+     <width>54</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Available</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_available">
+   <property name="geometry">
+    <rect>
+     <x>527</x>
+     <y>264</y>
+     <width>150</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>330</y>
+     <width>132</width>
+     <height>47</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_9">
+    <item>
+     <widget class="QLabel" name="label_9">
+      <property name="styleSheet">
+       <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+      </property>
+      <property name="text">
+       <string>Added Date</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QDateEdit" name="DE_addDate">
+      <property name="minimumSize">
+       <size>
+        <width>130</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QDateEdit {
+    background-color: #d9e0f5; /* Set the background color */
+    border: 1px solid #CCCCCC; /* Set the border */
+	border-radius :5px;
+    padding: 1px; /* Set the padding */
+	font-family: Calibri;
+	font-size: 14px;
+	color: #49598f;
+	font-weight: normal;
+}
+</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>410</y>
+     <width>132</width>
+     <height>47</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_8">
+    <item>
+     <widget class="QLabel" name="LB_exDate">
+      <property name="styleSheet">
+       <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+      </property>
+      <property name="text">
+       <string>Expration Date</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QDateEdit" name="DE_exDate">
+      <property name="minimumSize">
+       <size>
+        <width>130</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QDateEdit {
+    background-color: #d9e0f5; /* Set the background color */
+    border: 1px solid #CCCCCC; /* Set the border */
+	border-radius :5px;
+    padding: 1px; /* Set the padding */
+	font-family: Calibri;
+	font-size: 14px;
+	color: #49598f;
+	font-weight: normal;
+}
+</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>361</x>
+     <y>384</y>
+     <width>95</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>add expration date</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_SKUerror">
+   <property name="geometry">
+    <rect>
+     <x>521</x>
+     <y>415</y>
+     <width>181</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #a05263;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>521</x>
+     <y>351</y>
+     <width>24</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #38446d;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>SKU</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_SKU">
+   <property name="geometry">
+    <rect>
+     <x>521</x>
+     <y>373</y>
+     <width>180</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #724cd7;
+	font-family:Impactl;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

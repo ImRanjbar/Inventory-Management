@@ -23,5 +23,6 @@
         <file>Images/icons/signUp.png</file>
         <file>Images/icons/InventoryManagement.png</file>
         <file>Images/editProductWindow.png</file>
+        <file>Images/ProductInformationWindow.png</file>
     </qresource>
 </RCC>

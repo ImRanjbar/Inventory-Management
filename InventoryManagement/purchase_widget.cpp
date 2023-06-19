@@ -2,7 +2,7 @@
 #include "ui_purchase_widget.h"
 
 #include "add_to_invoice.h"
-
+#include "product_information_window.h"
 
 purchase_widget::purchase_widget(Manufacturers* manufacturers, Seller* user ,QWidget *parent) :
     QWidget(parent),
@@ -509,6 +509,8 @@ void purchase_widget::on_PB_brand_clicked(){
         filterByBrand(selectedItemText);
         ui->LE_searchBar->setText("");
     }
+
+    ui->LV_categoryList->clearSelection();
 }
 
 
@@ -525,6 +527,7 @@ void purchase_widget::on_PB_category_clicked(){
         ui->LE_searchBar->setText("");
     }
 
+    ui->LV_brandList->clearSelection();
 }
 
 void purchase_widget::onSelectionChangedBrands(const QItemSelection &selected, const QItemSelection &deselected){
@@ -541,5 +544,17 @@ void purchase_widget::onSelectionChangedCategories(const QItemSelection &selecte
         ui->PB_category->setEnabled(true);
     else
         ui->PB_category->setEnabled(false);
+}
+
+
+void purchase_widget::on_TV_items_doubleClicked(const QModelIndex &index){
+    const int row = index.row();
+    std::string sku = m_tableViewModel.item(row, 0)->data(Qt::DisplayRole).toString().toStdString();
+    const InvoiceItem& item = m_provider->getInvoiceItemsModel().getItem(sku);
+    qDebug() << "item with sku : " << item.getSku() << " selected by double click TV_items\n";
+
+    product_information_window* informationWindow = new product_information_window(m_user, &item, this);
+    informationWindow->setModal(true);
+    informationWindow->show();
 }
 

@@ -469,6 +469,7 @@ void inventory_widget::on_PB_brandFilter_clicked(){
         ui->LE_search->setText("");
     }
 
+    ui->LV_categoryList->clearSelection();
 }
 
 void inventory_widget::onSelectionChangedBrands(const QItemSelection& selected, const QItemSelection& deselected){
@@ -509,6 +510,8 @@ void inventory_widget::on_PB_categoryFilter_clicked(){
         updateTableCategory(selectedItemText.toStdString());
         ui->LE_search->setText("");
     }
+
+    ui->LV_brandList->clearSelection();
 }
 
 void inventory_widget::handleHeaderDoubleClicked(int logicalIndex){

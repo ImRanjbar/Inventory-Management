@@ -66,6 +66,8 @@ private slots:
 
     void onSelectionChangedCategories(const QItemSelection& selected, const QItemSelection& deselected);
 
+    void on_TV_items_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::purchase_widget *ui;
     Manufacturers* m_manufacturers;

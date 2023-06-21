@@ -24,5 +24,30 @@
         <file>Images/icons/InventoryManagement.png</file>
         <file>Images/editProductWindow.png</file>
         <file>Images/ProductInformationWindow.png</file>
+        <file>Images/CurrencyWidgetBackground.png</file>
+        <file>Images/icons/countries/IRR.png</file>
+        <file>Images/icons/countries/CHF.png</file>
+        <file>Images/icons/countries/SAD.png</file>
+        <file>Images/icons/countries/CNY.png</file>
+        <file>Images/icons/countries/GBP.png</file>
+        <file>Images/icons/countries/USD.png</file>
+        <file>Images/icons/countries/AED.png</file>
+        <file>Images/icons/countries/AUD.png</file>
+        <file>Images/icons/countries/BRL.png</file>
+        <file>Images/icons/countries/CAD.png</file>
+        <file>Images/icons/countries/EUR.png</file>
+        <file>Images/icons/countries/HKD.png</file>
+        <file>Images/icons/countries/INR.png</file>
+        <file>Images/icons/countries/JPY.png</file>
+        <file>Images/icons/countries/KRW.png</file>
+        <file>Images/icons/countries/MXN.png</file>
+        <file>Images/icons/countries/NOK.png</file>
+        <file>Images/icons/countries/NZD.png</file>
+        <file>Images/icons/countries/RUB.png</file>
+        <file>Images/icons/countries/SEK.png</file>
+        <file>Images/icons/countries/TRY.png</file>
+        <file>Images/icons/countries/EGP.png</file>
+        <file>Images/icons/countries/PLN.png</file>
+        <file>Images/icons/countries/ZAR.png</file>
     </qresource>
 </RCC>

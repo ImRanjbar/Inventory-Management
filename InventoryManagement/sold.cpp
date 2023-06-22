@@ -47,6 +47,10 @@ const std::vector<Invoice> &Sold::getInvoices() const{
     return m_invoices;
 }
 
+std::vector<Invoice> &Sold::editInvoices(){
+    return m_invoices;
+}
+
 void Sold::addInvoice(const Invoice &invoice){
     Invoice newInvoice = invoice;
     m_invoices.push_back(newInvoice);

@@ -72,10 +72,6 @@ const Sold &Seller::getSoldHistory() const{
     return m_soldHistory;
 }
 
-Sold &Seller::editSoldHistory(){
-    return m_soldHistory;
-}
-
 const Purchase &Seller::getPurchaseHistory() const{
     return m_purchaseHistory;
 }

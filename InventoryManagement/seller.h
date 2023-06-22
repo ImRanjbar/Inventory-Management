@@ -32,7 +32,6 @@ public:
     Products& editProducts();
 
     const Sold& getSoldHistory() const;
-    Sold& editSoldHistory();
 
     const Purchase& getPurchaseHistory() const;
     Purchase& editPurchaseHistory();

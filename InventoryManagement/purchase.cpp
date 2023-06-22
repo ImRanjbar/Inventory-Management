@@ -18,3 +18,7 @@ void Purchase::purchase(const Invoice &invoice){
 const std::vector<Invoice> &Purchase::getInvoices() const{
     return m_invoices;
 }
+
+std::vector<Invoice> &Purchase::editInvoices(){
+    return m_invoices;
+}

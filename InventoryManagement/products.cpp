@@ -54,6 +54,10 @@ const std::vector<Product>& Products::getProducts() const {
     return m_products;
 }
 
+std::vector<Product> &Products::editProducts(){
+    return m_products;
+}
+
 void Products::sortByName() {
     std::ranges::sort(m_products, {}, &Product::getName);
 }

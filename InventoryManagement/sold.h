@@ -14,6 +14,8 @@ public:
 
     const std::vector<Invoice>& getInvoices() const;
 
+    std::vector<Invoice>& editInvoices();
+
     void addInvoice(const Invoice& invoice);
 
 private:

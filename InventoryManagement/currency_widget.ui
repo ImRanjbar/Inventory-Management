@@ -716,7 +716,7 @@ QRadioButton:checked {
     border: none;
 }
 QRadioButton {
-	background-image : url(:/Images/icons/countries/SAD.png) ;
+	background-image : url(:/Images/icons/countries/SAR.png) ;
 }
 QRadioButton:hover{
 	background-color: rgba(180, 160, 233, 0.5);

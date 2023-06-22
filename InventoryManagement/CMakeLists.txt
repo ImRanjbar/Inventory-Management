@@ -46,7 +46,7 @@ set(PROJECT_SOURCES
         invoice_numbers.h
         edit_product_window.h edit_product_window.cpp edit_product_window.ui
         product_information_window.h product_information_window.cpp product_information_window.ui
-
+        CurrencyConverter.h CurrencyConverter.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

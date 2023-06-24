@@ -53,9 +53,15 @@ public:
 
     void setNZDConversionRates();
 
+    void setPLNConversionRates();
+
     void setRUBConversionRates();
 
     void setSARConversionRates();
+
+    void setSEKConversionRates();
+
+    void setTRYConversionRates();
 
     void setUSDConversionRates();
 
@@ -65,6 +71,16 @@ public:
 
     const std::string& getCurrencySymbol() const;
 
+    const std::string& getCurrentCurrency() const;
+
+    void setCurrentCurrency(const std::string& currency);
+
+    const std::string& getSymbol() const;
+
+    const double getRate(const std::string& baseCurrency, const std::string& quoteCurrency);
+
+    const std::map<std::string, double>& getConversionRates() const;
+
 private:
     std::map<std::string, double> m_conversionRates;
     std::map<std::string, std::string> m_currencySymbols;
@@ -73,6 +89,7 @@ private:
         return fromCurrency + toCurrency;
     }
 
+    std::string m_currency;
     std::string m_currencySymbol;
 };
 

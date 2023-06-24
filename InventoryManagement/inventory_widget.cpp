@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QHeaderView>
 #include "edit_product_window.h"
+#include "currency.h"
 
 inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent) :
     QWidget(parent),
@@ -112,11 +113,11 @@ void inventory_widget::setTableColumns(){
     const int columnWidth = 100;
     for (int column = 0; column < numColumns; ++column) {
         if (column == 4)
-            ui->TV_products->setColumnWidth(column, 70);
+            ui->TV_products->setColumnWidth(column, 90);
         else if (column == 5 || column == 6 || column == 7)
             ui->TV_products->setColumnWidth(column, 70);
         else if (column == 8 || column == 9)
-            ui->TV_products->setColumnWidth(column, 80);
+            ui->TV_products->setColumnWidth(column, 70);
         else
             ui->TV_products->setColumnWidth(column, columnWidth);
     }
@@ -141,7 +142,7 @@ void inventory_widget::updateTable() {
         m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
         m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
         m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
-        m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+        m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(product.getPrice(), 'f' , 2)));
         m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
         m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
         m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
@@ -220,7 +221,7 @@ void inventory_widget::updateTableBrand(const std::string_view brand){
             m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
             m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
             m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
-            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(product.getPrice(), 'f' , 2)));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
@@ -245,7 +246,7 @@ void inventory_widget::updateTableCategory(const std::string_view category){
             m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
             m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
             m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
-            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(product.getPrice(), 'f' , 2)));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
@@ -287,7 +288,7 @@ void inventory_widget::searchByName(const QString &text){
             m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
             m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
             m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
-            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(product.getPrice(), 'f' , 2)));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
@@ -313,7 +314,7 @@ void inventory_widget::searchBySKU(const QString &text)
             m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
             m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
             m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
-            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(product.getPrice(), 'f' , 2)));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
@@ -339,7 +340,7 @@ void inventory_widget::searchByCategory(const QString &text)
             m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
             m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
             m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
-            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(product.getPrice(), 'f' , 2)));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
@@ -365,7 +366,7 @@ void inventory_widget::searchByBrand(const QString &text)
             m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
             m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
             m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
-            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(product.getPrice(), 'f' , 2)));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));
@@ -391,7 +392,7 @@ void inventory_widget::searchByUnit(const QString &text)
             m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(product.getName())));
             m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(product.getBrand())));
             m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(product.getCategory())));
-            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(product.getPrice())));
+            m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(product.getPrice(), 'f' , 2)));
             m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(product.getStock())));
             m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::number(product.getAvailable())));
             m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(product.getUnit())));

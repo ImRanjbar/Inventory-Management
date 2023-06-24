@@ -34,8 +34,8 @@ background-image : url(:/Images/CurrencyWidgetBackground.png);
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>110</y>
+      <x>60</x>
+      <y>280</y>
       <width>962</width>
       <height>324</height>
      </rect>
@@ -44,7 +44,7 @@ background-image : url(:/Images/CurrencyWidgetBackground.png);
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
-        <widget class="QRadioButton" name="radioButton_4">
+        <widget class="QRadioButton" name="RB_AED">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -77,7 +77,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_6">
+        <widget class="QRadioButton" name="RB_AUD">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -110,7 +110,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_5">
+        <widget class="QRadioButton" name="RB_BRL">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -143,7 +143,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton">
+        <widget class="QRadioButton" name="RB_CAD">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -176,7 +176,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_2">
+        <widget class="QRadioButton" name="RB_CHF">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -215,7 +215,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_3">
+        <widget class="QRadioButton" name="RB_CNY">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -252,7 +252,7 @@ QRadioButton:checked {
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
-        <widget class="QRadioButton" name="radioButton_7">
+        <widget class="QRadioButton" name="RB_EGP">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -285,7 +285,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_8">
+        <widget class="QRadioButton" name="RB_EUR">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -318,7 +318,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_9">
+        <widget class="QRadioButton" name="RB_GBP">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -351,7 +351,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_10">
+        <widget class="QRadioButton" name="RB_HKD">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -384,7 +384,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_11">
+        <widget class="QRadioButton" name="RB_INR">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -423,7 +423,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_12">
+        <widget class="QRadioButton" name="RB_IRR">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -460,7 +460,7 @@ QRadioButton:checked {
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_8">
        <item>
-        <widget class="QRadioButton" name="radioButton_19">
+        <widget class="QRadioButton" name="RB_JPY">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -493,7 +493,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_20">
+        <widget class="QRadioButton" name="RB_KRW">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -526,7 +526,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_21">
+        <widget class="QRadioButton" name="RB_MXN">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -559,7 +559,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_22">
+        <widget class="QRadioButton" name="RB_NOK">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -592,7 +592,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_23">
+        <widget class="QRadioButton" name="RB_NZD">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -631,7 +631,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_24">
+        <widget class="QRadioButton" name="RB_PLN">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -668,7 +668,7 @@ QRadioButton:checked {
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
-        <widget class="QRadioButton" name="radioButton_13">
+        <widget class="QRadioButton" name="RB_RUB">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -701,7 +701,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_14">
+        <widget class="QRadioButton" name="RB_SAR">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -734,7 +734,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_15">
+        <widget class="QRadioButton" name="RB_SEK">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -767,7 +767,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_16">
+        <widget class="QRadioButton" name="RB_TRY">
          <property name="minimumSize">
           <size>
            <width>235</width>
@@ -800,7 +800,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_17">
+        <widget class="QRadioButton" name="RB_USD">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -839,7 +839,7 @@ QRadioButton:checked {
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="radioButton_18">
+        <widget class="QRadioButton" name="RB_ZAR">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -874,6 +874,33 @@ QRadioButton:checked {
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="PB_editRate">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>20</y>
+      <width>300</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background-image : url(:/Images/icons/editExchangeRate.png);
+	background-color : #c4c1f3;
+	border-radius :15px;
+}
+
+QPushButton:hover {
+	background-color: #d8d6f7;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
  </widget>

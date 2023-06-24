@@ -49,5 +49,8 @@
         <file>Images/icons/countries/EGP.png</file>
         <file>Images/icons/countries/PLN.png</file>
         <file>Images/icons/countries/ZAR.png</file>
+        <file>CurrencyExchangeRates.csv</file>
+        <file>Images/icons/editExchangeRate.png</file>
+        <file>Images/EditExchangeRateBackground.png</file>
     </qresource>
 </RCC>

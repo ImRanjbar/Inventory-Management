@@ -2,7 +2,7 @@
 #ifndef DATAHANDLER_H
 #define DATAHANDLER_H
 
-#include "manufacturers.h"
+#include "CurrencyConverter.h"
 
 #include <string>
 #include <sstream>
@@ -19,6 +19,10 @@ public:
     void removeQuotes(std::string& value);
 
     void saveData(Manufacturers* manufacturers);
+
+    void readCurrencyRates(CurrencyConverter& currencyModel);
+
+    void saveCurrencyRates(CurrencyConverter& currencyModel);
 };
 
 #endif // DATAHANDLER_H

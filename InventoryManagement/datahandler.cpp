@@ -1,6 +1,7 @@
 
 #include "datahandler.h"
 #include "invoice_numbers.h"
+#include "currency.h"
 
 DataHandler::DataHandler() = default;
 
@@ -26,7 +27,19 @@ void DataHandler::readData(Manufacturers* manufacturers){
         std::stringstream ss(line);
         std::getline(ss, first, ',');
         removeQuotes(first);
-        if (first == "appUsername") {
+        if (first == "appCurrency"){
+            std::string currency;
+            std::getline(ss, currency, ',');
+            removeQuotes(currency);
+            Currency::currentCurrency = currency;
+
+            std::string symbol;
+            std::getline(ss, symbol, ',');
+            removeQuotes(symbol);
+            Currency::currencySymbol = symbol;
+            qDebug() << "currency have read\n";
+        }
+        else if (first == "appUsername") {
             Seller* newSeller = new Seller;
 
             std::string username;
@@ -254,6 +267,9 @@ void DataHandler::removeQuotes(std::string& value) {
 
 void DataHandler::saveData(Manufacturers *manufacturers){
     std::ofstream file("data.csv");
+    file << '"' << "appCurrency" << '"' << ","
+         << '"' << Currency::currentCurrency << '"' << ","
+         << '"' << Currency::currencySymbol << '"' << '\n';
     for (Seller* manufacturer : manufacturers->getManufacturers()) {
         qDebug() << "save username\n";
         file << '"' <<"appUsername" <<'"'<< ","
@@ -330,6 +346,59 @@ void DataHandler::saveData(Manufacturers *manufacturers){
                      << '"' << item.getExDate() << '"' << "\n";
             }
         }
+    }
+    file.close();
+}
+
+void DataHandler::readCurrencyRates(CurrencyConverter &currencyModel){
+    std::ifstream file("CurrencyExchangeRates.csv");
+    std::string line;
+
+    qDebug() << "In ReadCurrencyRates() func\n";
+
+    if (file.is_open())
+        qDebug() << "file is open\n";
+    else {
+        qDebug() << "file cannot be opened\n";
+        return; // or handle the error appropriately
+    }
+
+    while (std::getline(file, line)){
+        std::stringstream ss(line);
+
+        std::string fromCurrency;
+        std::getline(ss, fromCurrency, ',');
+        removeQuotes(fromCurrency);
+
+        std::string toCurrency;
+        std::getline(ss, toCurrency, ',');
+        removeQuotes(toCurrency);
+
+        std::string rateStr;
+        std::getline(ss, rateStr, ',');
+        double rate = std::stod(rateStr);
+
+        currencyModel.setConversionRate(fromCurrency, toCurrency, rate);
+    }
+
+    file.close();
+}
+
+void DataHandler::saveCurrencyRates(CurrencyConverter &currencyModel){
+    std::ofstream file("CurrencyExchangeRates.csv");
+
+    qDebug() << "In saveCurrencyRates() func\n";
+
+    for (const std::pair<const std::string,double>& convertionRate : currencyModel.getConversionRates()){
+        const std::string key = convertionRate.first;
+        const double rate = convertionRate.second;
+
+        const std::string base = key.substr(0,3);
+        const std::string quote = key.substr(3,3);
+
+        file << '"' << base << '"' << ","
+             << '"' << quote << '"' << ","
+             << rate << '\n';
     }
     file.close();
 }

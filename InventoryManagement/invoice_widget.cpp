@@ -1,6 +1,7 @@
 #include "invoice_widget.h"
 #include "ui_invoice_widget.h"
 #include <QDate>
+#include "currency.h"
 
 invoice_widget::invoice_widget(Manufacturers *manufacturer, Seller *user, QWidget *parent) :
     QWidget(parent),
@@ -71,7 +72,7 @@ void invoice_widget::setLabels(){
         ui->LB_MID->setText(QString::fromStdString(providerID));
 
         m_user->editInvoice().updateAmount();
-        ui->LB_amountDue->setText(QString::number(m_user->getInvoice().getTotalAmount()));
+        ui->LB_amountDue->setText(QString::fromStdString(Currency::currencySymbol) + QString::number(m_user->getInvoice().getTotalAmount(), 'f', 2));
 
         m_user->editInvoice().updateNumSelectedItems();
         ui->LB_nSellected->setText(QString::number(m_user->getInvoice().getNumSelectedItems()));
@@ -82,6 +83,8 @@ void invoice_widget::setLabels(){
     else {
         ui->LB_manuName->setText("NOT SELECTED");
         ui->LB_MID->setText("NOT SELECTED");
+        ui->LB_nSellected->setText("0");
+        ui->LB_amountDue->setText(QString::fromStdString(Currency::currencySymbol) + "0");
     }
 
 }
@@ -99,7 +102,7 @@ void invoice_widget::updateTable(){
         m_tableViewModel.setItem(row,1 ,new QStandardItem(QString::fromStdString(item.getName())));
         m_tableViewModel.setItem(row,2 ,new QStandardItem(QString::fromStdString(item.getBrand())));
         m_tableViewModel.setItem(row,3 ,new QStandardItem(QString::fromStdString(item.getCategory())));
-        m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::number(item.getPrice())));
+        m_tableViewModel.setItem(row,4 ,new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(item.getPrice(), 'f', 2)));
         m_tableViewModel.setItem(row,5 ,new QStandardItem(QString::number(item.getInventory())));
         m_tableViewModel.setItem(row,6 ,new QStandardItem(QString::fromStdString(item.getUnit())));
         m_tableViewModel.setItem(row,7 ,new QStandardItem(QString::fromStdString(item.getExDate())));
@@ -119,7 +122,7 @@ void invoice_widget::clear(){
     m_user->editInvoice().clearInvoice();
     updateTable();
 
-    ui->LB_amountDue->setText("$0");
+    ui->LB_amountDue->setText(QString::fromStdString(Currency::currencySymbol) + "0");
     ui->LB_nSellected->setText("0");
 }
 

@@ -1,8 +1,10 @@
 
 #include "CurrencyConverter.h"
 
-CurrencyConverter::CurrencyConverter() = default;
-
+CurrencyConverter::CurrencyConverter(){
+    setCurrencySymbols();
+//    setConversionRates();
+}
 
 void CurrencyConverter::setConversionRate(const std::string &fromCurrency, const std::string &toCurrency, double rate){
     std::string key = generateKey(fromCurrency, toCurrency);
@@ -49,6 +51,7 @@ void CurrencyConverter::setCurrencySymbols(){
 }
 
 void CurrencyConverter::setConversionRates(){
+    setAEDConversionRates();
     setAUDConversionRates();
     setBRLConversionRates();
     setCADConversionRates();
@@ -65,11 +68,13 @@ void CurrencyConverter::setConversionRates(){
     setMXNConversionRates();
     setNOKConversionRates();
     setNZDConversionRates();
+    setPLNConversionRates();
     setRUBConversionRates();
     setSARConversionRates();
+    setSEKConversionRates();
+    setTRYConversionRates();
     setUSDConversionRates();
     setZARConversionRates();
-
 }
 
 void CurrencyConverter::setAEDConversionRates(){
@@ -514,6 +519,32 @@ void CurrencyConverter::setNZDConversionRates(){
     setConversionRate("NZD", "ZAR", 9.3);       // New Zealand Dollar to South African Rand
 }
 
+void CurrencyConverter::setPLNConversionRates(){
+    setConversionRate("PLN", "USD", 0.26);    // Polish Zloty to USD
+    setConversionRate("PLN", "AED", 0.24);    // Polish Zloty to UAE Dirham
+    setConversionRate("PLN", "AUD", 0.35);    // Polish Zloty to Australian Dollar
+    setConversionRate("PLN", "BRL", 1.36);    // Polish Zloty to Brazilian Real
+    setConversionRate("PLN", "CAD", 0.32);    // Polish Zloty to Canadian Dollar
+    setConversionRate("PLN", "CHF", 0.23);    // Polish Zloty to Swiss Franc
+    setConversionRate("PLN", "CNY", 1.63);    // Polish Zloty to Chinese Yuan
+    setConversionRate("PLN", "EGP", 3.95);    // Polish Zloty to Egyptian Pound
+    setConversionRate("PLN", "EUR", 0.21);    // Polish Zloty to Euro
+    setConversionRate("PLN", "GBP", 0.18);    // Polish Zloty to British Pound
+    setConversionRate("PLN", "HKD", 1.94);    // Polish Zloty to Hong Kong Dollar
+    setConversionRate("PLN", "INR", 18.89);   // Polish Zloty to Indian Rupee
+    setConversionRate("PLN", "IRR", 106093.0);// Polish Zloty to Iranian Rial
+    setConversionRate("PLN", "JPY", 276.68);  // Polish Zloty to Japanese Yen
+    setConversionRate("PLN", "KRW", 2863.75); // Polish Zloty to South Korean Won
+    setConversionRate("PLN", "MXN", 50.90);   // Polish Zloty to Mexican Peso
+    setConversionRate("PLN", "NOK", 2.23);    // Polish Zloty to Norwegian Krone
+    setConversionRate("PLN", "NZD", 0.36);    // Polish Zloty to New Zealand Dollar
+    setConversionRate("PLN", "RUB", 18.19);   // Polish Zloty to Russian Ruble
+    setConversionRate("PLN", "SAR", 0.93);    // Polish Zloty to Saudi Riyal
+    setConversionRate("PLN", "SEK", 2.18);    // Polish Zloty to Swedish Krona
+    setConversionRate("PLN", "TRY", 2.10);    // Polish Zloty to Turkish Lira
+    setConversionRate("PLN", "ZAR", 3.71);    // Polish Zloty to South African Rand
+}
+
 void CurrencyConverter::setRUBConversionRates(){
     setConversionRate("RUB", "USD", 0.014);     // Russian Ruble to USD
     setConversionRate("RUB", "AED", 0.051);     // Russian Ruble to UAE Dirham
@@ -566,6 +597,59 @@ void CurrencyConverter::setSARConversionRates(){
     setConversionRate("SAR", "ZAR", 3.89);      // Saudi Riyal to South African Rand
 }
 
+void CurrencyConverter::setSEKConversionRates() {
+    setConversionRate("SEK", "USD", 0.11);    // Swedish Krona to USD
+    setConversionRate("SEK", "AED", 0.41);    // Swedish Krona to UAE Dirham
+    setConversionRate("SEK", "AUD", 0.15);    // Swedish Krona to Australian Dollar
+    setConversionRate("SEK", "BRL", 0.59);    // Swedish Krona to Brazilian Real
+    setConversionRate("SEK", "CAD", 0.14);    // Swedish Krona to Canadian Dollar
+    setConversionRate("SEK", "CHF", 0.10);    // Swedish Krona to Swiss Franc
+    setConversionRate("SEK", "CNY", 0.69);    // Swedish Krona to Chinese Yuan
+    setConversionRate("SEK", "EGP", 1.68);    // Swedish Krona to Egyptian Pound
+    setConversionRate("SEK", "EUR", 0.09);    // Swedish Krona to Euro
+    setConversionRate("SEK", "GBP", 0.08);    // Swedish Krona to British Pound
+    setConversionRate("SEK", "HKD", 0.87);    // Swedish Krona to Hong Kong Dollar
+    setConversionRate("SEK", "INR", 8.49);    // Swedish Krona to Indian Rupee
+    setConversionRate("SEK", "IRR", 47778.0); // Swedish Krona to Iranian Rial
+    setConversionRate("SEK", "JPY", 124.40);  // Swedish Krona to Japanese Yen
+    setConversionRate("SEK", "KRW", 1284.43); // Swedish Krona to South Korean Won
+    setConversionRate("SEK", "MXN", 22.77);   // Swedish Krona to Mexican Peso
+    setConversionRate("SEK", "NOK", 1.00);    // Swedish Krona to Norwegian Krone
+    setConversionRate("SEK", "NZD", 0.16);    // Swedish Krona to New Zealand Dollar
+    setConversionRate("SEK", "PLN", 0.45);    // Swedish Krona to Polish Zloty
+    setConversionRate("SEK", "RUB", 11.41);   // Swedish Krona to Russian Ruble
+    setConversionRate("SEK", "SAR", 0.58);    // Swedish Krona to Saudi Riyal
+    setConversionRate("SEK", "TRY", 0.55);    // Swedish Krona to Turkish Lira
+    setConversionRate("SEK", "ZAR", 1.94);    // Swedish Krona to South African Rand
+}
+
+void CurrencyConverter::setTRYConversionRates() {
+    setConversionRate("TRY", "USD", 0.12);    // Turkish Lira to USD
+    setConversionRate("TRY", "AED", 0.41);    // Turkish Lira to UAE Dirham
+    setConversionRate("TRY", "AUD", 0.18);    // Turkish Lira to Australian Dollar
+    setConversionRate("TRY", "BRL", 0.72);    // Turkish Lira to Brazilian Real
+    setConversionRate("TRY", "CAD", 0.17);    // Turkish Lira to Canadian Dollar
+    setConversionRate("TRY", "CHF", 0.13);    // Turkish Lira to Swiss Franc
+    setConversionRate("TRY", "CNY", 0.90);    // Turkish Lira to Chinese Yuan
+    setConversionRate("TRY", "EGP", 2.18);    // Turkish Lira to Egyptian Pound
+    setConversionRate("TRY", "EUR", 0.11);    // Turkish Lira to Euro
+    setConversionRate("TRY", "GBP", 0.10);    // Turkish Lira to British Pound
+    setConversionRate("TRY", "HKD", 1.08);    // Turkish Lira to Hong Kong Dollar
+    setConversionRate("TRY", "INR", 10.49);   // Turkish Lira to Indian Rupee
+    setConversionRate("TRY", "IRR", 58754.0); // Turkish Lira to Iranian Rial
+    setConversionRate("TRY", "JPY", 153.20);  // Turkish Lira to Japanese Yen
+    setConversionRate("TRY", "KRW", 1586.77); // Turkish Lira to South Korean Won
+    setConversionRate("TRY", "MXN", 28.14);   // Turkish Lira to Mexican Peso
+    setConversionRate("TRY", "NOK", 1.23);    // Turkish Lira to Norwegian Krone
+    setConversionRate("TRY", "NZD", 0.20);    // Turkish Lira to New Zealand Dollar
+    setConversionRate("TRY", "PLN", 0.48);    // Turkish Lira to Polish Zloty
+    setConversionRate("TRY", "RUB", 15.10);   // Turkish Lira to Russian Ruble
+    setConversionRate("TRY", "SAR", 0.77);    // Turkish Lira to Saudi Riyal
+    setConversionRate("TRY", "SEK", 1.82);    // Turkish Lira to Swedish Krona
+    setConversionRate("TRY", "ZAR", 3.22);    // Turkish Lira to South African Rand
+}
+
+
 void CurrencyConverter::setUSDConversionRates(){
     setConversionRate("USD", "AED", 3.67);    // USD to UAE Dirham
     setConversionRate("USD", "AUD", 1.35);    // USD to Australian Dollar
@@ -578,7 +662,7 @@ void CurrencyConverter::setUSDConversionRates(){
     setConversionRate("USD", "GBP", 0.72);    // USD to British Pound
     setConversionRate("USD", "HKD", 7.77);    // USD to Hong Kong Dollar
     setConversionRate("USD", "INR", 74.98);   // USD to Indian Rupee
-    setConversionRate("USD", "IRR", 42105.0); // USD to Iranian Rial
+    setConversionRate("USD", "IRR", 41666.66); // USD to Iranian Rial
     setConversionRate("USD", "JPY", 110.12);  // USD to Japanese Yen
     setConversionRate("USD", "KRW", 1135.0);  // USD to South Korean Won
     setConversionRate("USD", "MXN", 20.17);   // USD to Mexican Peso
@@ -627,32 +711,71 @@ void CurrencyConverter::convertCurrency(Manufacturers *manufacturers, const std:
             product.setPrice(newValue);
         }
 
-        for (InvoiceItem item : seller->editInvoice().editInvoiceItemModel().editItems()){
+        // convert invoice items
+        for (InvoiceItem& item : seller->editInvoiceItems().editItems()){
             double currentValue = item.getPrice();
             double newValue = convert(fromCurrency, toCurrency, currentValue);
             item.setPrice(newValue);
         }
 
-        for (Invoice invoice : seller->editPurchaseModel().editInvoices()){
-            for (InvoiceItem item : invoice.editInvoiceItemModel().editItems()){
-                double currentValue = item.getPrice();
-                double newValue = convert(fromCurrency, toCurrency, currentValue);
-                item.setPrice(newValue);
-            }
+        // convert available items for sales
+        for (InvoiceItem& item : seller->editInvoice().editInvoiceItemModel().editItems()){
+            double currentValue = item.getPrice();
+            double newValue = convert(fromCurrency, toCurrency, currentValue);
+            item.setPrice(newValue);
         }
 
-        for (Invoice invoice : seller->editSoldModel().editInvoices()){
-            for (InvoiceItem item : invoice.editInvoiceItemModel().editItems()){
+        // convert purchase history invoice items
+        for (Invoice& invoice : seller->editPurchaseModel().editInvoices()){
+            for (InvoiceItem& item : invoice.editInvoiceItemModel().editItems()){
                 double currentValue = item.getPrice();
                 double newValue = convert(fromCurrency, toCurrency, currentValue);
                 item.setPrice(newValue);
             }
+
+            invoice.updateAmount();
+        }
+
+        // convert sold history invoice items
+        for (Invoice& invoice : seller->editSoldModel().editInvoices()){
+            for (InvoiceItem& item : invoice.editInvoiceItemModel().editItems()){
+                double currentValue = item.getPrice();
+                double newValue = convert(fromCurrency, toCurrency, currentValue);
+                item.setPrice(newValue);
+            }
+
+            invoice.updateAmount();
         }
     }
 
     m_currencySymbol = m_currencySymbols[toCurrency];
+    m_currency = toCurrency;
 }
 
 const std::string &CurrencyConverter::getCurrencySymbol() const{
     return m_currencySymbol;
 }
+
+const std::string &CurrencyConverter::getCurrentCurrency() const{
+    return m_currency;
+}
+
+void CurrencyConverter::setCurrentCurrency(const std::string &currency){
+    m_currency = currency;
+    m_currencySymbol = m_currencySymbols[currency];
+}
+
+const std::string &CurrencyConverter::getSymbol() const{
+    return m_currencySymbol;
+}
+
+const double CurrencyConverter::getRate(const std::string &baseCurrency, const std::string &quoteCurrency){
+    std::string key = generateKey(baseCurrency, quoteCurrency);
+    return m_conversionRates[key];
+
+}
+
+const std::map<std::string, double> &CurrencyConverter::getConversionRates() const{
+    return m_conversionRates;
+}
+

@@ -136,7 +136,7 @@ void home_window::on_PB_currency_clicked()
     closeWidgets();
 
     setPushButtonSelectedtStyle(ui->PB_currency, ":/Images/icons/currencyIcon.png");
-    currency_widget* currencyWidget = new currency_widget(ui->mainWidget);
+    currency_widget* currencyWidget = new currency_widget(m_manufacturers, ui->mainWidget);
     currencyWidget->show();
 }
 

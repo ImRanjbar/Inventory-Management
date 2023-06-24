@@ -1,5 +1,6 @@
 #include "reports_widget.h"
 #include "ui_reports_widget.h"
+#include "currency.h"
 
 reports_widget::reports_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent) :
     QWidget(parent),
@@ -57,7 +58,7 @@ void reports_widget::updatePurchaseTable(){
         m_purchaseItemModel.setItem(row, 1, new QStandardItem(QString::fromStdString(invoice.getDate())));
         m_purchaseItemModel.setItem(row, 2, new QStandardItem(QString::fromStdString(invoice.getProviderName())));
         m_purchaseItemModel.setItem(row, 3, new QStandardItem(QString::number(invoice.getInvoiceItemModel().getItems().size())));
-        m_purchaseItemModel.setItem(row, 4, new QStandardItem("$" + QString::number(invoice.getTotalAmount())));
+        m_purchaseItemModel.setItem(row, 4, new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(invoice.getTotalAmount(), 'f', 2)));
         row++;
 
         qDebug() << QString::number(invoice.getInvoiceNumber()) << " invoice have added to purchase history\n";
@@ -73,7 +74,7 @@ void reports_widget::updateSoldTable(){
         m_soldItemModel.setItem(row, 1, new QStandardItem(QString::fromStdString(invoice.getDate())));
         m_soldItemModel.setItem(row, 2, new QStandardItem(QString::fromStdString(invoice.getCustomerName())));
         m_soldItemModel.setItem(row, 3, new QStandardItem(QString::number(invoice.getInvoiceItemModel().getItems().size())));
-        m_soldItemModel.setItem(row, 4, new QStandardItem("$" + QString::number(invoice.getTotalAmount())));
+        m_soldItemModel.setItem(row, 4, new QStandardItem(QString::fromStdString(Currency::currencySymbol) + QString::number(invoice.getTotalAmount(), 'f', 2)));
         row++;
 
         qDebug() << QString::number(invoice.getInvoiceNumber()) << " invoice have added to sold history\n";
@@ -88,8 +89,11 @@ void reports_widget::setLabels(){
         totalCost += invoice.getTotalAmount();
         totalOrders += static_cast<int>(invoice.getInvoiceItemModel().getItems().size());
     }
+    if (totalCost > 10000)
+        ui->LB_totalCost->setText(QString::fromStdString(Currency::currencySymbol) + QString::number(totalCost/1000, 'f', 2) + "K");
+    else
+        ui->LB_totalCost->setText(QString::fromStdString(Currency::currencySymbol) + QString::number(totalCost, 'f', 2));
 
-    ui->LB_totalCost->setText("$" + QString::number(totalCost/1000) + "K");
     ui->LB_totalOrders->setText(QString::number(totalOrders));
 
 
@@ -101,7 +105,10 @@ void reports_widget::setLabels(){
         totalSolds += static_cast<int>(invoice.getInvoiceItemModel().getItems().size());
     }
 
-    ui->LB_totalRevenue->setText("$" + QString::number(totalRevenue/1000) + "K");
+    if (totalRevenue > 10000)
+        ui->LB_totalRevenue->setText(QString::fromStdString(Currency::currencySymbol) + QString::number(totalRevenue/1000, 'f', 2) + "K");
+    else
+        ui->LB_totalRevenue->setText(QString::fromStdString(Currency::currencySymbol) + QString::number(totalRevenue, 'f', 2));
     ui->LB_ItemsSold->setText(QString::number(totalSolds));
 
 }

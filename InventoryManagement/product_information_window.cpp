@@ -1,5 +1,6 @@
 #include "product_information_window.h"
 #include "ui_product_information_window.h"
+#include "currency.h"
 
 product_information_window::product_information_window(Seller *user, const InvoiceItem *item, QWidget *parent) :
     QDialog(parent),
@@ -22,7 +23,7 @@ void product_information_window::setLabels(){
     ui->LB_name->setText(QString::fromStdString(m_item->getName()));
     ui->LB_brand->setText(QString::fromStdString(m_item->getBrand()));
     ui->LB_category->setText(QString::fromStdString(m_item->getCategory()));
-    ui->LB_price->setText(QString::number(m_item->getPrice()));
+    ui->LB_price->setText(QString::fromStdString(Currency::currencySymbol) + QString::number(m_item->getPrice()));
     ui->LB_inventory->setText(QString::number(m_item->getInventory()));
     ui->LB_addDate->setText(QString::fromStdString(m_item->getAddedDate()));
     ui->Lb_exDate->setText(QString::fromStdString(m_item->getExDate()));

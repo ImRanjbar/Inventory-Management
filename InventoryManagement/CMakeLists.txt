@@ -14,6 +14,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 # Copy the CSV file to the build directory
 configure_file(data.csv ${CMAKE_CURRENT_BINARY_DIR}/data.csv COPYONLY)
+configure_file(CurrencyExchangeRates.csv ${CMAKE_CURRENT_BINARY_DIR}/CurrencyExchangeRates.csv COPYONLY)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -47,6 +48,9 @@ set(PROJECT_SOURCES
         edit_product_window.h edit_product_window.cpp edit_product_window.ui
         product_information_window.h product_information_window.cpp product_information_window.ui
         CurrencyConverter.h CurrencyConverter.cpp
+        Currency.h Currency.cpp
+        CurrencyExchangeRates.csv
+        edit_exchange_rate_window.h edit_exchange_rate_window.cpp edit_exchange_rate_window.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

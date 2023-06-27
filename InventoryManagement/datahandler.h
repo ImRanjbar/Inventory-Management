@@ -11,6 +11,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QCryptographicHash>
 
 
 class DataHandler
@@ -38,6 +39,8 @@ public:
     void readDataHomeWindow(Manufacturers* manufacturers, Seller* user);
 
     void readProducts(Seller* user);
+
+    void addUser(Seller* newUser);
 
 };
 

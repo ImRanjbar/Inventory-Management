@@ -1,5 +1,6 @@
 #include "QDebug"
 #include "manufacturers.h"
+#include <QCryptographicHash>
 
 Manufacturers::Manufacturers() = default;
 
@@ -46,7 +47,11 @@ bool Manufacturers::phoneNumberExistence(const std::string_view phoneNumber) con
 }
 
 bool Manufacturers::checkPassword(std::string_view username, std::string_view password) const{
-    if (getManufacturerByUsername(username)->getPassword() == password)
+
+    QByteArray enteredPasswordBytes = QString::fromStdString(std::string(password)).toUtf8();
+    QByteArray hashedEnteredPassword = QCryptographicHash::hash(enteredPasswordBytes, QCryptographicHash::Sha256).toHex();
+
+    if (QString::fromStdString(getManufacturerByUsername(username)->getPassword()) == hashedEnteredPassword)
         return true;
     else
         return false;

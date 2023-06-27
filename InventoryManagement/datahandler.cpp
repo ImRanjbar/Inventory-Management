@@ -537,3 +537,59 @@ void DataHandler::readProducts(Seller *user){
     data.close();
     QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 }
+
+void DataHandler::addUser(Seller *newUser){
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("dataBase.db");
+
+    if (!db.open()) {
+        qDebug() << "Failed to open the database";
+        return;
+    }
+
+    QString username = QString::fromStdString(newUser->getUsername());
+    QString password = QString::fromStdString(newUser->getPassword());
+    QString name = QString::fromStdString(newUser->getName());
+    QString lastName = QString::fromStdString(newUser->getLastName());
+    QString nin = QString::fromStdString(newUser->getNIN());
+    QString phoneNumber = QString::fromStdString(newUser->getPhoneNumber());
+
+    QByteArray passwordBytes = password.toUtf8();
+    QByteArray hashedPassword = QCryptographicHash::hash(passwordBytes, QCryptographicHash::Sha256).toHex();
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO users (username, password, name, last_name, nin, phone_number) "
+                  "VALUES (:username, :password, :name, :last_name, :nin, :phone_number)");
+
+    query.bindValue(":username", username);
+    query.bindValue(":password", hashedPassword);
+    query.bindValue(":name", name);
+    query.bindValue(":last_name", lastName);
+    query.bindValue(":nin", nin);
+    query.bindValue(":phone_number", phoneNumber);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to insert user into the database";
+    }
+
+    // Retrieve the user's ID
+    int userId = query.lastInsertId().toInt();
+
+    // Insert the seller data into the "sellers" table
+    query.prepare("INSERT INTO sellers (id, nin, MID, manufacturer_name) "
+                  "VALUES (:id, :nin, :mid, :manufacturer_name)");
+    query.bindValue(":id", userId);
+    query.bindValue(":nin", QString::fromStdString(newUser->getNIN()));
+    query.bindValue(":mid", QString::fromStdString(newUser->getMID()));
+    query.bindValue(":manufacturer_name", QString::fromStdString(newUser->getManufactureName()));
+
+    if (!query.exec()) {
+        qDebug() << "Failed to insert seller into the database";
+    }
+
+    qDebug() << "Seller inserted successfully";
+    qDebug() << "User inserted successfully";
+
+    db.close();
+}

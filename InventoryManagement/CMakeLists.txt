@@ -9,8 +9,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 # Copy the CSV file to the build directory
 configure_file(data.csv ${CMAKE_CURRENT_BINARY_DIR}/data.csv COPYONLY)
@@ -51,6 +51,7 @@ set(PROJECT_SOURCES
         Currency.h Currency.cpp
         CurrencyExchangeRates.csv
         edit_exchange_rate_window.h edit_exchange_rate_window.cpp edit_exchange_rate_window.ui
+        dataBase.db
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -76,7 +77,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(InventoryManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(InventoryManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
 
 set_target_properties(InventoryManagement PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

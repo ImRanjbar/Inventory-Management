@@ -8,6 +8,10 @@
 #include <sstream>
 #include <fstream>
 #include <qDebug>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+
 
 class DataHandler
 {
@@ -23,6 +27,18 @@ public:
     void readCurrencyRates(CurrencyConverter& currencyModel);
 
     void saveCurrencyRates(CurrencyConverter& currencyModel);
+
+    // SQLite
+    QSqlDatabase& openDataBase();
+
+    void closeDataBase(QSqlDatabase* data);
+
+    void readDataLogin(Manufacturers* manufacturers);
+
+    void readDataHomeWindow(Manufacturers* manufacturers, Seller* user);
+
+    void readProducts(Seller* user);
+
 };
 
 #endif // DATAHANDLER_H

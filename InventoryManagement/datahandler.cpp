@@ -402,3 +402,138 @@ void DataHandler::saveCurrencyRates(CurrencyConverter &currencyModel){
     }
     file.close();
 }
+
+QSqlDatabase &DataHandler::openDataBase(){
+    QSqlDatabase* data = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE")) ;
+    data->setDatabaseName("dataBase.db");
+
+    if (!data->open())
+        qWarning() << "Couldn't open database!";
+
+
+    return *data;
+}
+
+void DataHandler::closeDataBase(QSqlDatabase *data){
+    data->close();
+    delete data;
+}
+
+void DataHandler::readDataLogin(Manufacturers* manufacturers){
+    qDebug() << "in readDataLogin func";
+    QSqlDatabase data = QSqlDatabase::addDatabase("QSQLITE");
+    data.setDatabaseName("dataBase.db");
+
+    if (!data.open())
+        qWarning() << "Couldn't open database!";
+
+    QSqlQuery sellersQuery;
+    sellersQuery.next();
+
+    sellersQuery.prepare("SELECT * FROM sellers");
+
+    if (!sellersQuery.exec())
+        qDebug() << "Query failed!";
+
+    while (sellersQuery.next()){
+        QString NIN = sellersQuery.value("nin").toString();
+        qDebug() << "NIN is " << NIN;
+
+        QSqlQuery userQuery;
+        userQuery.prepare("SELECT * FROM users WHERE nin = " + NIN);
+
+        if (!userQuery.exec())
+            qDebug() << "usersQuery failed!";
+
+        userQuery.next();
+        Seller* newSeller = new Seller;
+
+        std::string username =userQuery.value("username").toString().toStdString();
+        newSeller->setUsername(username);
+        qDebug() << "user with username : " << username << " have added"<< '\n';
+
+        std::string password = userQuery.value("password").toString().toStdString();
+        newSeller->setPassword(password);
+        qDebug() << "user with username pss: " << password << " have added"<< '\n';
+
+        std::string name = userQuery.value("name").toString().toStdString();
+        newSeller->setName(name);
+
+        std::string lastName = userQuery.value("last_name").toString().toStdString();
+        newSeller->setLastName(lastName);
+
+        std::string nin = NIN.toStdString();
+        newSeller->setNIN(nin);
+
+        std::string phoneNumber = userQuery.value("phone_number").toString().toStdString();
+        newSeller->setPhoneNumber(phoneNumber);
+
+        std::string manufacturerName = sellersQuery.value("manufacturer_name").toString().toStdString();
+        newSeller->setManufactureName(manufacturerName);
+
+        std::string MID = sellersQuery.value("MID").toString().toStdString();
+        newSeller->setMID(MID);
+
+        manufacturers->addManufact(newSeller);
+    }
+
+    data.close();
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+}
+
+void DataHandler::readDataHomeWindow(Manufacturers *manufacturers, Seller *user){
+    readProducts(user);
+}
+
+void DataHandler::readProducts(Seller *user){
+    qDebug() << "in readProducts func";
+
+    QSqlDatabase data = QSqlDatabase::addDatabase("QSQLITE");
+    data.setDatabaseName("dataBase.db");
+
+    if (!data.open())
+        qWarning() << "Couldn't open database!";
+
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM products WHERE owner_MID = " + QString::fromStdString(user->getMID()));
+
+    if (!query.exec())
+        qDebug() << "Query for product failed!";
+
+    query.next();
+
+    while (query.next()){
+
+        std::string name = query.value("name").toString().toStdString();
+
+        std::string category = query.value("category").toString().toStdString();
+
+        std::string SKU = query.value("sku").toString().toStdString();
+
+        std::string brand = query.value("brand").toString().toStdString();
+
+        double stock = query.value("stock_quantity").toDouble();
+
+        double available = query.value("available_quantity").toDouble();
+
+        double price = query.value("price").toDouble();
+
+        std::string unit = query.value("unit").toString().toStdString();
+
+        std::string description = query.value("description").toString().toStdString();
+
+        std::string addDate = query.value("add_date").toString().toStdString();
+
+        std::string exDate = query.value("ex_date").toString().toStdString();
+
+        bool availability = ([available](){ return available > 0; })();
+
+        Product newProduct(name, category, SKU, brand, stock, available, price, unit, description, addDate, exDate, availability);
+
+        user->addProduct(newProduct);
+    }
+
+    data.close();
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+}

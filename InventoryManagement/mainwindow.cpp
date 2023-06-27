@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     DataHandler data;
 
     Manufacturers* manufacturersData = new Manufacturers;
-    data.readData(manufacturersData);
+    data.readDataLogin(manufacturersData);
 
     QIcon icon(":/Images/icons/InventoryManagement.png");
     this->setWindowIcon(icon);

@@ -1,5 +1,6 @@
 #include "home_window.h"
 #include "ui_home_window.h"
+#include "datahandler.h"
 
 home_window::home_window(Manufacturers* manufacturers, Seller *user, QWidget *parent) :
     QDialog(parent),
@@ -7,6 +8,9 @@ home_window::home_window(Manufacturers* manufacturers, Seller *user, QWidget *pa
 {
     qDebug() << "home_window constructure\n";
     ui->setupUi(this);
+
+    DataHandler data;
+    data.readDataHomeWindow(manufacturers ,user);
 
 //     Connect the finished() signal of the dialog to the dialogClosed() signal
     connect(this, &QDialog::finished, this, &home_window::dialogClosed);

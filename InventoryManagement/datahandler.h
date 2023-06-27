@@ -30,7 +30,7 @@ public:
     void saveCurrencyRates(CurrencyConverter& currencyModel);
 
     // SQLite
-    QSqlDatabase& openDataBase();
+    void openDataBase(QSqlDatabase& data);
 
     void closeDataBase(QSqlDatabase* data);
 
@@ -41,6 +41,10 @@ public:
     void readProducts(Seller* user);
 
     void addUser(Seller* newUser);
+
+    void addProduct(Product* newProduct, const std::string& MID);
+
+    void readItems(Manufacturers* manufacturers, const std::string& userMID);
 
 };
 

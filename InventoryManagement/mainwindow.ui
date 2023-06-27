@@ -211,6 +211,9 @@ text-transform: none;
 }
 </string>
           </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
          </widget>
         </item>
         <item>

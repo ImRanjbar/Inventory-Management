@@ -400,18 +400,16 @@ void DataHandler::saveCurrencyRates(CurrencyConverter &currencyModel){
              << '"' << quote << '"' << ","
              << rate << '\n';
     }
+
     file.close();
 }
 
-QSqlDatabase &DataHandler::openDataBase(){
-    QSqlDatabase* data = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE")) ;
-    data->setDatabaseName("dataBase.db");
+void DataHandler::openDataBase(QSqlDatabase & data){
+    data = QSqlDatabase::addDatabase("QSQLITE");
+    data.setDatabaseName("dataBase.db");
 
-    if (!data->open())
+    if (!data.open())
         qWarning() << "Couldn't open database!";
-
-
-    return *data;
 }
 
 void DataHandler::closeDataBase(QSqlDatabase *data){
@@ -421,15 +419,10 @@ void DataHandler::closeDataBase(QSqlDatabase *data){
 
 void DataHandler::readDataLogin(Manufacturers* manufacturers){
     qDebug() << "in readDataLogin func";
-    QSqlDatabase data = QSqlDatabase::addDatabase("QSQLITE");
-    data.setDatabaseName("dataBase.db");
-
-    if (!data.open())
-        qWarning() << "Couldn't open database!";
+    QSqlDatabase data;
+    openDataBase(data);
 
     QSqlQuery sellersQuery;
-    sellersQuery.next();
-
     sellersQuery.prepare("SELECT * FROM sellers");
 
     if (!sellersQuery.exec())
@@ -478,75 +471,55 @@ void DataHandler::readDataLogin(Manufacturers* manufacturers){
     }
 
     data.close();
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 }
 
 void DataHandler::readDataHomeWindow(Manufacturers *manufacturers, Seller *user){
     readProducts(user);
+    readItems(manufacturers, user->getMID());
 }
 
 void DataHandler::readProducts(Seller *user){
     qDebug() << "in readProducts func";
 
-    QSqlDatabase data = QSqlDatabase::addDatabase("QSQLITE");
-    data.setDatabaseName("dataBase.db");
-
-    if (!data.open())
-        qWarning() << "Couldn't open database!";
+    QSqlDatabase data;
+    openDataBase(data);
 
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM products WHERE owner_MID = " + QString::fromStdString(user->getMID()));
+    QString MID = '"' + QString::fromStdString(user->getMID()) + '"';
+
+    query.prepare("SELECT * FROM products WHERE owner_MID = " + MID);
 
     if (!query.exec())
         qDebug() << "Query for product failed!";
 
-    query.next();
-
     while (query.next()){
 
         std::string name = query.value("name").toString().toStdString();
-
         std::string category = query.value("category").toString().toStdString();
-
         std::string SKU = query.value("sku").toString().toStdString();
-
         std::string brand = query.value("brand").toString().toStdString();
-
         double stock = query.value("stock_quantity").toDouble();
-
         double available = query.value("available_quantity").toDouble();
-
         double price = query.value("price").toDouble();
-
         std::string unit = query.value("unit").toString().toStdString();
-
         std::string description = query.value("description").toString().toStdString();
-
-        std::string addDate = query.value("add_date").toString().toStdString();
-
+        std::string addDate = query.value("added_date").toString().toStdString();
         std::string exDate = query.value("ex_date").toString().toStdString();
 
         bool availability = ([available](){ return available > 0; })();
 
         Product newProduct(name, category, SKU, brand, stock, available, price, unit, description, addDate, exDate, availability);
-
         user->addProduct(newProduct);
     }
 
     data.close();
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 }
 
 void DataHandler::addUser(Seller *newUser){
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("dataBase.db");
-
-    if (!db.open()) {
-        qDebug() << "Failed to open the database";
-        return;
-    }
+    QSqlDatabase data;
+    openDataBase(data);
 
     QString username = QString::fromStdString(newUser->getUsername());
     QString password = QString::fromStdString(newUser->getPassword());
@@ -557,6 +530,9 @@ void DataHandler::addUser(Seller *newUser){
 
     QByteArray passwordBytes = password.toUtf8();
     QByteArray hashedPassword = QCryptographicHash::hash(passwordBytes, QCryptographicHash::Sha256).toHex();
+
+    // set user password again
+    newUser->setPassword(hashedPassword.toStdString());
 
     QSqlQuery query;
     query.prepare("INSERT INTO users (username, password, name, last_name, nin, phone_number) "
@@ -573,10 +549,8 @@ void DataHandler::addUser(Seller *newUser){
         qDebug() << "Failed to insert user into the database";
     }
 
-    // Retrieve the user's ID
     int userId = query.lastInsertId().toInt();
 
-    // Insert the seller data into the "sellers" table
     query.prepare("INSERT INTO sellers (id, nin, MID, manufacturer_name) "
                   "VALUES (:id, :nin, :mid, :manufacturer_name)");
     query.bindValue(":id", userId);
@@ -591,5 +565,92 @@ void DataHandler::addUser(Seller *newUser){
     qDebug() << "Seller inserted successfully";
     qDebug() << "User inserted successfully";
 
-    db.close();
+    data.close();
+}
+
+void DataHandler::addProduct(Product *newProduct, const std::string &MID) {
+    QSqlDatabase data;
+    openDataBase(data);
+
+    QString ownerMID = QString::fromStdString(MID);
+    QString name = QString::fromStdString(newProduct->getName());
+    QString category = QString::fromStdString(newProduct->getCategory());
+    QString sku = QString::fromStdString(newProduct->getSku());
+    QString brand = QString::fromStdString(newProduct->getBrand());
+    double stockQuantity = newProduct->getStock();
+    double availableQuantity = newProduct->getAvailable();
+    double price = newProduct->getPrice();
+    QString unit = QString::fromStdString(newProduct->getUnit());
+    QString description = QString::fromStdString(newProduct->getDescription());
+    QString addedDate = QString::fromStdString(newProduct->getAddedDate());
+    QString expiryDate = QString::fromStdString(newProduct->getExDate());
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO products (owner_MID, name, category, sku, brand, stock_quantity, "
+                  "available_quantity, price, unit, description, added_date, ex_date) "
+                  "VALUES (:owner_MID, :name, :category, :sku, :brand, :stock_quantity, "
+                  ":available_quantity, :price, :unit, :description, :added_date, :ex_date)");
+    query.bindValue(":owner_MID", ownerMID);
+    query.bindValue(":name", name);
+    query.bindValue(":category", category);
+    query.bindValue(":sku", sku);
+    query.bindValue(":brand", brand);
+    query.bindValue(":stock_quantity", stockQuantity);
+    query.bindValue(":available_quantity", availableQuantity);
+    query.bindValue(":price", price);
+    query.bindValue(":unit", unit);
+    query.bindValue(":description", description);
+    query.bindValue(":added_date", addedDate);
+    query.bindValue(":ex_date", expiryDate);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to insert product into the database";
+        return;
+    }
+
+    qDebug() << "Product inserted successfully";
+
+    data.close();
+}
+
+void DataHandler::readItems(Manufacturers* manufacturers, const std::string& userMID){
+    QSqlDatabase data;
+    openDataBase(data);
+
+    for (Seller* manufacturer : manufacturers->getManufacturers()){
+        QString MID = QString::fromStdString(manufacturer->getMID());
+
+        if (MID == QString::fromStdString(userMID))
+            continue;
+
+        QSqlQuery query;
+        MID = '"' + MID + '"';
+        query.prepare("SELECT * FROM products WHERE owner_MID = " + MID + " AND available_quantity > 0");
+
+        if (!query.exec()) {
+            qDebug() << "Query Failed";
+            return;
+        }
+
+        while (query.next()){
+            const std::string name = query.value("name").toString().toStdString();
+            const std::string category = query.value("category").toString().toStdString();
+            const std::string sku = query.value("sku").toString().toStdString();
+            const std::string brand = query.value("brand").toString().toStdString();
+            const double stockQuantity = query.value("stock_quantity").toDouble();
+            const double availableQuantity = query.value("available_quantity").toDouble();
+            const double price = query.value("price").toDouble();
+            const std::string unit = query.value("unit").toString().toStdString();
+            const std::string description = query.value("description").toString().toStdString();
+            const std::string addDate = query.value("added_date").toString().toStdString();
+            const std::string exDate = query.value("ex_date").toString().toStdString();
+
+            Product newProduct(name, category, sku, brand, stockQuantity, availableQuantity, price, unit, description, addDate, exDate, 1);
+            manufacturer->addProduct(newProduct);
+        }
+
+        qDebug() << "items from " << manufacturer->getMID() << " have added";
+    }
+
+    data.close();
 }

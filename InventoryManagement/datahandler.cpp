@@ -1,6 +1,6 @@
 
 #include "datahandler.h"
-#include "invoice_numbers.h"
+#include "InvoiceNumbers.h"
 #include "currency.h"
 
 DataHandler::DataHandler() = default;
@@ -11,7 +11,6 @@ void DataHandler::readData(Manufacturers* manufacturers){
 
     qDebug() << "in readData function\n";
     int usersIndex{ -1 };
-    int invoiceIndex;
     int itemsNum;
 
     if (file.is_open())
@@ -180,7 +179,7 @@ void DataHandler::readData(Manufacturers* manufacturers){
 
 
             Invoice newInvoice(std::stoi(invoiceNumber), providerMID, customerMID, providerName, customerName, std::stod(amount), date);
-            invoiceNumbers.insert(std::stoi(invoiceNumber));
+            InvoiceNumbers::invoiceNumbers.insert(std::stoi(invoiceNumber));
 
             manufacturers->editManufacturers()[usersIndex]->setInvoice(newInvoice);
 
@@ -476,6 +475,8 @@ void DataHandler::readDataLogin(Manufacturers* manufacturers){
 void DataHandler::readDataHomeWindow(Manufacturers *manufacturers, Seller *user){
     readProducts(user);
     readItems(manufacturers, user->getMID());
+    readInvoices(*user);
+    readInvoiceNumbers();
 }
 
 void DataHandler::readProducts(Seller *user){
@@ -650,6 +651,183 @@ void DataHandler::readItems(Manufacturers* manufacturers, const std::string& use
         }
 
         qDebug() << "items from " << manufacturer->getMID() << " have added";
+    }
+
+    data.close();
+}
+
+void DataHandler::readInvoices(Seller& user){
+    QSqlDatabase data;
+    openDataBase(data);
+
+    QString MID = '"' + QString::fromStdString(user.getMID()) + '"';
+
+
+    // As provider
+    QSqlQuery providerQuery;
+
+    providerQuery.prepare("SELECT * FROM invoices WHERE provider_id = " + MID);
+    if (!providerQuery.exec())
+        qDebug() << "ProviderQuery Failed";
+
+    while (providerQuery.next()){
+        const int invoiceNumber = providerQuery.value("invoice_number").toInt();
+        const std::string providerID = user.getMID();
+        const std::string customerID = providerQuery.value("customer_id").toString().toStdString();
+        const std::string providerName = providerQuery.value("provider_name").toString().toStdString();
+        const std::string customerName = providerQuery.value("customer_name").toString().toStdString();
+        const double amount = providerQuery.value("amount").toDouble();
+        const std::string date = providerQuery.value("date").toString().toStdString();
+
+        Invoice newInvoice(invoiceNumber, providerID, customerID, providerName, customerName, amount, date);
+
+//        readInvoiceItems(newInvoice);
+
+        user.editPurchaseModel().addInvoice(newInvoice);
+    }
+
+
+    // As customer
+    QSqlQuery customerQuery;
+
+    customerQuery.prepare("SELECT * FROM invoices WHERE customer_id = " + MID);
+    if (!customerQuery.exec())
+        qDebug() << "CustomerQuery Failed";
+
+    while(customerQuery.next()){
+        const int invoiceNumber = customerQuery.value("invoice_number").toInt();
+        const std::string providerID = customerQuery.value("provider_id").toString().toStdString();
+        const std::string customerID = user.getMID();
+        const std::string providerName = customerQuery.value("provider_name").toString().toStdString();
+        const std::string customerName = user.getManufactureName();
+        const double amount = customerQuery.value("amount").toDouble();
+        const std::string date = customerQuery.value("date").toString().toStdString();
+
+        Invoice newInvoice(invoiceNumber, providerID, customerID, providerName, customerName, amount, date);
+
+//        readInvoiceItems(newInvoice);
+
+        user.editSoldModel().addInvoice(newInvoice);
+    }
+
+    data.close();
+}
+
+void DataHandler::readInvoiceItems(Invoice &invoice){
+    const QString invoiceNumber = QString::number(invoice.getInvoiceNumber());
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM invoice_items WHERE invoice_id = " + invoiceNumber);
+
+    if (!query.exec())
+        qDebug() << "Read invoice items Failed";
+
+    while (query.next()){
+        std::string name = query.value("name").toString().toStdString();
+        std::string category = query.value("caregory").toString().toStdString();
+        std::string sku = query.value("sku").toString().toStdString();
+        std::string brand = query.value("brand").toString().toStdString();
+        double inventory = query.value("inventory").toDouble();
+        double price = query.value("price").toDouble();
+        std::string unit = query.value("unit").toString().toStdString();
+        std::string description = query.value("description").toString().toStdString();
+        std::string addDate = query.value("added_date").toString().toStdString();
+        std::string exDate = query.value("ex_date").toString().toStdString();
+
+        InvoiceItem newItem(name, category, sku, brand, inventory, price, unit, description, addDate, exDate);
+        invoice.addItem(newItem);
+        qDebug() << "item with sku : " << sku << " have read for invoice";
+    }
+}
+
+void DataHandler::addInvoice(const Invoice &invoice){
+    QSqlDatabase data;
+    openDataBase(data);
+
+    const int invoiceNumber = invoice.getInvoiceNumber();
+    const QString providerID = QString::fromStdString(invoice.getProviderID());
+    const QString customerID = QString::fromStdString(invoice.getCustomerID());
+    const QString providerName = QString::fromStdString(invoice.getProviderName());
+    const QString customerName = QString::fromStdString(invoice.getCustomerName());
+    const double amount = invoice.getTotalAmount();
+    const QString date = QString::fromStdString(invoice.getDate());
+
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO invoices (invoice_number, provider_id, customer_id, provider_name, customer_name, amount, date)"
+                  "VALUES(:invoice_number, :provider_id, :customer_id, :provider_name, :customer_name, :amount, :date)");
+    query.bindValue(":invoice_number", invoiceNumber);
+    query.bindValue(":provider_id", providerID);
+    query.bindValue(":customer_id", customerID);
+    query.bindValue(":provider_name", providerName);
+    query.bindValue(":customer_name", customerName);
+    query.bindValue(":amount", amount);
+    query.bindValue(":date", date);
+
+    if (!query.exec())
+        qDebug() << "Failed to insert invoice";
+
+    addInvoiceItems(invoice);
+
+    data.close();
+}
+
+void DataHandler::addInvoiceItems(const Invoice &invoice){
+
+    const  double invoiceNumber = invoice.getInvoiceNumber();
+    const QString providerID = QString::fromStdString(invoice.getProviderID());
+    const QString customerID = QString::fromStdString(invoice.getCustomerID());
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO invoice_items (invoice_id, provider_id, customer_id, name, category, sku, brand, inventory, price, "
+                  "unit, description, added_date, ex_date) "
+                  "VALUES (:invoice_id, :provider_id, :customer_id,:name, :category, :sku, :brand, :inventory, :price, "
+                  ":unit, :description, :added_date, :ex_date)");
+    query.bindValue(":invoice_id", invoiceNumber);
+    query.bindValue(":provider_id", providerID);
+    query.bindValue(":customer_id", customerID);
+
+    for (const InvoiceItem& item : invoice.getInvoiceItemModel().getItems()){
+        const QString name = QString::fromStdString(item.getName());
+        const QString category = QString::fromStdString(item.getCategory());
+        const QString SKU = QString::fromStdString(item.getSku());
+        const QString brand = QString::fromStdString(item.getBrand());
+        const double inventory = item.getInventory();
+        const double price = item.getPrice();
+        const QString unit = QString::fromStdString(item.getUnit());
+        const QString description = QString::fromStdString(item.getDescription());
+        const QString addDate = QString::fromStdString(item.getAddedDate());
+        const QString exDate = QString::fromStdString(item.getExDate());
+
+        query.bindValue(":name", name);
+        query.bindValue(":category", category);
+        query.bindValue(":sku", SKU);
+        query.bindValue(":brand", brand);
+        query.bindValue(":inventory", inventory);
+        query.bindValue(":price", price);
+        query.bindValue(":unit", unit);
+        query.bindValue(":description", description);
+        query.bindValue(":added_date", addDate);
+        query.bindValue(":ex_date", exDate);
+
+        if (!query.exec())
+            qDebug() << "Failed to add items to invoice";
+    }
+}
+
+void DataHandler::readInvoiceNumbers(){
+    QSqlDatabase data;
+    openDataBase(data);
+
+    QSqlQuery query;
+    query.prepare("SELECT invoice_number FROM invoices");
+    if (!query.exec())
+        qDebug() << "readInvoiceNumbers Failed";
+
+    while(query.next()){
+        const int invoiceNumber = query.value(0).toInt();
+        qDebug() << "inv : " << invoiceNumber;
+        InvoiceNumbers::invoiceNumbers.insert(invoiceNumber);
     }
 
     data.close();

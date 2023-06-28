@@ -1,5 +1,5 @@
 #include "Invoice.h"
-#include "invoice_numbers.h"
+#include "InvoiceNumbers.h"
 
 Invoice::Invoice() = default;
 
@@ -74,7 +74,7 @@ void Invoice::createInvoiceNumber(){
     // Generate a random number between 1000 and 10000
     int randomNumber = std::rand() % 9001 + 1000;
     std::cout << "Random number: " << randomNumber << std::endl;
-    if (invoiceNumbers.contains(randomNumber)){
+    if (InvoiceNumbers::invoiceNumbers.contains(randomNumber)){
         createInvoiceNumber();
     }
 

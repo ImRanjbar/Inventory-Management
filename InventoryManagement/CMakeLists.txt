@@ -44,7 +44,6 @@ set(PROJECT_SOURCES
         manufacturers.h manufacturers.cpp
         add_product_window.h add_product_window.cpp add_product_window.ui
         add_to_invoice.h add_to_invoice.cpp add_to_invoice.ui
-        invoice_numbers.h
         edit_product_window.h edit_product_window.cpp edit_product_window.ui
         product_information_window.h product_information_window.cpp product_information_window.ui
         CurrencyConverter.h CurrencyConverter.cpp
@@ -52,6 +51,7 @@ set(PROJECT_SOURCES
         CurrencyExchangeRates.csv
         edit_exchange_rate_window.h edit_exchange_rate_window.cpp edit_exchange_rate_window.ui
         dataBase.db
+        InvoiceNumbers.h InvoiceNumbers.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

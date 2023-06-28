@@ -46,6 +46,15 @@ public:
 
     void readItems(Manufacturers* manufacturers, const std::string& userMID);
 
+    void readInvoices(Seller& user);
+
+    void readInvoiceItems(Invoice& invoice);
+
+    void addInvoice(const Invoice& invoice);
+
+    void addInvoiceItems(const Invoice& invoice);
+
+    void readInvoiceNumbers();
 };
 
 #endif // DATAHANDLER_H

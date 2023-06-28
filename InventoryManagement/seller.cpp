@@ -111,7 +111,7 @@ void Seller::setInvoice(const Invoice &invoice){
 void Seller::purchase(){
     m_purchaseHistory.purchase(m_invoice);
 
-    for (InvoiceItem selectedItem : m_invoice.getInvoiceItemModel().getItems()){
+    for (const InvoiceItem& selectedItem : m_invoice.getInvoiceItemModel().getItems()){
         std::string itemSKU = selectedItem.getSku();
         if (this->getProductsModel().existence(itemSKU)){
             double newAvailable = this->getProductsModel().getProduct(itemSKU).getStock() + selectedItem.getInventory();
@@ -133,7 +133,7 @@ void Seller::sold(const Invoice &invoice){
     Invoice newInvoice = invoice;
     m_soldHistory.sold(newInvoice);
 
-    for (InvoiceItem selectedItem : invoice.getInvoiceItemModel().getItems()){
+    for (const InvoiceItem& selectedItem : invoice.getInvoiceItemModel().getItems()){
         std::string itemSKU = selectedItem.getSku();
         InvoiceItem& item = m_items.editItem(itemSKU);
 

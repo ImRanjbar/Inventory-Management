@@ -1,4 +1,5 @@
 #include "edit_product_window.h"
+#include "datahandler.h"
 #include "ui_edit_product_window.h"
 #include <QValidator>
 #include <QMessageBox>
@@ -153,9 +154,14 @@ void edit_product_window::editProduct(){
     }
     bool availability = available > 0;
 
+    std::string currentSKU = m_product->getSku();
+
     m_user->editProduct(m_product->getSku(), name, category, sku, brand, stock, available, price
                         , unit, description, addedDateStr, exDateStr, availability);
     m_product = &(m_user->editProducts().editProduct(sku));
+
+    DataHandler data;
+    data.updateProduct(currentSKU, *m_product, m_user->getMID());
 }
 
 void edit_product_window::savedMessage(){
@@ -204,7 +210,7 @@ void edit_product_window::on_PB_delete_clicked(){
 void edit_product_window::on_PB_save_clicked(){
     hideError();
     if (!isEmpty()){
-        if (!skuValidation(ui->LE_available->text().trimmed())){
+        if (!skuValidation(ui->LE_SKU->text().trimmed())){
             ui->LB_SKUerror->setText("This product code is already assigned to another item");
             ui->LB_SKUerror->setVisible(true);
         }

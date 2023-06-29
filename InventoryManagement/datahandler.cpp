@@ -2,6 +2,7 @@
 #include "datahandler.h"
 #include "InvoiceNumbers.h"
 #include "currency.h"
+#include "CurrencyConverter.h"
 
 DataHandler::DataHandler() = default;
 
@@ -403,7 +404,7 @@ void DataHandler::saveCurrencyRates(CurrencyConverter &currencyModel){
     file.close();
 }
 
-void DataHandler::openDataBase(QSqlDatabase & data){
+void DataHandler::openDatabase(QSqlDatabase & data){
     data = QSqlDatabase::addDatabase("QSQLITE");
     data.setDatabaseName("dataBase.db");
 
@@ -419,7 +420,7 @@ void DataHandler::closeDataBase(QSqlDatabase *data){
 void DataHandler::readDataLogin(Manufacturers* manufacturers){
     qDebug() << "in readDataLogin func";
     QSqlDatabase data;
-    openDataBase(data);
+    openDatabase(data);
 
     QSqlQuery sellersQuery;
     sellersQuery.prepare("SELECT * FROM sellers");
@@ -473,6 +474,8 @@ void DataHandler::readDataLogin(Manufacturers* manufacturers){
 }
 
 void DataHandler::readDataHomeWindow(Manufacturers *manufacturers, Seller *user){
+    Currency::currentCurrency = "USD";
+    Currency::currencySymbol = "$";
     readProducts(user);
     readItems(manufacturers, user->getMID());
     readInvoices(*user);
@@ -483,7 +486,7 @@ void DataHandler::readProducts(Seller *user){
     qDebug() << "in readProducts func";
 
     QSqlDatabase data;
-    openDataBase(data);
+    openDatabase(data);
 
     QSqlQuery query;
 
@@ -520,7 +523,7 @@ void DataHandler::readProducts(Seller *user){
 void DataHandler::addUser(Seller *newUser){
 
     QSqlDatabase data;
-    openDataBase(data);
+    openDatabase(data);
 
     QString username = QString::fromStdString(newUser->getUsername());
     QString password = QString::fromStdString(newUser->getPassword());
@@ -571,7 +574,7 @@ void DataHandler::addUser(Seller *newUser){
 
 void DataHandler::addProduct(Product *newProduct, const std::string &MID) {
     QSqlDatabase data;
-    openDataBase(data);
+    openDatabase(data);
 
     QString ownerMID = QString::fromStdString(MID);
     QString name = QString::fromStdString(newProduct->getName());
@@ -580,7 +583,14 @@ void DataHandler::addProduct(Product *newProduct, const std::string &MID) {
     QString brand = QString::fromStdString(newProduct->getBrand());
     double stockQuantity = newProduct->getStock();
     double availableQuantity = newProduct->getAvailable();
+
     double price = newProduct->getPrice();
+    if (Currency::currentCurrency != "USD"){
+        CurrencyConverter currency;
+        readCurrencyRates(currency);
+        price = currency.convert(Currency::currentCurrency, "USD", price);
+    }
+
     QString unit = QString::fromStdString(newProduct->getUnit());
     QString description = QString::fromStdString(newProduct->getDescription());
     QString addedDate = QString::fromStdString(newProduct->getAddedDate());
@@ -614,9 +624,74 @@ void DataHandler::addProduct(Product *newProduct, const std::string &MID) {
     data.close();
 }
 
+void DataHandler::updateProduct(const std::string& productSKU, const Product &newProduct, const std::string& MID){
+    QSqlDatabase data;
+    openDatabase(data);
+
+    const QString newName = QString::fromStdString(newProduct.getName());
+    const QString newCategory = QString::fromStdString(newProduct.getCategory());
+    const QString newSKU = QString::fromStdString(newProduct.getSku());
+    const QString newBrand = QString::fromStdString(newProduct.getBrand());
+    const double newStock = newProduct.getStock();
+    const double newAvailable = newProduct.getAvailable();
+
+    double newPrice = newProduct.getPrice();
+    if (Currency::currentCurrency != "USD"){
+        qDebug() << "convert the price from the current currency to USD";
+        CurrencyConverter currency;
+        readCurrencyRates(currency);
+        newPrice = currency.convert(Currency::currentCurrency, "USD", newPrice);
+    }
+
+    const QString newUnit = QString::fromStdString(newProduct.getUnit());
+    const QString newDescription = QString::fromStdString(newProduct.getDescription());
+    const QString newAddDate = QString::fromStdString(newProduct.getAddedDate());
+    const QString newExDate = QString::fromStdString(newProduct.getExDate());
+
+    QSqlQuery query;
+    query.prepare("UPDATE products SET name = :newName, category = :newCategory, sku = :newSKU, brand = :newBrand "
+                  ", stock_quantity = :newStock, available_quantity = :newAvailable, price = :newPrice, unit = :newUnit "
+                  ", description = :newDescription, added_date = :newAddDate, ex_date = :newExDate "
+                  "WHERE owner_MID = :ownerMID AND sku = :sku");
+    query.bindValue(":newName",newName);
+    query.bindValue(":newCategory", newCategory);
+    query.bindValue(":newSKU", newSKU);
+    query.bindValue(":newBrand", newBrand);
+    query.bindValue(":newStock", newStock);
+    query.bindValue(":newAvailable", newAvailable);
+    query.bindValue(":newPrice", newPrice);
+    query.bindValue(":newUnit", newUnit);
+    query.bindValue(":newDescription", newDescription);
+    query.bindValue(":newAddDate", newAddDate);
+    query.bindValue(":newExDate", newExDate);
+    query.bindValue(":ownerMID",QString::fromStdString(MID));
+    query.bindValue(":sku",QString::fromStdString(productSKU));
+
+    if (!query.exec()) {
+        qDebug() << "Product update Failed for database";
+    }
+
+    data.close();
+}
+
+void DataHandler::removeProduct(const std::string &productSKU, const std::string ownerMID){
+    QSqlDatabase data;
+    openDatabase(data);
+
+    QSqlQuery query;
+    QString SKU = '"' + QString::fromStdString(productSKU) + '"';
+    QString MID = '"' + QString::fromStdString(ownerMID) + '"';
+    query.prepare("DELETE FROM products WHERE owner_MID = " + MID + " AND sku = " + SKU);
+
+    if (!query.exec())
+        qDebug() << "Failed to delete product from database";
+
+    data.close();
+}
+
 void DataHandler::readItems(Manufacturers* manufacturers, const std::string& userMID){
     QSqlDatabase data;
-    openDataBase(data);
+    openDatabase(data);
 
     for (Seller* manufacturer : manufacturers->getManufacturers()){
         QString MID = QString::fromStdString(manufacturer->getMID());
@@ -658,10 +733,9 @@ void DataHandler::readItems(Manufacturers* manufacturers, const std::string& use
 
 void DataHandler::readInvoices(Seller& user){
     QSqlDatabase data;
-    openDataBase(data);
+    openDatabase(data);
 
     QString MID = '"' + QString::fromStdString(user.getMID()) + '"';
-
 
     // As provider
     QSqlQuery providerQuery;
@@ -680,12 +754,8 @@ void DataHandler::readInvoices(Seller& user){
         const std::string date = providerQuery.value("date").toString().toStdString();
 
         Invoice newInvoice(invoiceNumber, providerID, customerID, providerName, customerName, amount, date);
-
-//        readInvoiceItems(newInvoice);
-
-        user.editPurchaseModel().addInvoice(newInvoice);
+        user.editSoldModel().addInvoice(newInvoice);
     }
-
 
     // As customer
     QSqlQuery customerQuery;
@@ -704,10 +774,7 @@ void DataHandler::readInvoices(Seller& user){
         const std::string date = customerQuery.value("date").toString().toStdString();
 
         Invoice newInvoice(invoiceNumber, providerID, customerID, providerName, customerName, amount, date);
-
-//        readInvoiceItems(newInvoice);
-
-        user.editSoldModel().addInvoice(newInvoice);
+        user.editPurchaseModel().addInvoice(newInvoice);
     }
 
     data.close();
@@ -722,6 +789,13 @@ void DataHandler::readInvoiceItems(Invoice &invoice){
     if (!query.exec())
         qDebug() << "Read invoice items Failed";
 
+    double conversionRate = 1.0;
+    if (Currency::currentCurrency != "USD"){
+        CurrencyConverter currency;
+        readCurrencyRates(currency);
+        conversionRate = currency.getRate("USD", Currency::currentCurrency);
+    }
+
     while (query.next()){
         std::string name = query.value("name").toString().toStdString();
         std::string category = query.value("caregory").toString().toStdString();
@@ -729,6 +803,7 @@ void DataHandler::readInvoiceItems(Invoice &invoice){
         std::string brand = query.value("brand").toString().toStdString();
         double inventory = query.value("inventory").toDouble();
         double price = query.value("price").toDouble();
+        price *= conversionRate;
         std::string unit = query.value("unit").toString().toStdString();
         std::string description = query.value("description").toString().toStdString();
         std::string addDate = query.value("added_date").toString().toStdString();
@@ -742,14 +817,19 @@ void DataHandler::readInvoiceItems(Invoice &invoice){
 
 void DataHandler::addInvoice(const Invoice &invoice){
     QSqlDatabase data;
-    openDataBase(data);
+    openDatabase(data);
 
     const int invoiceNumber = invoice.getInvoiceNumber();
     const QString providerID = QString::fromStdString(invoice.getProviderID());
     const QString customerID = QString::fromStdString(invoice.getCustomerID());
     const QString providerName = QString::fromStdString(invoice.getProviderName());
     const QString customerName = QString::fromStdString(invoice.getCustomerName());
-    const double amount = invoice.getTotalAmount();
+    double amount = invoice.getTotalAmount();
+    if (Currency::currentCurrency != "USD"){
+        CurrencyConverter currency;
+        readCurrencyRates(currency);
+        amount = currency.convert(Currency::currentCurrency, "USD", amount);
+    }
     const QString date = QString::fromStdString(invoice.getDate());
 
     QSqlQuery query;
@@ -772,6 +852,81 @@ void DataHandler::addInvoice(const Invoice &invoice){
     data.close();
 }
 
+void DataHandler::updateCustomerProducts(Seller& customer, const Invoice& invoice){
+    QSqlDatabase data;
+    openDatabase(data);
+
+    QSqlQuery query;
+
+    CurrencyConverter currency;
+    readCurrencyRates(currency);
+
+    for (const InvoiceItem& item : invoice.getInvoiceItemModel().getItems()){
+        if (customer.editProducts().existence(item.getSku())){
+
+            const double newStock  = customer.getProductsModel().getProduct(item.getSku()).getStock() + item.getInventory();
+            query.prepare("UPDATE products SET stock_quantity = :newStock WHERE owner_MID = :ownerMID AND sku = :sku");
+            query.bindValue(":newStock", newStock);
+            query.bindValue(":ownerMID", QString::fromStdString(customer.getMID()));
+            query.bindValue(":sku", QString::fromStdString(item.getSku()));
+
+            if (!query.exec())
+                qDebug() << "Failed to update Customer Product";
+        }
+        else {
+
+            query.prepare("INSERT INTO products (owner_MID, name, category, sku, brand, stock_quantity, "
+                          "available_quantity, price, unit, description, added_date, ex_date) "
+                          "VALUES (:owner_MID, :name, :category, :sku, :brand, :stock_quantity, "
+                          ":available_quantity, :price, :unit, :description, :added_date, :ex_date)");
+            query.bindValue(":owner_MID", QString::fromStdString(customer.getMID()));
+            query.bindValue(":name", QString::fromStdString(item.getName()));
+            query.bindValue(":category", QString::fromStdString(item.getCategory()));
+            query.bindValue(":sku", QString::fromStdString(item.getSku()));
+            query.bindValue(":brand", QString::fromStdString(item.getBrand()));
+            query.bindValue(":stock_quantity", item.getInventory());
+            query.bindValue(":available_quantity", 0);
+
+            double price = item.getPrice();
+            if (Currency::currentCurrency != "USD"){
+                qDebug() << "convert the price from the current currency to USD";
+                price = currency.convert(Currency::currentCurrency, "USD", price);
+            }
+
+            query.bindValue(":price", price);
+            query.bindValue(":unit", QString::fromStdString(item.getUnit()));
+            query.bindValue(":description", QString::fromStdString(item.getDescription()));
+            query.bindValue(":added_date", QString::fromStdString(item.getAddedDate()));
+            query.bindValue(":ex_date", QString::fromStdString(item.getExDate()));
+
+            if (!query.exec())
+                qDebug() << "Failed to insert product into the database for customer";
+        }
+    }
+
+    data.close();
+}
+
+void DataHandler::updateProviderProducts(Seller& provider, const Invoice& invoice){
+    QSqlDatabase data;
+    openDatabase(data);
+
+    QSqlQuery query;
+    query.prepare("UPDATE products SET available_quantity = :newAvailable WHERE owner_MID = :ownerMID AND sku = :sku");
+
+    for (const InvoiceItem& item : invoice.getInvoiceItemModel().getItems()){
+        const double newAvailable = provider.getProductsModel().getProduct(item.getSku()).getAvailable() - item.getInventory();
+        query.bindValue(":newAvailable", newAvailable);
+        query.bindValue(":ownerMID", QString::fromStdString(provider.getMID()));
+        query.bindValue(":sku", QString::fromStdString(item.getSku()));
+
+        if (!query.exec())
+            qDebug() << "Failed to update product available quantity in database for provider";
+    }
+
+    data.close();
+}
+
 void DataHandler::addInvoiceItems(const Invoice &invoice){
 
     const  double invoiceNumber = invoice.getInvoiceNumber();
@@ -787,13 +942,21 @@ void DataHandler::addInvoiceItems(const Invoice &invoice){
     query.bindValue(":provider_id", providerID);
     query.bindValue(":customer_id", customerID);
 
+    double conversionRate = 1.0;
+    if (Currency::currentCurrency != "USD"){
+        CurrencyConverter currency;
+        readCurrencyRates(currency);
+        conversionRate = currency.getRate("USD", Currency::currentCurrency);
+    }
+
     for (const InvoiceItem& item : invoice.getInvoiceItemModel().getItems()){
         const QString name = QString::fromStdString(item.getName());
         const QString category = QString::fromStdString(item.getCategory());
         const QString SKU = QString::fromStdString(item.getSku());
         const QString brand = QString::fromStdString(item.getBrand());
         const double inventory = item.getInventory();
-        const double price = item.getPrice();
+        double price = item.getPrice();
+        price *= conversionRate;
         const QString unit = QString::fromStdString(item.getUnit());
         const QString description = QString::fromStdString(item.getDescription());
         const QString addDate = QString::fromStdString(item.getAddedDate());
@@ -817,7 +980,7 @@ void DataHandler::addInvoiceItems(const Invoice &invoice){
 
 void DataHandler::readInvoiceNumbers(){
     QSqlDatabase data;
-    openDataBase(data);
+    openDatabase(data);
 
     QSqlQuery query;
     query.prepare("SELECT invoice_number FROM invoices");

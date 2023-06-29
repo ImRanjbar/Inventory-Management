@@ -11,8 +11,6 @@ void Purchase::addInvoice(const Invoice &invoice){
 void Purchase::purchase(const Invoice &invoice){
     Invoice newInvoice = invoice;
     m_invoices.push_back(newInvoice);
-
-    InvoiceItem item;
 }
 
 const std::vector<Invoice> &Purchase::getInvoices() const{

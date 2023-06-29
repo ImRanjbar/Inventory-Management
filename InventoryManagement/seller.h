@@ -6,7 +6,6 @@
 #include "sold.h"
 #include "purchase.h"
 #include "Invoice.h"
-#include "invoiceItems.h"
 
 class Seller : public User{
 public:
@@ -18,9 +17,6 @@ public:
                      , std::string_view newSKU, std::string_view newBrand, double newStock
                      , double newAvailable, double newPrice, std::string_view newUnit, std::string_view newDescription
                      , std::string_view newAddDate, std::string_view newExDate, bool newAvailability);
-
-    void addCustomerID(const std::string_view customerID);
-    void addProviderID(const std::string_view providerID);
 
     void setMID(const std::string_view MID);
     void setManufactureName(const std::string_view manufactureName);
@@ -45,16 +41,7 @@ public:
     void buy(const Product& product, const Seller& provider);
     void sell(const Product& product, const Seller& buyer);
     
-    void addToInvoice(const Seller& provider, const InvoiceItem& item) {
-        if (m_invoice.getProviderID() != provider.getMID()) {
-            m_invoice.clearInvoiceItems();
-            m_invoice.setProviderID(provider.getMID());
-            m_invoice.addItem(item);
-        }
-        else {
-            m_invoice.addItem(item);
-        }
-    }
+    void addToInvoice(const Seller& provider, const InvoiceItem& item);
 
     const Invoice& getInvoice() const;
     Invoice& editInvoice();
@@ -77,8 +64,6 @@ private:
     invoiceItems m_items;
     Sold m_soldHistory;
     Purchase m_purchaseHistory;
-    std::vector<std::string> m_customerIDs;
-    std::vector<std::string> m_providerIDs;
     Invoice m_invoice;
 };
 

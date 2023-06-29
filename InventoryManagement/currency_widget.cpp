@@ -31,7 +31,7 @@ currency_widget::~currency_widget()
 }
 
 void currency_widget::setCurrentCurrencyRB(){
-
+    
     if (Currency::currentCurrency == "AED")
         ui->RB_AED->click();
     else if (Currency::currentCurrency == "AUD")

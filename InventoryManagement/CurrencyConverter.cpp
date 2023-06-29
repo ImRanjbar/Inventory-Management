@@ -727,24 +727,16 @@ void CurrencyConverter::convertCurrency(Manufacturers *manufacturers, const std:
 
         // convert purchase history invoice items
         for (Invoice& invoice : seller->editPurchaseModel().editInvoices()){
-            for (InvoiceItem& item : invoice.editInvoiceItemModel().editItems()){
-                double currentValue = item.getPrice();
-                double newValue = convert(fromCurrency, toCurrency, currentValue);
-                item.setPrice(newValue);
-            }
-
-            invoice.updateAmount();
+            double totalAmount = invoice.getTotalAmount();
+            totalAmount = convert(fromCurrency, toCurrency, totalAmount);
+            invoice.setTotalAmount(totalAmount);
         }
 
         // convert sold history invoice items
         for (Invoice& invoice : seller->editSoldModel().editInvoices()){
-            for (InvoiceItem& item : invoice.editInvoiceItemModel().editItems()){
-                double currentValue = item.getPrice();
-                double newValue = convert(fromCurrency, toCurrency, currentValue);
-                item.setPrice(newValue);
-            }
-
-            invoice.updateAmount();
+            double totalAmount = invoice.getTotalAmount();
+            totalAmount = convert(fromCurrency, toCurrency, totalAmount);
+            invoice.setTotalAmount(totalAmount);
         }
     }
 

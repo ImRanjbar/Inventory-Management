@@ -3,11 +3,6 @@
 
 Invoice::Invoice() = default;
 
-//Invoice::Invoice(std::string_view providerID){
-//    m_providerID = providerID;
-//    createInvoiceNumber();
-//}
-
 Invoice::Invoice(const int invoiceNumber, const std::string_view providerID, const std::string_view customerID
                  , const std::string_view providerName, const std::string_view customerName, const double amount, const std::string_view date) :
     m_invoiceNumber(invoiceNumber), m_providerID(providerID), m_providerManuName(providerName), m_customerID(customerID)
@@ -81,10 +76,6 @@ void Invoice::createInvoiceNumber(){
     m_invoiceNumber = randomNumber;
 }
 
-//bool Invoice::invoiceNumberExistence(){
-
-//}
-
 void Invoice::clearInvoice(){
     m_invoiceNumber = 0;
     clearInvoiceItems();
@@ -124,4 +115,8 @@ void Invoice::setCustomerID(const std::string_view customerID){
 
 void Invoice::setDate(const std::string_view date){
     m_date = date;
+}
+
+void Invoice::setTotalAmount(const double totalAmount){
+    m_totalAmount = totalAmount;
 }

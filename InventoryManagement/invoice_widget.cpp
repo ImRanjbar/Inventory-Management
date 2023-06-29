@@ -135,12 +135,13 @@ void invoice_widget::on_PB_purchase_clicked(){
         ui->LB_error->setVisible(true);
     }
     else {
-        m_user->purchase();
-        m_provider->sold(m_user->getInvoice());
-
         DataHandler data;
+        data.updateCustomerProducts(*m_user, m_user->getInvoice());
+        data.updateProviderProducts(*m_provider, m_user->getInvoice());
         data.addInvoice(m_user->getInvoice());
 
+        m_user->purchase();
+        m_provider->sold(m_user->getInvoice());
         m_user->editInvoice().clearInvoice();
 
         setTableColumns();

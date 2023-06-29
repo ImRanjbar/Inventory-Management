@@ -23,6 +23,8 @@ public:
     void readCurrencyRates(CurrencyConverter& currencyModel);
 
     void saveCurrencyRates(CurrencyConverter& currencyModel);
+
+    void printInvoice(const std::string& path,const Invoice& invoice);
 };
 
 #endif // DATAHANDLER_H

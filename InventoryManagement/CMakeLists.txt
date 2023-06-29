@@ -51,6 +51,8 @@ set(PROJECT_SOURCES
         Currency.h Currency.cpp
         CurrencyExchangeRates.csv
         edit_exchange_rate_window.h edit_exchange_rate_window.cpp edit_exchange_rate_window.ui
+        purchase_invoice_window.h purchase_invoice_window.cpp purchase_invoice_window.ui
+        sale_invoice_window.h sale_invoice_window.cpp sale_invoice_window.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

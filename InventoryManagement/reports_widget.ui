@@ -48,7 +48,7 @@ QTabBar::tab:selected {
 QTabBar::tab:hover { background-color: #F9F9F9; }</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="purchaseTab">
       <attribute name="title">
@@ -335,7 +335,7 @@ font-weight: bold;
 text-transform: none;</string>
            </property>
            <property name="text">
-            <string>123</string>
+            <string>0</string>
            </property>
           </widget>
          </widget>
@@ -381,7 +381,7 @@ text-transform: none;</string>
             <rect>
              <x>80</x>
              <y>80</y>
-             <width>141</width>
+             <width>151</width>
              <height>41</height>
             </rect>
            </property>
@@ -394,7 +394,7 @@ font-weight: bold;
 text-transform: none;</string>
            </property>
            <property name="text">
-            <string>$2.123.543</string>
+            <string>$0</string>
            </property>
           </widget>
          </widget>
@@ -438,9 +438,9 @@ text-transform: none;</string>
           <widget class="QLabel" name="LB_favoriteComp">
            <property name="geometry">
             <rect>
-             <x>110</x>
+             <x>90</x>
              <y>80</y>
-             <width>91</width>
+             <width>141</width>
              <height>51</height>
             </rect>
            </property>
@@ -452,7 +452,7 @@ font-weight: bold;
 text-transform: none;</string>
            </property>
            <property name="text">
-            <string>RyanTech</string>
+            <string>None</string>
            </property>
           </widget>
          </widget>
@@ -731,9 +731,9 @@ text-transform: none;</string>
           <widget class="QLabel" name="LB_ItemsSold">
            <property name="geometry">
             <rect>
-             <x>130</x>
+             <x>120</x>
              <y>80</y>
-             <width>81</width>
+             <width>111</width>
              <height>31</height>
             </rect>
            </property>
@@ -745,7 +745,7 @@ font-weight: bold;
 text-transform: none;</string>
            </property>
            <property name="text">
-            <string>123</string>
+            <string>0</string>
            </property>
           </widget>
          </widget>
@@ -791,7 +791,7 @@ text-transform: none;</string>
             <rect>
              <x>80</x>
              <y>80</y>
-             <width>141</width>
+             <width>151</width>
              <height>41</height>
             </rect>
            </property>
@@ -804,7 +804,7 @@ font-weight: bold;
 text-transform: none;</string>
            </property>
            <property name="text">
-            <string>$2.123.543</string>
+            <string>$0</string>
            </property>
           </widget>
          </widget>
@@ -848,9 +848,9 @@ text-transform: none;</string>
           <widget class="QLabel" name="LB_topBuyer">
            <property name="geometry">
             <rect>
-             <x>110</x>
+             <x>90</x>
              <y>80</y>
-             <width>91</width>
+             <width>141</width>
              <height>51</height>
             </rect>
            </property>
@@ -862,7 +862,7 @@ font-weight: bold;
 text-transform: none;</string>
            </property>
            <property name="text">
-            <string>RyanTech</string>
+            <string>None</string>
            </property>
           </widget>
          </widget>

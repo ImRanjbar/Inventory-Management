@@ -14,9 +14,12 @@ class product_information_window : public QDialog
 
 public:
     explicit product_information_window(Seller* user, const InvoiceItem* item,QWidget *parent = nullptr);
+    explicit product_information_window(const InvoiceItem* item,QWidget *parent = nullptr);
     ~product_information_window();
 
     void setLabels();
+
+    void invoiceSetLabels();
 
 private:
     Ui::product_information_window *ui;

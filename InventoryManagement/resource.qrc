@@ -52,5 +52,9 @@
         <file>CurrencyExchangeRates.csv</file>
         <file>Images/icons/editExchangeRate.png</file>
         <file>Images/EditExchangeRateBackground.png</file>
+        <file>Images/InvoiceRightWidgetBackground.png</file>
+        <file>Images/InvoiceDetailsBackground.png</file>
+        <file>Images/InvoiceUserDetailsBackground.png</file>
+        <file>Images/InvoiceWindowBackground.png</file>
     </qresource>
 </RCC>

@@ -402,3 +402,41 @@ void DataHandler::saveCurrencyRates(CurrencyConverter &currencyModel){
     }
     file.close();
 }
+
+void DataHandler::printInvoice(const std::string& path,const Invoice &invoice){
+    std::ofstream file(path);
+
+    if (file.is_open()){
+        file << "INVOICE\n";
+        file << "INV-" << invoice.getInvoiceNumber() << '\n';
+        file << "Date : " << invoice.getDate() << '\n';
+        file << "Provider : " << invoice.getProviderName() << "," << "MID : " << invoice.getProviderID() << '\n';
+        file << "Customer : " << invoice.getCustomerName() << "," << "MID : " << invoice.getCustomerID() << '\n';
+        file << '\n';
+        file << "ITEMS\n";
+
+        std::vector<std::string> headers = {"SKU", "Name", "Brand", "Category", "Price", "Selected", "Unit", "Added Date", "Expiration Date", "Total"};
+        // Write headers to the file
+        for (const std::string& header : headers) {
+            file << header << ",";
+        }
+        file << "\n";
+
+        for (const InvoiceItem& item : invoice.getInvoiceItemModel().getItems()){
+            file << item.getSku() << ",";
+            file << item.getName() << ",";
+            file << item.getBrand() << ",";
+            file << item.getCategory() << ",";
+            file << Currency::currencySymbol << item.getPrice() << ",";
+            file << item.getInventory() << ",";
+            file << item.getUnit() << ",";
+            file << item.getAddedDate() << ",";
+            file << item.getExDate() << ",";
+            file << Currency::currencySymbol << item.getPrice()*item.getInventory() << "\n";
+        }
+
+        file << ",,,,,,,,," << "Total Amount: " << Currency::currencySymbol <<invoice.getTotalAmount() << "\n";
+    }
+
+    file.close();
+}

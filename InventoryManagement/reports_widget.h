@@ -29,6 +29,10 @@ public:
 private slots:
     void on_tabWidget_tabBarClicked(int index);
 
+    void on_TV_purchase_doubleClicked(const QModelIndex &index);
+
+    void on_TV_solds_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::reports_widget *ui;
     Manufacturers* m_manufacturers;

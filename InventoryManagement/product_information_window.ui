@@ -103,7 +103,7 @@ text-transform: none;</string>
     <rect>
      <x>280</x>
      <y>120</y>
-     <width>149</width>
+     <width>181</width>
      <height>21</height>
     </rect>
    </property>
@@ -143,7 +143,7 @@ text-transform: none;</string>
     <rect>
      <x>80</x>
      <y>120</y>
-     <width>101</width>
+     <width>161</width>
      <height>21</height>
     </rect>
    </property>
@@ -163,7 +163,7 @@ text-transform: none;</string>
     <rect>
      <x>80</x>
      <y>200</y>
-     <width>101</width>
+     <width>171</width>
      <height>21</height>
     </rect>
    </property>
@@ -183,7 +183,7 @@ text-transform: none;</string>
     <rect>
      <x>280</x>
      <y>200</y>
-     <width>149</width>
+     <width>171</width>
      <height>21</height>
     </rect>
    </property>
@@ -243,7 +243,7 @@ text-transform: none;</string>
     <rect>
      <x>80</x>
      <y>400</y>
-     <width>101</width>
+     <width>141</width>
      <height>16</height>
     </rect>
    </property>
@@ -371,7 +371,7 @@ text-transform: none;</string>
     <rect>
      <x>80</x>
      <y>270</y>
-     <width>120</width>
+     <width>161</width>
      <height>21</height>
     </rect>
    </property>
@@ -391,7 +391,7 @@ text-transform: none;</string>
     <rect>
      <x>80</x>
      <y>340</y>
-     <width>88</width>
+     <width>151</width>
      <height>21</height>
     </rect>
    </property>
@@ -406,7 +406,7 @@ text-transform: none;</string>
     <string>Product SKU</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_11">
+  <widget class="QLabel" name="LB_inventoryLabel">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -426,7 +426,7 @@ text-transform: none;</string>
     <string>Inventory</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_13">
+  <widget class="QLabel" name="LB_selectedLabel">
    <property name="geometry">
     <rect>
      <x>230</x>

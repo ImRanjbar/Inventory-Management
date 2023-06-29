@@ -17,6 +17,9 @@ public:
 
     void addInvoice(const Invoice& invoice);
 
+    const Invoice& getInvoice(const int invoiceNumber) const;
+
+    Invoice& editInvoice(const int invoiceNumber);
 
 private:
     std::vector<Invoice> m_invoices;

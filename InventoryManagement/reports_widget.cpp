@@ -1,4 +1,6 @@
 #include "reports_widget.h"
+#include "purchase_invoice_window.h"
+#include "sale_invoice_window.h"
 #include "ui_reports_widget.h"
 #include "currency.h"
 
@@ -118,3 +120,26 @@ void reports_widget::on_tabWidget_tabBarClicked(int index)
     qDebug() << index << '\n';
 }
 
+void reports_widget::on_TV_purchase_doubleClicked(const QModelIndex &index){
+    const int row = index.row();
+
+    const int invoiceNumber = m_purchaseItemModel.item(row,0)->data(Qt::DisplayRole).toInt();
+    Invoice& invoice = m_user->editPurchaseModel().editInvoice(invoiceNumber);
+    qDebug() << invoice.getInvoiceNumber();
+
+    purchase_invoice_window* purchaseInvoice = new purchase_invoice_window(invoice,this);
+    purchaseInvoice->setModal(true);
+    purchaseInvoice->show();
+}
+
+void reports_widget::on_TV_solds_doubleClicked(const QModelIndex &index){
+    const int row = index.row();
+
+    const int invoiceNumber = m_soldItemModel.item(row,0)->data(Qt::DisplayRole).toInt();
+    Invoice& invoice = m_user->editSoldModel().editInvoice(invoiceNumber);
+    qDebug() << invoice.getInvoiceNumber();
+
+    sale_invoice_window* purchaseInvoice = new sale_invoice_window(invoice,this);
+    purchaseInvoice->setModal(true);
+    purchaseInvoice->show();
+}

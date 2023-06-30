@@ -19,11 +19,24 @@ public:
     std::vector<InvoiceItem>& editItems();
     bool existence(const std::string_view sku) const;
 
+    void sortBySKU();
+    void sortBySkuDes();
     void sortByName();
+    void sortByNameDes();
     void sortByCategory();
+    void sortByCategoryDes();
     void sortByBrand();
-    void sortByAmount();
-    void sortByDate();
+    void sortByBrandDes();
+    void sortByPrice();
+    void sortByPriceDes();
+    void sortByInventory();
+    void sortByInventoryDes();
+    void sortByUnit();
+    void sortByUnitDes();
+    void sortByAddDate();
+    void sortByAddDateDes();
+    void sortByExDate();
+    void sortByExDateDes();
 
 private:
     std::vector<InvoiceItem> m_items;

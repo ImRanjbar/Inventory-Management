@@ -1,6 +1,7 @@
 #include "add_to_invoice.h"
 #include "ui_add_to_invoice.h"
 #include <QValidator>
+#include <QMessageBox>
 
 add_to_invoice::add_to_invoice(Seller *user, Seller *provider, InvoiceItem* item, QWidget *parent) :
     QDialog(parent),
@@ -45,40 +46,65 @@ void add_to_invoice::setLabels(){
     ui->LB_itemSKU->setText(QString::fromStdString(m_item->getSku()));
 }
 
-void add_to_invoice::addItem(){
+void add_to_invoice::addItem() {
+    // Check if the current provider ID matches the provider ID of the user's invoice
+    if (m_user->getInvoice().getProviderID() == m_provider->getMID()) {
+        // Check if the item already exists in the invoice
+        if (!m_itemExistence) {
+            // Create a new invoice item, set its inventory, and add it to the user's invoice
+            InvoiceItem item = *m_item;
+            item.setInventory(ui->LE_selected->text().toDouble());
+            m_user->editInvoice().addItem(item);
+        } else {
+            // Update the existing invoice item's inventory
+            m_user->editInvoice().editInvoiceItemModel().editItem(m_item->getSku())
+                .setInventory(ui->LE_selected->text().toDouble());
+        }
+    }
+    // If the user's invoice has no provider ID (i.e., no existing invoice)
+    else if (m_user->getInvoice().getProviderID().empty()) {
+        // Set the provider ID, provider name, and create an invoice number for the user's new invoice
+        m_user->editInvoice().setProviderID(m_provider->getMID());
+        m_user->editInvoice().setProviderName(m_provider->getManufactureName());
+        m_user->editInvoice().createInvoiceNumber();
 
-    if (m_user->getInvoice().getProviderID() == m_provider->getMID()){
-        if (!m_itemExistence){
+        // Create a new invoice item, set its inventory, and add it to the user's invoice
+        InvoiceItem item = *m_item;
+        item.setInventory(ui->LE_selected->text().toDouble());
+        m_user->editInvoice().addItem(item);
+    }
+    // If the user's invoice is associated with a different provider, prompt for confirmation
+    else if (m_user->getInvoice().getProviderID() != m_provider->getMID()) {
+        // Show a message box to confirm if the user wants to create a new invoice
+        QMessageBox messageBox(this);
+        messageBox.setText("Creating a new invoice will close the previous invoice from " +
+                           QString::fromStdString(m_user->getInvoice().getProviderName()) + ".");
+        messageBox.setInformativeText("Are you sure you want to create a new invoice?");
+        messageBox.setWindowTitle("New Invoice");
+        messageBox.addButton(QMessageBox::Yes);
+        messageBox.addButton(QMessageBox::No);
+
+        // Wait for the user to make a choice (Yes or No)
+        int buttonClicked = messageBox.exec();
+
+        // Check if the user clicked "Yes"
+        if (buttonClicked == QMessageBox::Yes) {
+            // Clear the current invoice and create a new one with the new provider
+            m_user->editInvoice().clearInvoice();
+            qDebug() << "Creating a new invoice for the user with a new provider.\n";
+            m_user->editInvoice().setProviderName(m_provider->getManufactureName());
+            m_user->editInvoice().setProviderID(m_provider->getMID());
+            m_user->editInvoice().createInvoiceNumber();
+            // Create a new invoice item, set its inventory, and add it to the user's invoice
             InvoiceItem item = *m_item;
             item.setInventory(ui->LE_selected->text().toDouble());
             m_user->editInvoice().addItem(item);
         }
         else {
-            m_user->editInvoice().editInvoiceItemModel().editItem(m_item->getSku()).setInventory(ui->LE_selected->text().toDouble());
+            return;
         }
     }
-    else if (m_user->getInvoice().getProviderID() == ""){
-        qDebug() << "new Invoice for user\n";
-        m_user->editInvoice().setProviderID(m_provider->getMID());
-        m_user->editInvoice().setProviderName(m_provider->getManufactureName());
-        m_user->editInvoice().createInvoiceNumber();
-        InvoiceItem item = *m_item;
-        item.setInventory(ui->LE_selected->text().toDouble());
-        m_user->editInvoice().addItem(item);
-    }
-    else if (m_user->getInvoice().getProviderID() != m_provider->getMID()){
-        qDebug() << "clear Invoice\n";
-        m_user->editInvoice().clearInvoice();
-        qDebug() << "new Invoice for user with new provider\n";
-        m_user->editInvoice().setProviderName(m_provider->getManufactureName());
-        m_user->editInvoice().setProviderID(m_provider->getMID());
-        m_user->editInvoice().createInvoiceNumber();
-        InvoiceItem item = *m_item;
-        item.setInventory(ui->LE_selected->text().toDouble());
-        m_user->editInvoice().addItem(item);
-    }
 }
-
 
 void add_to_invoice::on_LE_selected_textChanged(const QString &arg1){
     double available = m_item->getInventory();
@@ -92,8 +118,6 @@ void add_to_invoice::on_LE_selected_textChanged(const QString &arg1){
 
 }
 
-
-
 void add_to_invoice::on_PB_add_clicked(){
 
     ui->LB_selectedError->setVisible(false);
@@ -104,7 +128,7 @@ void add_to_invoice::on_PB_add_clicked(){
 
     if (selected > available){
         ui->LB_selectedError->setVisible(true);
-        ui->LB_selectedError->setText("The stock level is insufficient to meet the selected quantity");
+        ui->LB_selectedError->setText("Not enough stock available for desired quantity");
     }
     else if (lineEditText.trimmed().isEmpty()){
         ui->LB_selectedError->setVisible(true);
@@ -120,9 +144,7 @@ void add_to_invoice::on_PB_add_clicked(){
     }
 }
 
-
 void add_to_invoice::on_PB_cancel_clicked(){
     qDebug() << "Cancel clicked\n";
     this->close();
 }
-

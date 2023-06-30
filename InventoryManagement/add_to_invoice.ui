@@ -217,46 +217,49 @@ QPushButton::hover {
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>80</y>
-     <width>208</width>
-     <height>83</height>
+     <x>200</x>
+     <y>81</y>
+     <width>131</width>
+     <height>19</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="styleSheet">
-       <string notr="true">font-family: Calibri;
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
 font-size: 15px;
 color: #5e4be3;
 font-weight: bold;
 text-transform: none;</string>
-      </property>
-      <property name="text">
-       <string>Selected</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="LE_selected">
-      <property name="minimumSize">
-       <size>
-        <width>206</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>206</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QLineEdit {
+   </property>
+   <property name="text">
+    <string>Selected</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_selected">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>104</y>
+     <width>220</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>220</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>220</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
 	background-color: #F6F1F1;
 	border-radius:3px;
 	border:1px solid #ced1e7;
@@ -272,70 +275,73 @@ text-transform: none;</string>
 	padding:10px 10px;
 }
 </string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="LB_selectedError">
-      <property name="styleSheet">
-       <string notr="true">font-family: Calibri;
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_selectedError">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>149</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
 font-size: 10px;
 color: #cf0000;
 font-weight: bold;
 text-transform: none;</string>
-      </property>
-      <property name="text">
-       <string>Error</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>80</y>
-     <width>187</width>
-     <height>81</height>
+     <x>11</x>
+     <y>81</y>
+     <width>151</width>
+     <height>20</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="styleSheet">
-       <string notr="true">font-family: Calibri;
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
 font-size: 16px;
 color: #e6f0a3;
 font-weight: bold;
 text-transform: none;</string>
-      </property>
-      <property name="text">
-       <string>Avaialable : </string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QLabel" name="LB_itemAvailable">
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font-family: Calibri;
+   </property>
+   <property name="text">
+    <string>Avaialable : </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_itemAvailable">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>114</y>
+     <width>181</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
 font-size: 20px;
 color: #e6f0a3;
 font-weight: bold;
 text-transform: none;</string>
-      </property>
-      <property name="text">
-       <string>983 piece</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   </property>
+   <property name="text">
+    <string>983 piece</string>
+   </property>
   </widget>
  </widget>
  <resources/>

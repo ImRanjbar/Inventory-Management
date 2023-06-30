@@ -122,7 +122,7 @@ text-transform: none;</string>
                 <string notr="true">QLineEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -165,7 +165,7 @@ text-transform: none;</string>
                 <string notr="true">QLineEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -208,7 +208,7 @@ text-transform: none;</string>
                 <string notr="true">QLineEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -303,7 +303,7 @@ text-transform: none;</string>
               <string notr="true">QLineEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -357,7 +357,7 @@ text-transform: none;</string>
               <string notr="true">QLineEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -418,7 +418,7 @@ text-transform: none;</string>
               <string notr="true">QLineEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -472,7 +472,7 @@ text-transform: none;</string>
               <string notr="true">QLineEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -526,7 +526,7 @@ text-transform: none;</string>
               <string notr="true">QLineEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -595,7 +595,7 @@ text-transform: none;</string>
              <property name="styleSheet">
               <string notr="true">QDateEdit {
     background-color: #d9e0f5; 
-    border: 1px solid #CCCCCC; 
+    border: 1px solid #acb1d6; 
 	border-radius :5px;
     padding: 1px; 
 	font-family: Calibri;
@@ -684,7 +684,7 @@ text-transform: none;</string>
                <property name="styleSheet">
                 <string notr="true">QDateEdit {
     background-color: #d9e0f5;
-    border: 1px solid #CCCCCC; 
+    border: 1px solid #acb1d6; 
 	border-radius :5px;
     padding: 1px;
 	font-family: Calibri;
@@ -745,7 +745,7 @@ text-transform: none;</string>
               <string notr="true">QTextEdit {
 	background-color: #e9edfa;
 	border-radius:8px;
-	border:1px solid #ced1e7;
+	border:1px solid #acb1d6;
 	display:inline-block;
 	cursor:text;
 	color : #4b6ed1;
@@ -780,8 +780,8 @@ text-transform: none;</string>
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
-    background-color: #748fdb;
-    border: 1px solid #a995e4;
+    background-color: #b3a2e8;
+    border: 1px solid #b3a2e8;
     border-radius: 8px;
     padding: 20px 20px;
 	color: #ffffff;
@@ -793,8 +793,8 @@ text-transform: none;</string>
 }
 
 QPushButton::hover {
-	background-color : #9db0e5;
-	border: 1px solid  #9db0e5;
+	background-color : #c4b6ed;
+	border: 1px solid  #b3a2e8;
 
 }</string>
              </property>
@@ -810,8 +810,8 @@ QPushButton::hover {
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
-    background-color: #df8199;
-    border: 1px solid #db8c74;
+    background-color: #e8a2b4;
+    border: 1px solid #e8a2b4;
     border-radius: 8px;
     padding: 20px 20px;
 	color: #672d1b;
@@ -823,8 +823,8 @@ QPushButton::hover {
 }
 
 QPushButton::hover {
-	background-color : #e9aaba;
-    border: 1px solid #e9aaba;
+	background-color : #edb6c4;
+    border: 1px solid #e8a2b4;
 
 }</string>
              </property>

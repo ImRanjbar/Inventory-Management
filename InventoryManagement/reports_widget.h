@@ -17,8 +17,8 @@ class reports_widget : public QWidget
 public:
     explicit reports_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent = nullptr);
     ~reports_widget();
-
-    void setTableColumns();
+    
+    void initializeTablesView();
 
     void updatePurchaseTable();
 
@@ -26,12 +26,25 @@ public:
 
     void setLabels();
 
-private slots:
-    void on_tabWidget_tabBarClicked(int index);
+    void setComboBoxes();
 
+    std::string calculateFavoriteCompany(bool isPurchase);
+
+    void search(const QString& text, bool isPurchase);
+
+    template<typename MemberFunction>
+    void updateTableViewWithSearchCriteria(const QString& text, MemberFunction memberFunction, bool isPurchase);
+
+
+
+private slots:
     void on_TV_purchase_doubleClicked(const QModelIndex &index);
 
     void on_TV_solds_doubleClicked(const QModelIndex &index);
+
+    void on_LE_purchaseSearch_textChanged(const QString &arg1);
+
+    void on_LE_saleSearch_textChanged(const QString &arg1);
 
 private:
     Ui::reports_widget *ui;

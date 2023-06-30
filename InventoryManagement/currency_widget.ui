@@ -34,8 +34,8 @@ background-image : url(:/Images/CurrencyWidgetBackground.png);
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>280</y>
+      <x>70</x>
+      <y>190</y>
       <width>962</width>
       <height>324</height>
      </rect>

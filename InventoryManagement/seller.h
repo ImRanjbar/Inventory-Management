@@ -27,20 +27,15 @@ public:
     const Products& getProductsModel() const;
     Products& editProducts();
 
-    const Sold& getSoldHistory() const;
+    const Sold& getSoldModel() const;
+    Sold& editSoldModel();
 
-    const Purchase& getPurchaseHistory() const;
-    Purchase& editPurchaseHistory();
+    const Purchase& getPurchaseModel() const;
+    Purchase& editPurchaseModel();
 
     const invoiceItems& getInvoiceItemsModel() const;
     invoiceItems& editInvoiceItems();
 
-    const std::vector<std::string>& getCutomerIDs() const;
-    const std::vector<std::string>& getProviderIDs() const;
-
-    void buy(const Product& product, const Seller& provider);
-    void sell(const Product& product, const Seller& buyer);
-    
     void addToInvoice(const Seller& provider, const InvoiceItem& item);
 
     const Invoice& getInvoice() const;
@@ -51,11 +46,6 @@ public:
     void purchase();
 
     void sold(const Invoice& customer);
-
-    Purchase& editPurchaseModel();
-
-    Sold& editSoldModel();
-
 
 private:
     std::string m_MID;

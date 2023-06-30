@@ -257,6 +257,9 @@ text-transform: none;</string>
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="styleSheet">
             <string notr="true">QComboBox {
     /* Background and Border */
@@ -330,6 +333,9 @@ QComboBox QAbstractItemView::item:hover {
              <height>0</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
     background-color: #f4c3d6;
@@ -361,6 +367,9 @@ QPushButton::hover {
              <width>70</width>
              <height>0</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
@@ -434,177 +443,108 @@ QScrollBar::handle:vertical {
 	background-image : url(:/Images/invoiceDetailRightWidget.png);
 }</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
-        <item>
-         <layout class="QGridLayout" name="gridLayout">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item row="0" column="1">
-           <layout class="QVBoxLayout" name="verticalLayout_6">
-            <item>
-             <spacer name="verticalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Minimum</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>90</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QLabel" name="LB_nSellected">
-              <property name="styleSheet">
-               <string notr="true">font-family: Calibri;
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>180</y>
+          <width>180</width>
+          <height>146</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 30px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>Amount Due : </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>161</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 20px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>Items Sellected : </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LB_nSellected">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>100</y>
+          <width>291</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
 font-size: 30px;
 color: #3f403f;
 text-align : center;
 font-weight: bold;
 text-transform: none;</string>
-              </property>
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Maximum</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>120</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QLabel" name="LB_amountDue">
-              <property name="styleSheet">
-               <string notr="true">font-family: Calibri;
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LB_amountDue">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>280</y>
+          <width>301</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
 font-size: 30px;
 color: #2f6f34;
 text-align : center;
 font-weight: bold;
 text-transform: none;</string>
-              </property>
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="0">
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <item>
-             <widget class="QLabel" name="label_11">
-              <property name="styleSheet">
-               <string notr="true">font-family: Calibri;
-font-size: 20px;
-color: #4a1d9b;
-font-weight: bold;
-text-transform: none;</string>
-              </property>
-              <property name="text">
-               <string>Items Sellected : </string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Maximum</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>120</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_2">
-              <property name="styleSheet">
-               <string notr="true">font-family: Calibri;
-font-size: 30px;
-color: #4a1d9b;
-font-weight: bold;
-text-transform: none;</string>
-              </property>
-              <property name="text">
-               <string>Amount Due : </string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <property name="topMargin">
-           <number>20</number>
-          </property>
-          <item>
-           <spacer name="horizontalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Minimum</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>60</width>
-              <height>30</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_7">
-            <item>
-             <widget class="QPushButton" name="PB_purchase">
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="PB_purchase">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>480</y>
+          <width>211</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
 	background-color:#724cd7;
 	border-radius:29px;
 	display:inline-block;
@@ -627,131 +567,31 @@ QPushButton:active {
 	top:1px;
 }
 </string>
-              </property>
-              <property name="text">
-               <string>Purchase</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="LB_error">
-              <property name="styleSheet">
-               <string notr="true">font-family: Calibri;
+        </property>
+        <property name="text">
+         <string>Purchase</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LB_error">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>550</y>
+          <width>151</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
 font-size: 10px;
 color: #b50000;
 font-weight: bold;
 text-transform: none;</string>
-              </property>
-              <property name="text">
-               <string>This is error message!</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <spacer name="horizontalSpacer_6">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Maximum</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>10</width>
-                  <height>5</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_13">
-                <property name="styleSheet">
-                 <string notr="true">font-family: Calibri;
-font-size: 11px;
-color: #2d0c42;
-font-weight: bold;
-text-transform: none;</string>
-                </property>
-                <property name="text">
-                 <string>Wanna print invoice ?</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="PB_print">
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QPushButton {
-	color : #4c4c4c;
-    border: none;
-	font-weight : bold;
-}
-QPushButton:hover{
-	change-cursor: cursor('PointingHand');
-
-}</string>
-                </property>
-                <property name="text">
-                 <string>print</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Minimum</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>60</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-       </layout>
+        </property>
+        <property name="text">
+         <string>This is error message!</string>
+        </property>
+       </widget>
       </widget>
      </item>
     </layout>

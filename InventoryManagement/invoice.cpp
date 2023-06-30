@@ -1,5 +1,6 @@
 #include "Invoice.h"
 #include "InvoiceNumbers.h"
+#include <string>
 
 Invoice::Invoice() = default;
 
@@ -89,6 +90,10 @@ const int Invoice::getInvoiceNumber() const{
     return m_invoiceNumber;
 }
 
+const std::string Invoice::getInvoiceNumberStr() const{
+    return std::to_string(m_invoiceNumber);
+}
+
 const std::string &Invoice::getProviderName() const{
     return m_providerManuName;
 }
@@ -120,3 +125,4 @@ void Invoice::setDate(const std::string_view date){
 void Invoice::setTotalAmount(const double totalAmount){
     m_totalAmount = totalAmount;
 }
+

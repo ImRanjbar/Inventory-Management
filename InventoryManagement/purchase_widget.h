@@ -28,7 +28,7 @@ public:
 
     void setProvidersComboBox();
 
-    void setTableColumns();
+    void initializeTableView();
 
     void updateTable();
 
@@ -40,14 +40,8 @@ public:
 
     void search(const QString& text);
 
-    void searchByName(const QString& text);
-    void searchBySKU(const QString& text);
-    void searchByCategory(const QString& text);
-    void searchByBrand(const QString& text);
-    void searchByUnit(const QString& text);
-
-    void filterByBrand(const QString& brand);
-    void filterByCategory(const QString& category);
+    template<typename MemberFunction>
+    void updateTableViewWithSearchCriteria(const QString& text, MemberFunction memberFunction);
 
 private slots:
     void on_CB_providers_currentTextChanged(const QString &arg1);
@@ -67,6 +61,10 @@ private slots:
     void onSelectionChangedCategories(const QItemSelection& selected, const QItemSelection& deselected);
 
     void on_TV_items_doubleClicked(const QModelIndex &index);
+
+    void handleHeaderDoubleClicked(int logicalIndex);
+
+    void handleHeaderClicked(int logicalIndex);
 
 private:
     Ui::purchase_widget *ui;

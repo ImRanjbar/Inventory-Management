@@ -23,37 +23,34 @@ public:
     explicit inventory_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent = nullptr);
     ~inventory_widget();
 
+    /**
+    * Customizes the appearance of items within the list view.
+    * Applies custom painting and styling to selected and non-selected items.
+    */
     void customizeListItems();
 
     void setSearchComboBox();
 
-    void setTableColumns();
+    /**
+    * Initializes the table view with column headers, model, and properties.
+    * Connects table header signals to sort table elements when clicked.
+    */
+    void initializeTableView();
 
     void updateTable();
 
     void updateFilterBrand();
-
     void updateFilterCategory();
 
     void removeProduct(int row);
 
-    void updateTableBrand(const std::string_view brand);
-
-    void updateTableCategory(const std::string_view category);
-
     void search(const QString& text);
 
-    void searchByName(const QString& text);
-    void searchBySKU(const QString& text);
-    void searchByCategory(const QString& text);
-    void searchByBrand(const QString& text);
-    void searchByUnit(const QString& text);
-
+    template<typename MemberFunction>
+    void updateTableViewWithSearchCriteria(const QString& text, MemberFunction memberFunction);
 
 private slots:
     void on_TV_products_doubleClicked(const QModelIndex &index);
-
-    void on_TV_products_activated(const QModelIndex &index);
 
     void on_PB_add_clicked();
 
@@ -82,10 +79,6 @@ private:
     QStandardItemModel m_tableViewModel;
     QStringListModel m_brandFilterList;
     QStringListModel m_categoryFilterList;
-
-
-
-
 };
 
 #endif // INVENTORY_WIDGET_H

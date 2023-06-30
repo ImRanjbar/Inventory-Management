@@ -18,15 +18,24 @@ public:
     ~sale_invoice_window();
 
     void setLabels();
+    
+    void initializeTableView();
 
-    void setTableColumns();
+    void setComboBox();
 
     void addItems();
+
+    void search(const QString& text);
+
+    template<typename MemberFunction>
+    void updateTableViewWithSearchCriteria(const QString& text, MemberFunction memberFunction);
 
 private slots:
     void on_TV_items_doubleClicked(const QModelIndex &index);
 
     void on_PB_print_clicked();
+
+    void on_LE_search_textChanged(const QString &arg1);
 
 private:
     Ui::sale_invoice_window *ui;

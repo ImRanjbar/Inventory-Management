@@ -72,15 +72,19 @@ Products& Seller::editProducts() {
     return m_products;
 }
 
-const Sold &Seller::getSoldHistory() const{
+const Sold &Seller::getSoldModel() const{
     return m_soldHistory;
 }
 
-const Purchase &Seller::getPurchaseHistory() const{
+Sold &Seller::editSoldModel(){
+    return m_soldHistory;
+}
+
+const Purchase &Seller::getPurchaseModel() const{
     return m_purchaseHistory;
 }
 
-Purchase &Seller::editPurchaseHistory(){
+Purchase &Seller::editPurchaseModel(){
     return m_purchaseHistory;
 }
 
@@ -153,10 +157,3 @@ void Seller::sold(const Invoice &invoice){
     }
 }
 
-Purchase &Seller::editPurchaseModel(){
-    return m_purchaseHistory;
-}
-
-Sold &Seller::editSoldModel(){
-    return m_soldHistory;
-}

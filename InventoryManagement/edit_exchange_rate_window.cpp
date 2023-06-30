@@ -172,3 +172,12 @@ void edit_exchange_rate_window::on_PB_applyChanges_clicked(){
     }
 }
 
+
+void edit_exchange_rate_window::on_PB_reset_clicked(){
+    return;
+}
+
+
+void edit_exchange_rate_window::on_PB_cancel_clicked(){
+    this->deleteLater();
+}

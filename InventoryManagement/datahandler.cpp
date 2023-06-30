@@ -296,7 +296,7 @@ void DataHandler::saveData(Manufacturers *manufacturers){
                  << '"' << product.getExDate() << '"' << ","
                  << '"' << product.getAvailability() << '"' << "\n";
         }
-        for (const Invoice& invoice : manufacturer->getPurchaseHistory().getInvoices()){
+        for (const Invoice& invoice : manufacturer->getPurchaseModel().getInvoices()){
             file << '"' << "appInvoice" << '"' << ","
                  <<  invoice.getInvoiceNumber()  << ","
                  << '"' << invoice.getProviderName() << '"' << ","
@@ -321,8 +321,8 @@ void DataHandler::saveData(Manufacturers *manufacturers){
                      << '"' << item.getExDate() << '"' << "\n";
             }
         }
-
-        for (const Invoice& invoice : manufacturer->getSoldHistory().getInvoices()){
+        
+        for (const Invoice& invoice : manufacturer->getSoldModel().getInvoices()){
             file << '"' << "appInvoice" << '"' << ","
                  <<  invoice.getInvoiceNumber()  << ","
                  << '"' << invoice.getProviderName() << '"' << ","
@@ -819,6 +819,9 @@ void DataHandler::readInvoices(Seller& user){
 }
 
 void DataHandler::readInvoiceItems(Invoice &invoice){
+    QSqlDatabase data;
+    openDatabase(data);
+
     const QString invoiceNumber = QString::number(invoice.getInvoiceNumber());
 
     QSqlQuery query;
@@ -836,7 +839,7 @@ void DataHandler::readInvoiceItems(Invoice &invoice){
 
     while (query.next()){
         std::string name = query.value("name").toString().toStdString();
-        std::string category = query.value("caregory").toString().toStdString();
+        std::string category = query.value("category").toString().toStdString();
         std::string sku = query.value("sku").toString().toStdString();
         std::string brand = query.value("brand").toString().toStdString();
         double inventory = query.value("inventory").toDouble();
@@ -851,6 +854,8 @@ void DataHandler::readInvoiceItems(Invoice &invoice){
         invoice.addItem(newItem);
         qDebug() << "item with sku : " << sku << " have read for invoice";
     }
+
+    data.close();
 }
 
 void DataHandler::addInvoice(const Invoice &invoice){

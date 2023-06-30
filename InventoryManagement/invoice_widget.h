@@ -18,9 +18,11 @@ public:
     explicit invoice_widget(Manufacturers* manufacturer, Seller* user,QWidget *parent = nullptr);
     ~invoice_widget();
 
-    void setTableColumns();
+    void initializeTableView();
 
     void setLabels();
+
+    void setComboBox();
 
     void updateTable();
 
@@ -28,10 +30,19 @@ public:
 
     void clear();
 
+    void search(const QString& text);
+
+    template <typename MemberFunction>
+    void updateTableViewWithSearchCriteria(const QString& text, MemberFunction memberFunction);
+
 private slots:
     void on_PB_purchase_clicked();
 
     void on_PB_clear_clicked();
+
+    void on_PB_remove_clicked();
+
+    void on_LE_search_textChanged(const QString &arg1);
 
 private:
     Ui::invoice_widget *ui;

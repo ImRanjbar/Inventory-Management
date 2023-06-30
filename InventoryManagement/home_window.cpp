@@ -26,8 +26,7 @@ home_window::~home_window()
     delete ui;
 }
 
-void home_window::setPushButtonDefaultStyle(QPushButton* button, const QString& iconPath)
-{
+void home_window::setPushButtonDefaultStyle(QPushButton* button, const QString& iconPath){
     button->setStyleSheet(
         "QPushButton {"
         "    background-image: url(" + iconPath + ");"
@@ -57,8 +56,7 @@ void home_window::setPushButtonDefaultStyle(QPushButton* button, const QString& 
         );
 }
 
-void home_window::setPushButtonSelectedtStyle(QPushButton* button, const QString& iconPath)
-{
+void home_window::setPushButtonSelectedtStyle(QPushButton* button, const QString& iconPath){
     button->setStyleSheet(
         "QPushButton {"
         "    background-image: url("+ iconPath +");"
@@ -85,8 +83,7 @@ void home_window::pushButtonsDefaultStyle(){
     setPushButtonDefaultStyle(ui->PB_invoice, ":/Images/icons/invoiceIcon.png");
 }
 
-void home_window::closeWidgets()
-{
+void home_window::closeWidgets(){
     closeChildWidget(ui->mainWidget, "inventory_widget");
     closeChildWidget(ui->mainWidget, "purchase_widget");
     closeChildWidget(ui->mainWidget, "reports_widget");
@@ -104,8 +101,7 @@ void home_window::closeChildWidget(QWidget* parent, const QString& widgetName){
     }
 }
 
-void home_window::on_PB_inventory_clicked()
-{
+void home_window::on_PB_inventory_clicked(){
     pushButtonsDefaultStyle();
     closeWidgets();
 
@@ -114,8 +110,7 @@ void home_window::on_PB_inventory_clicked()
     inventoryWidget->show();
 }
 
-void home_window::on_PB_purchase_clicked()
-{
+void home_window::on_PB_purchase_clicked(){
     pushButtonsDefaultStyle();
     closeWidgets();
 
@@ -124,8 +119,7 @@ void home_window::on_PB_purchase_clicked()
     purchaseWidget->show();
 }
 
-void home_window::on_PB_reports_clicked()
-{
+void home_window::on_PB_reports_clicked(){
     pushButtonsDefaultStyle();
     closeWidgets();
 
@@ -134,8 +128,7 @@ void home_window::on_PB_reports_clicked()
     reportsWidget->show();
 }
 
-void home_window::on_PB_currency_clicked()
-{
+void home_window::on_PB_currency_clicked(){
     pushButtonsDefaultStyle();
     closeWidgets();
 
@@ -144,8 +137,7 @@ void home_window::on_PB_currency_clicked()
     currencyWidget->show();
 }
 
-void home_window::on_PB_invoice_clicked()
-{
+void home_window::on_PB_invoice_clicked(){
     pushButtonsDefaultStyle();
     closeWidgets();
 

@@ -221,6 +221,10 @@ private slots:
 
     void on_PB_applyChanges_clicked();
 
+    void on_PB_reset_clicked();
+
+    void on_PB_cancel_clicked();
+
 private:
     Ui::edit_exchange_rate_window *ui;
     CurrencyConverter* m_currency;

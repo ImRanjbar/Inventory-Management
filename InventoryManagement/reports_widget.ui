@@ -86,7 +86,7 @@ text-transform: none;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit">
+            <widget class="QLineEdit" name="LE_purchaseSearch">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
 	background-color: #ced1e7;
@@ -119,7 +119,7 @@ text-transform: none;</string>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox">
+            <widget class="QComboBox" name="CB_purchase">
              <property name="styleSheet">
               <string notr="true">QComboBox {
     /* Background and Border */
@@ -170,21 +170,6 @@ QComboBox QAbstractItemView::item:hover {
 
 </string>
              </property>
-             <item>
-              <property name="text">
-               <string>Invoice Number</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Provider</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Date</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -315,13 +300,13 @@ font-weight: bold;
 text-transform: none;</string>
            </property>
            <property name="text">
-            <string>Total Orders</string>
+            <string>Total Invoices</string>
            </property>
           </widget>
-          <widget class="QLabel" name="LB_totalOrders">
+          <widget class="QLabel" name="LB_nPurchasInvoices">
            <property name="geometry">
             <rect>
-             <x>130</x>
+             <x>100</x>
              <y>80</y>
              <width>81</width>
              <height>31</height>
@@ -329,7 +314,7 @@ text-transform: none;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">font-family: Calibri;
-font-size: 20px;
+font-size: 30px;
 color: #4a1d9b;
 font-weight: bold;
 text-transform: none;</string>
@@ -343,7 +328,7 @@ text-transform: none;</string>
           <property name="geometry">
            <rect>
             <x>30</x>
-            <y>200</y>
+            <y>210</y>
             <width>240</width>
             <height>150</height>
            </rect>
@@ -402,7 +387,7 @@ text-transform: none;</string>
           <property name="geometry">
            <rect>
             <x>30</x>
-            <y>370</y>
+            <y>380</y>
             <width>241</width>
             <height>151</height>
            </rect>
@@ -496,7 +481,7 @@ text-transform: none;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_4">
+            <widget class="QLineEdit" name="LE_saleSearch">
              <property name="styleSheet">
               <string notr="true">QLineEdit {
 	background-color: #ced1e7;
@@ -529,7 +514,7 @@ text-transform: none;</string>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_4">
+            <widget class="QComboBox" name="CB_sale">
              <property name="styleSheet">
               <string notr="true">QComboBox {
     /* Background and Border */
@@ -580,21 +565,6 @@ QComboBox QAbstractItemView::item:hover {
 
 </string>
              </property>
-             <item>
-              <property name="text">
-               <string>Invoice Number</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Provider</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Date</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -725,13 +695,13 @@ font-weight: bold;
 text-transform: none;</string>
            </property>
            <property name="text">
-            <string>Items Sold</string>
+            <string>Total Invoices</string>
            </property>
           </widget>
-          <widget class="QLabel" name="LB_ItemsSold">
+          <widget class="QLabel" name="LB_nSoldInvoices">
            <property name="geometry">
             <rect>
-             <x>120</x>
+             <x>100</x>
              <y>80</y>
              <width>111</width>
              <height>31</height>
@@ -739,7 +709,7 @@ text-transform: none;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">font-family: Calibri;
-font-size: 20px;
+font-size: 30px;
 color: #4a1d9b;
 font-weight: bold;
 text-transform: none;</string>
@@ -753,7 +723,7 @@ text-transform: none;</string>
           <property name="geometry">
            <rect>
             <x>30</x>
-            <y>200</y>
+            <y>210</y>
             <width>240</width>
             <height>150</height>
            </rect>
@@ -812,7 +782,7 @@ text-transform: none;</string>
           <property name="geometry">
            <rect>
             <x>30</x>
-            <y>370</y>
+            <y>380</y>
             <width>241</width>
             <height>151</height>
            </rect>

@@ -40,6 +40,8 @@ public:
 
     const int getInvoiceNumber() const;
 
+    const std::string getInvoiceNumberStr() const;
+
     const std::string& getProviderName() const;
 
     const std::string& getCustomerName() const;

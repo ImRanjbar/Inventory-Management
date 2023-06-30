@@ -1,12 +1,7 @@
 #include "Invoice.h"
-#include "invoice_numbers.h"
+#include "InvoiceNumbers.h"
 
 Invoice::Invoice() = default;
-
-//Invoice::Invoice(std::string_view providerID){
-//    m_providerID = providerID;
-//    createInvoiceNumber();
-//}
 
 Invoice::Invoice(const int invoiceNumber, const std::string_view providerID, const std::string_view customerID
                  , const std::string_view providerName, const std::string_view customerName, const double amount, const std::string_view date) :
@@ -74,16 +69,12 @@ void Invoice::createInvoiceNumber(){
     // Generate a random number between 1000 and 10000
     int randomNumber = std::rand() % 9001 + 1000;
     std::cout << "Random number: " << randomNumber << std::endl;
-    if (invoiceNumbers.contains(randomNumber)){
+    if (InvoiceNumbers::invoiceNumbers.contains(randomNumber)){
         createInvoiceNumber();
     }
 
     m_invoiceNumber = randomNumber;
 }
-
-//bool Invoice::invoiceNumberExistence(){
-
-//}
 
 void Invoice::clearInvoice(){
     m_invoiceNumber = 0;
@@ -124,4 +115,8 @@ void Invoice::setCustomerID(const std::string_view customerID){
 
 void Invoice::setDate(const std::string_view date){
     m_date = date;
+}
+
+void Invoice::setTotalAmount(const double totalAmount){
+    m_totalAmount = totalAmount;
 }

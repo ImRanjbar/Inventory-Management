@@ -2,6 +2,7 @@
 #include "ui_add_product_window.h"
 #include <QValidator>
 #include <QDate>
+#include "datahandler.h"
 
 add_product_window::add_product_window(Seller *user, QWidget *parent) :
     QDialog(parent),
@@ -120,6 +121,9 @@ void add_product_window::addProductToInventory(){
 
     Product newProduct(name, category, sku, brand, stock, available, price, unit, description, addedDate, exDate, availability);
     m_user->addProduct(newProduct);
+
+    DataHandler data;
+    data.addProduct(&newProduct, m_user->getMID());
 }
 
 void add_product_window::on_PB_addProduct_clicked()

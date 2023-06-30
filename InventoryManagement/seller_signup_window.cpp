@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QRegularExpressionValidator>
+#include "datahandler.h"
 
 
 seller_signup_window::seller_signup_window(Manufacturers* manufacturers,QWidget* previousWindow, QWidget *parent) :
@@ -139,6 +140,9 @@ void seller_signup_window::signUpUser(const QString &manufacturerName, const QSt
     newSeller->setNIN(NIN.toStdString());
 
     m_manufacturers->addManufact(newSeller);
+
+    DataHandler data;
+    data.addUser(newSeller);
 }
 
 void seller_signup_window::signUpMessage(){

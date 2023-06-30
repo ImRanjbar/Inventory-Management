@@ -2,6 +2,7 @@
 #include "ui_invoice_widget.h"
 #include <QDate>
 #include "currency.h"
+#include "datahandler.h"
 
 invoice_widget::invoice_widget(Manufacturers *manufacturer, Seller *user, QWidget *parent) :
     QWidget(parent),
@@ -134,6 +135,11 @@ void invoice_widget::on_PB_purchase_clicked(){
         ui->LB_error->setVisible(true);
     }
     else {
+        DataHandler data;
+        data.updateCustomerProducts(*m_user, m_user->getInvoice());
+        data.updateProviderProducts(*m_provider, m_user->getInvoice());
+        data.addInvoice(m_user->getInvoice());
+
         m_user->purchase();
         m_provider->sold(m_user->getInvoice());
         m_user->editInvoice().clearInvoice();

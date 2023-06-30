@@ -9,8 +9,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 # Copy the CSV file to the build directory
 configure_file(data.csv ${CMAKE_CURRENT_BINARY_DIR}/data.csv COPYONLY)
@@ -44,7 +44,6 @@ set(PROJECT_SOURCES
         manufacturers.h manufacturers.cpp
         add_product_window.h add_product_window.cpp add_product_window.ui
         add_to_invoice.h add_to_invoice.cpp add_to_invoice.ui
-        invoice_numbers.h
         edit_product_window.h edit_product_window.cpp edit_product_window.ui
         product_information_window.h product_information_window.cpp product_information_window.ui
         CurrencyConverter.h CurrencyConverter.cpp
@@ -53,6 +52,8 @@ set(PROJECT_SOURCES
         edit_exchange_rate_window.h edit_exchange_rate_window.cpp edit_exchange_rate_window.ui
         purchase_invoice_window.h purchase_invoice_window.cpp purchase_invoice_window.ui
         sale_invoice_window.h sale_invoice_window.cpp sale_invoice_window.ui
+        dataBase.db
+        InvoiceNumbers.h InvoiceNumbers.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -78,7 +79,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(InventoryManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(InventoryManagement PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
 
 set_target_properties(InventoryManagement PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

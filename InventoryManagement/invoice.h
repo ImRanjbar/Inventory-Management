@@ -10,7 +10,7 @@ class Invoice
 {
 public:
     Invoice();
-//    Invoice(std::string_view providerID);
+
     Invoice(const int invoiceNumber, const std::string_view providerID, const std::string_view customerID
             , const std::string_view providerName, const std::string_view customerName, const double amount,const std::string_view date);
 
@@ -36,8 +36,6 @@ public:
 
     void createInvoiceNumber();
 
-//    bool invoiceNumberExistence();
-
     void clearInvoice();
 
     const int getInvoiceNumber() const;
@@ -56,8 +54,7 @@ public:
 
     void setDate(const std::string_view date);
 
-
-
+    void setTotalAmount(const double totalAmount);
 
 private:
     int m_invoiceNumber;
@@ -70,7 +67,6 @@ private:
 
     double m_totalAmount;
     double m_numSelctedItems;
-
 };
 
 #endif // INVOICE_H

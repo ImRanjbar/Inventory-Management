@@ -6,6 +6,7 @@
 #include <QHeaderView>
 #include "edit_product_window.h"
 #include "currency.h"
+#include "datahandler.h"
 
 inventory_widget::inventory_widget(Manufacturers* manufacturers, Seller* user,QWidget *parent) :
     QWidget(parent),
@@ -202,8 +203,12 @@ void inventory_widget::removeProduct(int row){
 
     int buttonClicked = messageBox->exec();
 
-    if (buttonClicked == QMessageBox::Yes)
+    if (buttonClicked == QMessageBox::Yes){
         m_user->removerProduct(productSKU.toStdString());
+
+        DataHandler data;
+        data.removeProduct(productSKU.toStdString(), m_user->getMID());
+    }
     else
         return;
 }

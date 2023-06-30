@@ -37,19 +37,23 @@ void Seller::editProduct(const std::string_view targetSKU, std::string_view newN
     if (m_products.getProduct(targetSKU).getAvailability())
         m_items.removeItem(targetSKU);
 
-    m_products.removeProduct(targetSKU);
+    Product& product = m_products.editProduct(targetSKU);
+    product.setName(newName);
+    product.setCategory(newCategory);
+    product.setSku(newSKU);
+    product.setBrand(newBrand);
+    product.setStock(newStock);
+    product.setAvailable(newAvailable);
+    product.setPrice(newPrice);
+    product.setUnit(newUnit);
+    product.setDescription(newDescription);
+    product.setAddedDate(newAddDate);
+    product.setExDate(newExDate);
+    product.setAvailability(newAvailability);
 
-    Product product(newName, newCategory, newSKU, newBrand, newStock, newAvailable
-                    , newPrice, newUnit, newDescription, newAddDate, newExDate, newAvailability);
-    addProduct(product);
-}
-
-void Seller::addCustomerID(const std::string_view customerID) {
-    m_customerIDs.push_back(static_cast<std::string>(customerID));
-}
-
-void Seller::addProviderID(const std::string_view providerID){
-    m_providerIDs.push_back(static_cast<std::string>(providerID));
+    InvoiceItem newItem(newName, newCategory, newSKU, newBrand, newAvailable
+                        , newPrice, newUnit, newDescription, newAddDate, newExDate);
+    m_items.addItem(newItem);
 }
 
 const std::string& Seller::getMID() const{
@@ -88,12 +92,15 @@ invoiceItems &Seller::editInvoiceItems(){
     return m_items;
 }
 
-const std::vector<std::string>& Seller::getCutomerIDs() const{
-    return m_customerIDs;
-}
-
-const std::vector<std::string>& Seller::getProviderIDs() const{
-    return m_providerIDs;
+void Seller::addToInvoice(const Seller &provider, const InvoiceItem &item){
+    if (m_invoice.getProviderID() != provider.getMID()) {
+        m_invoice.clearInvoiceItems();
+        m_invoice.setProviderID(provider.getMID());
+        m_invoice.addItem(item);
+    }
+    else {
+        m_invoice.addItem(item);
+    }
 }
 
 const Invoice &Seller::getInvoice() const{
@@ -114,9 +121,8 @@ void Seller::purchase(){
     for (const InvoiceItem& selectedItem : m_invoice.getInvoiceItemModel().getItems()){
         std::string itemSKU = selectedItem.getSku();
         if (this->getProductsModel().existence(itemSKU)){
-            double newAvailable = this->getProductsModel().getProduct(itemSKU).getStock() + selectedItem.getInventory();
-            this->editProducts().editProduct(itemSKU).setStock(newAvailable);
-
+            double newStock = this->getProductsModel().getProduct(itemSKU).getStock() + selectedItem.getInventory();
+            this->editProducts().editProduct(itemSKU).setStock(newStock);
         }
         else{
             Product newProduct(selectedItem.getName(), selectedItem.getCategory(), selectedItem.getSku()
@@ -124,7 +130,6 @@ void Seller::purchase(){
                                , selectedItem.getUnit(), selectedItem.getDescription(), selectedItem.getAddedDate()
                                , selectedItem.getExDate(), false);
             this->editProducts().addProduct(newProduct);
-
         }
     }
 }
@@ -155,6 +160,3 @@ Purchase &Seller::editPurchaseModel(){
 Sold &Seller::editSoldModel(){
     return m_soldHistory;
 }
-
-
-

@@ -1,5 +1,5 @@
-#include "QDebug"
 #include "manufacturers.h"
+#include <QString>
 #include <QCryptographicHash>
 
 Manufacturers::Manufacturers() = default;
@@ -85,7 +85,6 @@ Seller* Manufacturers::editSeller(const std::string_view username){
 Seller* Manufacturers::editSellerByMID(const std::string_view MID){
     for (Seller* seller : m_manufacturers){
         if (seller->getMID() == MID){
-            qDebug() << "Seller found\n";
             return seller;
         }
     }

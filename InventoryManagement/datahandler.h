@@ -7,7 +7,6 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include <qDebug>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -19,11 +18,7 @@ class DataHandler
 public:
     DataHandler();
 
-    void readData(Manufacturers* manufacturers);
-
     void removeQuotes(std::string& value);
-
-    void saveData(Manufacturers* manufacturers);
 
     void readCurrencyRates(CurrencyConverter& currencyModel);
 

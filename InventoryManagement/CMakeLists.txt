@@ -18,9 +18,7 @@ configure_file(CurrencyExchangeRates.csv ${CMAKE_CURRENT_BINARY_DIR}/CurrencyExc
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        GUI/mainwindow.cpp GUI/mainwindow.h GUI/mainwindow.ui
         product.h product.cpp
         user.h user.cpp
         seller.h seller.cpp
@@ -31,27 +29,26 @@ set(PROJECT_SOURCES
         invoiceItems.h invoiceItems.cpp
         Invoice.h Invoice.cpp
         resource.qrc
-        customer_signup_page.h customer_signup_page.cpp customer_signup_page.ui
-        seller_signup_window.h seller_signup_window.cpp seller_signup_window.ui
-        home_window.h home_window.cpp home_window.ui
-        inventory_widget.h inventory_widget.cpp inventory_widget.ui
-        purchase_widget.h purchase_widget.cpp purchase_widget.ui
-        reports_widget.h reports_widget.cpp reports_widget.ui
-        currency_widget.h currency_widget.cpp currency_widget.ui
-        invoice_widget.h invoice_widget.cpp invoice_widget.ui
-        data.csv
+        GUI/customer_signup_page.h GUI/customer_signup_page.cpp GUI/customer_signup_page.ui
+        GUI/seller_signup_window.h GUI/seller_signup_window.cpp GUI/seller_signup_window.ui
+        GUI/home_window.h GUI/home_window.cpp GUI/home_window.ui
+        GUI/inventory_widget.h GUI/inventory_widget.cpp GUI/inventory_widget.ui
+        GUI/purchase_widget.h GUI/purchase_widget.cpp GUI/purchase_widget.ui
+        GUI/reports_widget.h GUI/reports_widget.cpp GUI/reports_widget.ui
+        GUI/currency_widget.h GUI/currency_widget.cpp GUI/currency_widget.ui
+        GUI/invoice_widget.h GUI/invoice_widget.cpp GUI/invoice_widget.ui
         datahandler.h datahandler.cpp
         manufacturers.h manufacturers.cpp
-        add_product_window.h add_product_window.cpp add_product_window.ui
-        add_to_invoice.h add_to_invoice.cpp add_to_invoice.ui
-        edit_product_window.h edit_product_window.cpp edit_product_window.ui
-        product_information_window.h product_information_window.cpp product_information_window.ui
+        GUI/add_product_window.h GUI/add_product_window.cpp GUI/add_product_window.ui
+        GUI/add_to_invoice.h GUI/add_to_invoice.cpp GUI/add_to_invoice.ui
+        GUI/edit_product_window.h GUI/edit_product_window.cpp GUI/edit_product_window.ui
+        GUI/product_information_window.h GUI/product_information_window.cpp GUI/product_information_window.ui
         CurrencyConverter.h CurrencyConverter.cpp
         Currency.h Currency.cpp
         CurrencyExchangeRates.csv
-        edit_exchange_rate_window.h edit_exchange_rate_window.cpp edit_exchange_rate_window.ui
-        purchase_invoice_window.h purchase_invoice_window.cpp purchase_invoice_window.ui
-        sale_invoice_window.h sale_invoice_window.cpp sale_invoice_window.ui
+        GUI/edit_exchange_rate_window.h GUI/edit_exchange_rate_window.cpp GUI/edit_exchange_rate_window.ui
+        GUI/purchase_invoice_window.h GUI/purchase_invoice_window.cpp GUI/purchase_invoice_window.ui
+        GUI/sale_invoice_window.h GUI/sale_invoice_window.cpp GUI/sale_invoice_window.ui
         dataBase.db
         InvoiceNumbers.h InvoiceNumbers.cpp
 )

@@ -9,7 +9,7 @@
 class User {
 
 public:
-    ~User();
+    User();
     void setUsername(const std::string_view username);
     void setPassword(const std::string_view password);
     void setName(const std::string_view name);

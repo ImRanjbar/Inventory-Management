@@ -1,5 +1,7 @@
 #include "user.h"
 
+User::User() = default;
+
 void User::setUsername(const std::string_view username) {
     m_username = username;
 }
@@ -47,8 +49,3 @@ const std::string& User::getNIN() const{
 const std::string& User::getPhoneNumber() const{
     return m_phoneNumber;
 }
-
-User::~User(){
-
-}
-

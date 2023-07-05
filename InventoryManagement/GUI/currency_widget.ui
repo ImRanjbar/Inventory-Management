@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>currency_widget</class>
+ <widget class="QWidget" name="currency_widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1160</width>
+    <height>660</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1160</width>
+     <height>660</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#widget{
+background-image : url(:/Images/CurrencyWidgetBackground.png);
+}
+</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>190</y>
+      <width>962</width>
+      <height>324</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QRadioButton" name="RB_AED">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/AED.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_AUD">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/AUD.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_BRL">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/BRL.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_CAD">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/CAD.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_CHF">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/CHF.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_CNY">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/CNY.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QRadioButton" name="RB_EGP">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/EGP.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_EUR">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/EUR.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_GBP">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/GBP.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_HKD">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/HKD.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_INR">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/INR.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_IRR">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/IRR.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QRadioButton" name="RB_JPY">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/JPY.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_KRW">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/KRW.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_MXN">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/MXN.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_NOK">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/NOK.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_NZD">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/NZD.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_PLN">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/PLN.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QRadioButton" name="RB_RUB">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/RUB.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_SAR">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/SAR.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_SEK">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/SEK.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_TRY">
+         <property name="minimumSize">
+          <size>
+           <width>235</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/TRY.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_USD">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/USD.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="RB_ZAR">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator {
+    border: none;
+}
+QRadioButton {
+	background-image : url(:/Images/icons/countries/ZAR.png) ;
+}
+QRadioButton:hover{
+	background-color: rgba(180, 160, 233, 0.5);
+}
+
+QRadioButton:checked {
+    background-color: rgba(180, 160, 233, 0.5);
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="PB_editRate">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>20</y>
+      <width>300</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background-image : url(:/Images/icons/editExchangeRate.png);
+	background-color : #c4c1f3;
+	border-radius :15px;
+}
+
+QPushButton:hover {
+	background-color: #d8d6f7;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

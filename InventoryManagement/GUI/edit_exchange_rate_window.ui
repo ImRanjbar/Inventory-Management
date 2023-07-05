@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>edit_exchange_rate_window</class>
+ <widget class="QDialog" name="edit_exchange_rate_window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#edit_exchange_rate_window {
+	background-image : url(:/Images/EditExchangeRateBackground.png);
+}</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>60</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #205c6f;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Base Currency</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>60</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #205c6f;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Quote Currency</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_rate">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>200</y>
+     <width>300</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>300</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>300</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #e9edfa;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4b6ed1;
+	font-family:Impactl;
+	font-size:18px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="PB_applyChanges">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>330</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #8ce556;
+    border: 1px solid #8ce556;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #aaec82;
+
+}</string>
+   </property>
+   <property name="text">
+    <string>Apply Changes</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="PB_reset">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>330</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #e56856;
+    border: 1px solid #e56856;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #ec8f82;
+
+}</string>
+   </property>
+   <property name="text">
+    <string>Rest</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="PB_cancel">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>330</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #e5568c;
+    border: 1px solid #e5568c;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #ec82aa;
+
+}</string>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_error">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>280</y>
+     <width>291</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #b33000;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string> Invalid Currency Pair</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

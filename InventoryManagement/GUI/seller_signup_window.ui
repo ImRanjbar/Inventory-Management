@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>seller_signup_window</class>
+ <widget class="QDialog" name="seller_signup_window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">seller_signup_window {
+                    background-image: url(:/Images/SellerSignUpWindowBackground.png);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-color: transparent;
+                    }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Minimum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="LB_signUp">
+         <property name="styleSheet">
+          <string notr="true">
+font-family: 'Fjalla One', sans-serif;
+font-size: 40px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #C0DEFF;
+font-weight: bold;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;</string>
+         </property>
+         <property name="text">
+          <string>Sign Up</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>30</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="LE_manufacturerName">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="LB_errorManufacturerName">
+             <property name="styleSheet">
+              <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLineEdit" name="LE_lastName">
+                 <property name="styleSheet">
+                  <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="LE_name">
+                 <property name="styleSheet">
+                  <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="LB_errorName">
+                 <property name="styleSheet">
+                  <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+                 </property>
+                 <property name="text">
+                  <string>TextLabel</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="LB_errorLastName">
+                 <property name="styleSheet">
+                  <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+                 </property>
+                 <property name="text">
+                  <string>TextLabel</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="LE_NIN">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+         </property>
+         <property name="inputMask">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="LB_errorNIN">
+         <property name="styleSheet">
+          <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="LE_phoneNumber">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="LE_MID">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="LB_errorPhoneNumber">
+             <property name="styleSheet">
+              <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="LB_errorMID">
+             <property name="styleSheet">
+              <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="LE_username">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="LB_errorUsername">
+         <property name="styleSheet">
+          <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="LE_password">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="LB_errorPassword">
+         <property name="styleSheet">
+          <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="LE_confirmPass">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:9px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #4d4d67;
+	font-family:Impactl;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="LB_errorPasswordAgain">
+         <property name="styleSheet">
+          <string notr="true">font-family: Calibri;
+font-size: 12px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #bd7981;
+font-weight: bold;
+font-style: normal;
+text-transform: none;</string>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Minimum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="PB_signUp">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	background-color : #779985;
+	border-radius:29px;
+	display:inline-block;
+	color: #5f5370;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:21px 45px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+
+QPushButton:hover {
+	background-color: #a3baac;
+}
+
+QPushButton:active {
+		position:relative;
+		top:1px;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Sign Up</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="styleSheet">
+            <string notr="true">font-family: 'Fjalla One', sans-serif;
+font-size: 11px;
+letter-spacing: 0px;
+word-spacing: 0px;
+color: #b8adad;
+font-weight: none;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>Already have an account? </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="PB_login">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    border: none;
+	color : #b3b3b3;
+	font-weight : bold;
+	font-size : 12px;
+
+}
+QPushButton:hover{
+	change-cursor: cursor('PointingHand');
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Login</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>750</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>add_to_invoice</class>
+ <widget class="QDialog" name="add_to_invoice">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>446</width>
+    <height>250</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#add_to_invoice{
+	background-image : url(:/Images/addToInvoiceBackground.png);
+}</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>211</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>65</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #e8e5fb;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>Item Name : </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="LB_itemName">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #ffffff;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>NAME</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #e8e5fb;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>SKU : </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="LB_itemSKU">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>15</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #ffffff;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>SKU</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="LB_error">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-family: Calibri;
+font-size: 10px;
+color: #ffa8a8;
+font-weight: bold;
+text-transform: none;</string>
+      </property>
+      <property name="text">
+       <string>This item is already in your invoice</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>180</y>
+     <width>241</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QPushButton" name="PB_add">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #a3f0ad;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    padding: 20px 20px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #b9f4c1;
+
+}</string>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="PB_cancel">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #f0a3e6;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    padding: 20px 20px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #f4b9ec;
+
+}</string>
+      </property>
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>81</y>
+     <width>131</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 15px;
+color: #5e4be3;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Selected</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LE_selected">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>104</y>
+     <width>220</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>220</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>220</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+	background-color: #F6F1F1;
+	border-radius:3px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+
+	font-family: Calibri;
+	font-size: 14px;
+	color: #7261e5;
+	font-weight: bold;
+	text-transform: none;
+
+	padding:10px 10px;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_selectedError">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>149</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 10px;
+color: #cf0000;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>81</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 16px;
+color: #e6f0a3;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>Avaialable : </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_itemAvailable">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>114</y>
+     <width>181</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Calibri;
+font-size: 20px;
+color: #e6f0a3;
+font-weight: bold;
+text-transform: none;</string>
+   </property>
+   <property name="text">
+    <string>983 piece</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

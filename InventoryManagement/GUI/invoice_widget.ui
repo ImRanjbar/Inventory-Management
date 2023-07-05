@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>invoice_widget</class>
+ <widget class="QWidget" name="invoice_widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1160</width>
+    <height>660</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1160</width>
+    <height>660</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1160</width>
+    <height>660</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="leftMargin">
+      <number>60</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>20</number>
+     </property>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="invoiceDetailWidget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>6000</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget#invoiceDetailWidget {
+	background-image : url(:/Images/invoiceDetailsWidget.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	border-radius: 20px;
+}</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="styleSheet">
+               <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #fdfdfd;
+font-weight: bold;
+text-transform: none;</string>
+              </property>
+              <property name="text">
+               <string>Invoice Number</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="LB_invoiceNumber">
+              <property name="styleSheet">
+               <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #fdfdfd;
+font-weight: normal;
+text-transform: none;</string>
+              </property>
+              <property name="text">
+               <string>INV-0</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="LB_invoiceDate">
+              <property name="styleSheet">
+               <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #fdfdfd;
+font-weight: normal;
+text-transform: none;</string>
+              </property>
+              <property name="text">
+               <string>2023/7/6</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="LB_provider">
+              <property name="styleSheet">
+               <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #7d7d7d;
+font-weight: bold;
+text-transform: none;</string>
+              </property>
+              <property name="text">
+               <string>Provider</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="LB_manuName">
+              <property name="styleSheet">
+               <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #7d7d7d;
+font-weight: normal;
+text-transform: none;</string>
+              </property>
+              <property name="text">
+               <string>Tesla Manufacturer</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="LB_MID">
+              <property name="styleSheet">
+               <string notr="true">font-family: Calibri;
+font-size: 14px;
+color: #7d7d7d;
+font-weight: normal;
+text-transform: none;</string>
+              </property>
+              <property name="text">
+               <string>202984712</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="leftMargin">
+          <number>20</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>20</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="styleSheet">
+            <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #4e001f;
+font-weight: bold;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>Search</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="LE_search">
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+	background-color: #ced1e7;
+	border-radius:8px;
+	border:1px solid #ced1e7;
+	display:inline-block;
+	cursor:text;
+	color : #2c2c3b;
+	font-family:Impactl;
+	font-size:10px;
+	font-weight:bold;
+	padding:10px 10px;
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="styleSheet">
+            <string notr="true">font-family: Calibri;
+font-size: 12px;
+color: #4e001f;
+font-weight: bold;
+text-transform: none;</string>
+           </property>
+           <property name="text">
+            <string>bye</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="CB_searchBy">
+           <property name="minimumSize">
+            <size>
+             <width>152</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>140</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+    /* Background and Border */
+    background-color: #d9e5f8;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    padding: 8px 10px;
+    min-width: 130px;
+}
+
+QComboBox::drop-down {
+    /* Dropdown Arrow */
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 30px;
+    border-left-width: 0px;
+    border-left-color: #CCCCCC;
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 4px;
+    background: transparent;
+}
+
+QComboBox::down-arrow {
+    /* Dropdown Arrow Icon */
+    image: url(:/Images/icons/downChevronComboBox.png);
+}
+
+QComboBox QAbstractItemView {
+    /* Dropdown List */
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    padding: 2px;
+    outline: none;
+}
+
+QComboBox QAbstractItemView::item {
+    /* List Item */
+    padding: 4px 8px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    /* Hovered Item */
+    background-color: #999fff;
+	border-radius: 8px;
+}
+
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="PB_remove">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #f4c3d6;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #eff4fc;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Remove</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="PB_clear">
+           <property name="minimumSize">
+            <size>
+             <width>70</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #76c3e0;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    padding: 8px 8px;
+	color: #1c1d06;
+	font-family : Cabin;
+	font-weight : bold;
+	font-size : 12px;
+
+	
+}
+
+QPushButton::hover {
+	background-color : #eff4fc;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Clear</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableView" name="TV_items">
+         <property name="minimumSize">
+          <size>
+           <width>750</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>750</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableView {
+	background-color : #dfe1ef;
+	border-radius : 10px;
+}
+
+QScrollBar:vertical {
+  background-color: #d3d3d3; /* Change to the desired color */
+}
+
+QScrollBar::handle:vertical {
+  background-color: #c5b4ee; /* Change to the desired color */
+}
+</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QWidget" name="rightInvoiceWidget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>320</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget #rightInvoiceWidget {
+	background-image : url(:/Images/invoiceDetailRightWidget.png);
+}</string>
+       </property>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>180</y>
+          <width>180</width>
+          <height>146</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 30px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>Amount Due : </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>161</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 20px;
+color: #4a1d9b;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>Items Sellected : </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LB_nSellected">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>100</y>
+          <width>291</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 30px;
+color: #3f403f;
+text-align : center;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LB_amountDue">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>280</y>
+          <width>301</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 30px;
+color: #2f6f34;
+text-align : center;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="PB_purchase">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>480</y>
+          <width>211</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	background-color:#724cd7;
+	border-radius:29px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:21px 45px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+
+QPushButton:hover {
+	background-color:#9376E0;
+}
+
+QPushButton:active {
+		position:relative;
+	top:1px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Purchase</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LB_error">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>550</y>
+          <width>151</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-family: Calibri;
+font-size: 10px;
+color: #b50000;
+font-weight: bold;
+text-transform: none;</string>
+        </property>
+        <property name="text">
+         <string>This is error message!</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -2,8 +2,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include "../manufacturers.h"
 
+#include <QMainWindow>
 
 
 QT_BEGIN_NAMESPACE
@@ -19,8 +20,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void hideMainWindowLabels();
+
+private slots:
+
+    void on_PB_login_clicked();
+
+    void on_PB_signin_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Manufacturers* m_manufacturers;
 };
 
 #endif // MAINWINDOW_H

@@ -15,6 +15,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 # Copy the CSV file to the build directory
 configure_file(data.csv ${CMAKE_CURRENT_BINARY_DIR}/data.csv COPYONLY)
 configure_file(CurrencyExchangeRates.csv ${CMAKE_CURRENT_BINARY_DIR}/CurrencyExchangeRates.csv COPYONLY)
+configure_file(dataBase.db ${CMAKE_CURRENT_BINARY_DIR}/dataBase.db COPYONLY)
 
 set(PROJECT_SOURCES
         main.cpp

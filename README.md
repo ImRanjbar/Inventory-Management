@@ -137,6 +137,7 @@ In this window, you have the option to either log in if you already have an acco
 > Please note that some of the currency exchange rates may be outdated or incorrect.
 
 <br>
+
 * After modifying the currency from USD to GBP, the entire application will seamlessly update to reflect the new currency. As an illustration, here is an example of the Invoice window displaying values in GBP:
 
 ![Modify Currency 1](readme-images/change-currency-sp1.png)

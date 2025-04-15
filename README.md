@@ -1,7 +1,6 @@
 # Inventory Management<br>
 
-This is my **Advanced Programming Course** project<br><br><br>
-
+This project was developed as part of the **Advanced Programming course (C++)** during my Bachelor's studies in Computer Engineering at the University of Isfahan.<br><br>
 
 ## Table of content
   - [Login and Sign up](#login-and-sign-up)
@@ -15,8 +14,7 @@ This is my **Advanced Programming Course** project<br><br><br>
 
 ## Login and Sign up
 
-* Welcome to the Login and Sign up section of the application, designed specifically for sellers.
-In this window, you have the option to either log in if you already have an account or sign up to create a new account as a seller.
+* This section presents the user authentication interface specifically designed for sellers within the Inventory Management application, allowing users to either log in to an existing account or sign up to create a new one.
 
 ![Login Window](readme-images/login-window.png)
 
@@ -60,6 +58,7 @@ In this window, you have the option to either log in if you already have an acco
  > Note: By setting the **Available** quantity to a value greater than zero, the product will be made available for purchase by both manufacturers and customers.
 
 <br>
+
 * Lastly, to remove a product from your inventory, just click on the **Remove** button.
 
 ![Remove Product](readme-images/remove-product.png)<br><br><br>
